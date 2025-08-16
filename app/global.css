@@ -1,0 +1,224 @@
+/* global.css */
+@import 'tailwindcss';
+
+/* Defina as variáveis de cor para o tema claro (Light Mode) */
+:root {
+  /* Backgrounds */
+  --color-bg-primary: #f4f4f4;      /* Fundo principal: branco puro */
+  --color-bg-secondary: #FFFFFF;    /* Fundo de cards/componentes: cinza muito claro */
+  --color-bg-tertiary: #EFEFEF;     /* Fundo de botões: cinza claro */
+  --color-bg-quaternary: #1900ff;   /* Fundo dos ultimos posts do blog*/
+
+  /* Textos */
+  --color-text-primary: #333;    /* Texto principal: preto suave */
+  --color-text-secondary: #666;  /* Texto secundário: cinza médio */
+  --color-text-accent: #FF8A00;     /* Cor de destaque: laranja vibrante */
+
+  /* Cores de sintaxe do código (manter as originais) */
+  --sh-class: #2d5e9d;
+  --sh-identifier: #354150;
+  --sh-sign: #8996a3;
+  --sh-string: #007f7a;
+  --sh-keyword: #e02518;
+  --sh-comment: #a19595;
+  --sh-jsxliterals: #6266d1;
+  --sh-property: #e25a1c;
+  --sh-entity: #e25a1c;
+}
+
+/* Sobrescreve as variáveis de cor para o tema escuro (Dark Mode) */
+[data-theme='dark'] {
+  /* Backgrounds */
+  --color-bg-primary: #0C0C1F;      /* Fundo principal: azul escuro */
+  --color-bg-secondary: #1C1C36;    /* Fundo de cards/componentes: cinza azulado escuro */
+  --color-bg-tertiary: #2A2A47;     /* Fundo de botões: cinza azulado mais escuro */
+
+  /* Textos */
+  --color-text-primary: #FFFFFF;    /* Texto principal: branco */
+  --color-text-secondary: #B0B0B0;  /* Texto secundário: cinza claro */
+  --color-text-accent: #FF8A00;     /* Cor de destaque: laranja vibrante */
+
+  /* Cores de sintaxe do código */
+  --sh-class: #4c97f8;
+  --sh-identifier: white;
+  --sh-keyword: #f47067;
+  --sh-string: #0fa295;
+}
+
+/* Configura o esquema de cores do navegador */
+html {
+  min-width: 360px;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+/* Seleção de texto */
+::selection {
+  background-color: var(--color-text-accent);
+  color: var(--color-bg-primary);
+}
+
+/* Estilos para o conteúdo "prose" */
+.prose .anchor {
+  @apply absolute invisible no-underline;
+  margin-left: -1em;
+  padding-right: 0.5em;
+  width: 80%;
+  max-width: 700px;
+  cursor: pointer;
+}
+
+.anchor:hover {
+  @apply visible;
+}
+
+/* Ajusta a cor da decoração com base nas variáveis CSS */
+.prose a {
+  @apply underline transition-all underline-offset-2 decoration-[0.1em];
+  text-decoration-color: var(--color-text-accent);
+  color: var(--color-text-accent);
+}
+
+.prose .anchor:after {
+  content: '#';
+  color: var(--color-text-secondary);
+}
+
+.prose *:hover > .anchor {
+  @apply visible;
+}
+
+/* Ajusta as cores do background e borda de pre */
+.prose pre {
+  @apply rounded-lg overflow-x-auto py-2 px-3 text-sm;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+}
+
+.prose code {
+  @apply px-1 py-0.5 rounded-lg;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-tertiary);
+}
+
+.prose pre code {
+  @apply p-0;
+  border: initial;
+  line-height: 1.5;
+}
+
+.prose code span {
+  @apply font-medium;
+}
+
+.prose img {
+  @apply m-0;
+}
+
+/* Ajusta a cor do texto de parágrafos */
+.prose p {
+  @apply my-4;
+  color: var(--color-text-secondary);
+}
+
+/* Ajusta a cor dos títulos */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: var(--color-text-accent);
+}
+
+.prose h1 {
+  @apply text-4xl font-medium tracking-tight mt-6 mb-2;
+}
+
+.prose h2 {
+  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+}
+
+.prose h3 {
+  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+}
+
+.prose h4 {
+  @apply text-lg font-medium tracking-tight mt-6 mb-2;
+}
+
+.prose strong {
+  @apply font-medium;
+  color: var(--color-text-primary);
+}
+
+.prose ul {
+  @apply list-disc pl-6;
+  color: var(--color-text-secondary);
+}
+
+.prose ol {
+  @apply list-decimal pl-6;
+  color: var(--color-text-secondary);
+}
+
+.prose > :first-child {
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+}
+
+/* Remove scrollbar */
+pre::-webkit-scrollbar {
+  display: none;
+}
+pre {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Remove sombra de input no Safari */
+input[type='text'],
+input[type='email'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+table {
+  display: block;
+  max-width: fit-content;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.title {
+  text-wrap: balance;
+}
+
+/* Custom CSS */
+
+@media screen and (max-width: 767px) {
+  #inicio {
+    min-height: auto;
+  }
+}
+
+@media screen and (min-width: 640px) and (max-width: 767px) {
+  #inicio {
+    padding-top: 10rem;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  #inicio {
+    padding-top: 6rem;
+  }
+}
+
+
+#inicio img {
+  max-width: 90%;
+  height: auto;
+}
