@@ -1,6 +1,7 @@
 // components/AboutSection.tsx
 import { Briefcase, Code } from 'lucide-react';
 
+
 // Componente para o ícone do HTML5
 const HtmlIcon = (props) => (
   <svg {...props} viewBox="0 0 20 20" fillRule="evenodd">

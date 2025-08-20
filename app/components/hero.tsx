@@ -15,7 +15,7 @@ export function HeroSection() {
         </div>
         <div className="flex-1 flex justify-center md:justify-end">
           <Image
-            src="/profile.png"
+            src="/perfil.png"
             alt="Foto de Marllon Panisset"
             width={400}
             height={400}
