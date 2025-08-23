@@ -28,8 +28,8 @@ const linkedinIcon = (props) => (
 
 
 const iconsFooter = [
-  { name: 'Github', logo: githubIcon, link: 'https://github.com/seuperfil' },
-  { name: 'Linkedin', logo: linkedinIcon, link: 'https://linkedin.com/in/seuperfil' },
+  { name: 'Github', logo: githubIcon, link: 'https://github.com/marllonpanisset' },
+  { name: 'Linkedin', logo: linkedinIcon, link: 'https://linkedin.com/in/marllon-panisset' },
 ];
 
 export default function Footer() {
