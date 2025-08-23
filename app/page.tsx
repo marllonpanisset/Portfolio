@@ -1,11 +1,13 @@
-// import { BlogPosts } from 'app/components/posts'
+// app/page.tsx
 
-// Este é o novo arquivo `page.tsx` que agrupa todas as seções.
-import { HeroSection } from './components/hero';
-import { AboutSection } from './components/about';
-import { ProjectsSection } from './components/projects';
-import { ContactSection } from './components/contact';
-import { BlogPostsSection } from './components/lastblogposts';
+// Imports atualizados para apontar para a pasta /sections
+import { HeroSection } from './sections/hero';
+import { AboutSection } from './sections/about';
+import { ProjectsSection } from './sections/projects'; // Mantenha como está se 'projects' for um componente complexo
+// Se ProjectsSection for uma seção, mova-a para /sections também. Vamos assumir que é uma seção para consistência:
+// import { ProjectsSection } from './sections/ProjectsSection';
+import { ContactSection } from './sections/contact';
+import { BlogSection } from './sections/lastblogposts';
 
 export default function Home() {
   return (
@@ -14,7 +16,7 @@ export default function Home() {
       <AboutSection />
       <ProjectsSection />
       <ContactSection />
-      <BlogPostsSection />
+      <BlogSection />
     </>
   );
 }

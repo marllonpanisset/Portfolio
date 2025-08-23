@@ -1,4 +1,4 @@
-// components/HeroSection.tsx
+// app/sections/HeroSection.tsx
 import Image from 'next/image'; // Importa o componente 'Image' otimizado do Next.js.
 
 // Este é o componente principal da seção de boas-vindas na página.
@@ -26,8 +26,8 @@ export function HeroSection() {
             alt="Foto de Marllon Panisset" // Texto alternativo para acessibilidade.
             width={400}
             height={400}
-            // Classes do Tailwind para estilização: bordas arredondadas, sombra e borda colorida.
-            className="rounded-full shadow-lg border-4 border-[var(--color-text-accent)]"
+            className="rounded-full shadow-lg"
+            priority // Otimiza o carregamento da imagem para a primeira visualização.
           />
         </div>
       </div>
