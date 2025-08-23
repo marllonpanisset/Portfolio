@@ -1,6 +1,4 @@
 // components/AboutSection.tsx
-import { Briefcase, Code } from 'lucide-react';
-
 
 // Componente para o ícone do HTML5
 const HtmlIcon = (props) => (
@@ -78,6 +76,7 @@ const StyledComponentsIcon = (props) => (
   </svg>
 );
 
+// Dados de habilidades
 const skills = [
   { name: 'HTML5', logo: HtmlIcon },
   { name: 'CSS3', logo: CssIcon },
@@ -88,6 +87,7 @@ const skills = [
   { name: 'Styled Components', logo: StyledComponentsIcon },
 ];
 
+// Dados de experiência
 const experience = [
   { company: 'Binaria', role: 'Dev Front-End Pleno', period: 'Junho 2022 - Dezembro 2022', description: 'Gestão de conteúdo em CMS Privado' },
   { company: 'ED3 Digital', role: 'Dev Front-End Pleno', period: 'Agosto 2020 - Abril 2022', description: 'Desenvolvimento e manutenção de e-commerces em VTEX.' },
@@ -96,7 +96,6 @@ const experience = [
   { company: 'Sírius Interativa', role: 'Dev Front-End Jr Estágio', period: 'Junho 2016 - Dezembro 2017', description: 'Criação de templates estáticos em HTML,CSS E JavaScript, e templates HTML de email marketing' },
   { company: 'Hospital Rio Mar', role: 'Técnico em Informática', period: 'Agosto 2011 - Maio 2016', description: 'montagem e manutenção de computadores, instalação de infraestrutura de rede cabeada e rede wifi, instalação de impressoras e softwares, suporte presencial e remoto' },
 ];
-
 
 export function AboutSection() {
   return (
@@ -128,17 +127,35 @@ export function AboutSection() {
         <h2 className="text-3xl font-bold text-center mb-20 text-[var(--color-text-primary)]">
           Experiência
         </h2>
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+        <div className="container mx-auto px-4 py-8">
+          {/* Container principal para a timeline. No desktop, ele contém a linha vertical. */}
+          <div className="relative wrap overflow-hidden p-10 h-full">
+            {/* Linha vertical central da timeline (apenas em telas maiores que md) */}
+            <div className="border-2-2 absolute border-opacity-20 border-[var(--color-text-secondary)] h-full border rounded hidden md:block" style={{ left: '50%' }}></div>
+
+            {/* Mapeia cada item de experiência para um elemento na timeline */}
             {experience.map((exp, index) => (
-              <div key={index} className="w-full">
-                <div className="p-4 bg-[var(--color-bg-secondary)] rounded-lg shadow-md h-full flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-xl font-semibold text-[var(--color-text-accent)]">{exp.role}</h3>
-                    <h4 className="text-md text-[var(--color-text-secondary)]">{exp.company}</h4>
-                    <p className="text-sm mt-2 text-[var(--color-text-secondary)]">{exp.description}</p>
-                  </div>
-                  <p className="text-xs mt-4 text-[var(--color-text-secondary)]">{exp.period}</p>
+              <div
+                key={index}
+                className={`
+                  mb-8 flex justify-between items-center w-full
+                  ${index % 2 === 0 ? 'md:flex-row-reverse' : 'md:flex-row'}
+                `}
+              >
+                {/* Lado vazio da timeline para o alinhamento */}
+                <div className="hidden md:block md:w-5/12"></div>
+                
+                {/* Ponto na linha da timeline */}
+                <div className="flex items-center justify-center relative z-10 w-8 h-8 rounded-full bg-[var(--color-bg-tertiary)] text-white shrink-0">
+                  <div className="w-4 h-4 rounded-full bg-[var(--color-text-accent)]"></div>
+                </div>
+
+                {/* Lado com o cartão de experiência */}
+                <div className="p-4 rounded-lg shadow-md w-full md:w-5/12 bg-[var(--color-bg-secondary)]">
+                  <h3 className="text-xl font-semibold text-[var(--color-text-accent)]">{exp.role}</h3>
+                  <h4 className="text-md text-[var(--color-text-secondary)]">{exp.company}</h4>
+                  <p className="text-xs mt-2 text-[var(--color-text-secondary)]">{exp.period}</p>
+                  <p className="text-sm mt-2 text-[var(--color-text-secondary)]">{exp.description}</p>
                 </div>
               </div>
             ))}

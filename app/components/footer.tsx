@@ -1,7 +1,12 @@
 // components/footer.tsx
-import Link from 'next/link';
-import { Briefcase, Code } from 'lucide-react';
+'use client';
 
+import Link from 'next/link';
+
+// Importa o componente Navbar e os navItems do arquivo nav.tsx
+import { Navbar } from './nav';
+
+// Componente Icone Github
 const githubIcon = (props) => (
   <svg {...props} viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <title>github</title>
@@ -15,6 +20,7 @@ const githubIcon = (props) => (
   </svg>
 );
 
+// Componente Icone Linkedin
 const linkedinIcon = (props) => (
   <svg {...props} viewBox="-143 145 512 512">
     <path d="M113,145c-141.4,0-256,114.6-256,256s114.6,256,256,256s256-114.6,256-256S254.4,145,113,145z M41.4,508.1H-8.5V348.4h49.9
@@ -25,7 +31,7 @@ const linkedinIcon = (props) => (
   </svg>
 );
 
-
+// Dados do Componente de Rede Social
 const iconsFooter = [
   { name: 'Github', logo: githubIcon, link: 'https://github.com/marllonpanisset' },
   { name: 'Linkedin', logo: linkedinIcon, link: 'https://linkedin.com/in/marllon-panisset' },
@@ -53,7 +59,7 @@ export default function Footer() {
 
               {/* Coluna 2: Social */}             
               <div className="flex-1 text-center md:text-left">
-                  <h4 className="font-semibold text-lg text-white mb-2">Siga-me</h4>
+                  <h4 className="font-semibold text-lg text-white mb-2">Social</h4>
                   <div className="flex justify-center md:justify-start space-x-4">
                     {iconsFooter.map((icon) => (
                       <Link 
@@ -72,34 +78,10 @@ export default function Footer() {
               {/* Coluna 3: Navegação */}
               <div className="flex-1 text-center md:text-left">
                 <h4 className="font-semibold text-lg text-white mb-2">Navegação</h4>
-                <ul className="flex flex-col gap-1 md:flex-row md:gap-4">
-                    <li>
-                        <Link href="#inicio" className="hover:text-white transition-colors">
-                            Início
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="#sobre-mim" className="hover:text-white transition-colors">
-                            Sobre
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="#projetos" className="hover:text-white transition-colors">
-                            Projetos
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="#contato" className="hover:text-white transition-colors">
-                            Contato
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/blog" className="hover:text-white transition-colors">
-                            Blog
-                        </Link>
-                    </li>
-                </ul>
-            </div>
+                {/* O componente Navbar é chamado aqui, o que nos permite reutilizar o mesmo código de navegação e lógica de âncora */}
+                {/* A propriedade onLinkClick é necessária, mas pode ser uma função vazia já que o rodapé não tem um menu para fechar */}
+                <Navbar onLinkClick={() => {}} />
+              </div>
               
           </div>
           <div className="mt-8 pt-4 border-t border-gray-700 text-center text-sm">
