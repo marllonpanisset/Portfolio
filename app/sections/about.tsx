@@ -59,11 +59,16 @@ export function AboutSection() {
         <h2 className="text-3xl font-bold text-center mb-20">
           Experiência
         </h2>
-        <div className="relative wrap overflow-hidden p-10 h-full">
+        {/* Container da Timeline: Apenas posicionamento, sem padding. */}
+        <div className="relative">
+          {/* Linha da Timeline: Agora se posiciona corretamente. */}
+          {/* 'left-4' no mobile. 'left-1/2' no desktop. */}
+          {/* z-0 para garantir que fique atrás dos pontos. */}
           <div 
-            className="border-2-2 absolute border-opacity-20 border-[var(--color-text-secondary)] h-full border rounded hidden md:block" 
-            style={{ left: '50%' }}
+            className="absolute border-opacity-20 border-[var(--color-text-secondary)] h-full border-2 left-4 md:left-1/2 -translate-x-1/2 z-0"
           ></div>
+
+          {/* Mapeamento das experiências */}
           {experience.map((exp, index) => (
             <TimelineItem 
               key={index} 
