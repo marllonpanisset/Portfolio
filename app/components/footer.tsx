@@ -46,7 +46,7 @@ export default function Footer() {
 
               {/* Coluna 1: Contato */}
               <div className="flex-1 text-center md:text-left">
-                  <h4 className="font-semibold text-lg text-white mb-2">Contato</h4>
+                  <h4 className="font-semibold text-base text-white mb-2">Contato</h4>
                   <div className="space-y-2">
                       <div className="flex items-center justify-center md:justify-start">
                           <a href="mailto:panisset.dev@gmail.com" className="hover:text-white transition-colors">panisset.dev@gmail.com</a>
@@ -57,9 +57,9 @@ export default function Footer() {
                   </div>
               </div>
 
-              {/* Coluna 2: Social */}             
+              {/* Coluna 3: Social */}             
               <div className="flex-1 text-center md:text-left">
-                  <h4 className="font-semibold text-lg text-white mb-2">Social</h4>
+                  <h4 className="font-semibold text-base text-white mb-2">Social</h4>
                   <div className="flex justify-center md:justify-start space-x-4">
                     {iconsFooter.map((icon) => (
                       <Link 
@@ -74,13 +74,13 @@ export default function Footer() {
                     ))}
                   </div>
               </div>
-
-              {/* Coluna 3: Navegação */}
+              
+              {/* Coluna 2: Navegação */}
               <div className="flex-1 text-center md:text-left">
-                <h4 className="font-semibold text-lg text-white mb-2">Navegação</h4>
+                <h4 className="pl-3 font-semibold text-base text-white mb-2">Navegação</h4>
                 <Navbar onLinkClick={handleLinkClick} isFooter={true} />
               </div>
-              
+
           </div>
           <div className="mt-8 pt-4 border-t border-gray-700 text-center text-sm">
               <p className="text-sm">

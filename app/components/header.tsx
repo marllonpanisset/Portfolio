@@ -53,10 +53,11 @@ export function Header() {
       {/* Menu mobile em tela cheia. */}
       {/* O menu é fixo e ocupa a tela inteira. A classe 'translate-x-full' o esconde fora da tela. */}
       {/* 'isMenuOpen ? 'translate-x-0' : 'translate-x-full' ' faz com que ele deslize para dentro ou para fora. */}
-      <div className={`fixed top-0 left-0 w-full h-full bg-[var(--color-bg-primary)] z-40 transition-transform duration-500 ease-in-out transform md:hidden ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+    <div className={`fixed top-0 left-0 w-full h-full bg-black/65 backdrop-blur z-200 transition-opacity duration-1000 ease-in-out ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <div className="px-4 flex items-center min-h-screen">
-          {/* O componente de navegação é renderizado aqui também para o menu mobile. */}
-          <Navbar onLinkClick={() => setIsMenuOpen(false)} />
+          {/* O componente de navegação é renderizado aqui para o menu mobile. */}
+          {/* Adicionei a classe de opacidade no container principal para controlar a visibilidade. */}
+          <Navbar onLinkClick={() => setIsMenuOpen(false)} isMobileMenu={true} />
         </div>
       </div>
     </header>
