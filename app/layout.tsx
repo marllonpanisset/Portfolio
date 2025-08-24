@@ -1,14 +1,12 @@
-// Seu layout.tsx ajustado
 import './global.css';
 import type { Metadata } from 'next';
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
 import { Header } from './components/header';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Footer from './components/footer';
 import { baseUrl } from './sitemap';
 import { ThemeProvider } from './components/ThemeProvider';
+import { Poppins } from 'next/font/google'; // Importação da fonte Poppins
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -42,6 +40,13 @@ export const metadata: Metadata = {
 const cx = (...classes: (string | boolean | undefined)[]): string =>
   classes.filter(Boolean).join(' ');
 
+// Define e carrega a fonte Poppins com os pesos que você pode precisar.
+const poppins = Poppins({
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'], // Adicionado todos os pesos
+  subsets: ['latin'],
+  variable: '--font-poppins', // Cria uma variável CSS para a fonte
+});
+
 export default function RootLayout({
   children,
 }: {
@@ -50,14 +55,16 @@ export default function RootLayout({
   return (
     <html
       lang="pt-br"
-      className={cx(GeistSans.variable, GeistMono.variable)}
+      // Aplica a variável da fonte Poppins na classe da tag HTML
+      className={cx(poppins.variable)}
       suppressHydrationWarning
     >
       <body
         className={cx(
           'antialiased',
           'bg-[var(--color-bg-primary)]',
-          'text-[var(--color-text-primary)]'
+          'text-[var(--color-text-primary)]',
+          'font-poppins' // Adiciona a classe font-poppins para aplicar a fonte globalmente
         )}
       >
         <ThemeProvider

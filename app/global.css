@@ -9,12 +9,13 @@
   --color-bg-primary: #f4f4f4;      /* Fundo principal: branco puro */
   --color-bg-secondary: #FFFFFF;    /* Fundo de cards/componentes: cinza muito claro */
   --color-bg-tertiary: #EFEFEF;     /* Fundo de botões: cinza claro */
-  --color-bg-quaternary: #1900ff;   /* Fundo dos ultimos posts do blog*/
+  --color-bg-header: #0C0C1F;   /* Fundo dos ultimos posts do blog*/
 
   /* Textos */
   --color-text-primary: #333;    /* Texto principal: preto suave */
   --color-text-secondary: #666;  /* Texto secundário: cinza médio */
   --color-text-accent: #FF8A00;     /* Cor de destaque: laranja vibrante */
+  --color-text-header: #FFF;
 
   /* Cores de sintaxe do código (manter as originais) */
   --sh-class: #2d5e9d;
@@ -34,11 +35,13 @@
   --color-bg-primary: #0C0C1F;      /* Fundo principal: azul escuro */
   --color-bg-secondary: #1C1C36;    /* Fundo de cards/componentes: cinza azulado escuro */
   --color-bg-tertiary: #2A2A47;     /* Fundo de botões: cinza azulado mais escuro */
+  --color-bg-header: #0C0C1F;
 
   /* Textos */
   --color-text-primary: #FFFFFF;    /* Texto principal: branco */
   --color-text-secondary: #B0B0B0;  /* Texto secundário: cinza claro */
   --color-text-accent: #FF8A00;     /* Cor de destaque: laranja vibrante */
+  --color-text-header: #FFF;
 
   /* Cores de sintaxe do código */
   --sh-class: #4c97f8;
@@ -221,6 +224,6 @@ table {
 
 
 #inicio img {
-  max-width: 90%;
-  height: auto;
+  /* max-width: 90%;
+  height: auto; */
 }

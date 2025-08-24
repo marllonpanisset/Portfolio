@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+import { fontFamily } from 'tailwindcss/defaultTheme';
+
 module.exports = {
   darkMode: 'class', // Usa classe 'dark' no <html>
     content: [
@@ -25,6 +28,9 @@ module.exports = {
         'dark-text-primary': '#f3f4f6',
         'dark-text-secondary': '#9ca3af',
         'dark-accent': '#60a5fa',
+      },
+      fontFamily: {
+        poppins: ['var(--font-poppins)', ...fontFamily.sans],
       },
     },
   },

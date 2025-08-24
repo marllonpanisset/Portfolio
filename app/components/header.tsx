@@ -1,38 +1,39 @@
 // components/header.tsx
-'use client'; // Marca o componente como cliente, permitindo o uso de estados (useState).
+'use client'; // Marks the component as a client component, allowing the use of state (useState).
 
-import { useState } from 'react'; // Importa o hook 'useState' do React para gerenciar o estado.
-import { Navbar } from './nav'; // Importa o componente de navegação, que é usado tanto no desktop quanto no mobile.
-import { ThemeSwitcher } from './ThemeSwitcher'; // Importa o componente de troca de tema.
+import { useState } from 'react'; // Imports the 'useState' hook from React to manage state.
+import { Navbar } from './nav'; // Imports the navigation component, used for both desktop and mobile.
+import { ThemeSwitcher } from './ThemeSwitcher'; // Imports the theme switcher component.
 
-// Componente do cabeçalho da página.
+// The main header component of the page.
 export function Header() {
-  // 'useState' para controlar se o menu mobile está aberto ou fechado. O valor inicial é 'false'.
+  // 'useState' to control whether the mobile menu is open or closed. The initial value is 'false'.
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Função para alternar o estado do menu.
+  // Function to toggle the menu state.
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    // 'header' fixo no topo da página, com classes para estilo, sombra e transições.
-    <header className="fixed top-0 w-full z-50 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] shadow-md transition-all duration-300">
-      <div className="flex items-center justify-between max-w-7xl mx-auto px-4 py-4 md:py-6">
-        {/* Título do site que se comporta como um link para a página inicial. */}
-        <h1 className="text-2xl font-bold">Marllon Panisset</h1>
+    // 'header' fixed at the top of the page, with classes for style, shadow, and transitions.
+    <header className="fixed top-0 w-full z-50 bg-[var(--color-bg-header)] text-[var(--color-text-header)] shadow-md transition-all duration-300">
+      {/* Main container for the header content. Horizontal padding (px) has been adjusted for md screens and above. */}
+      <div className="flex items-center justify-between max-w-7xl mx-auto px-6 md:px-8 py-4 md:py-6">
+        {/* Site title that acts as a link to the homepage. */}
+        <h1 className="text-2xl font-semibold tracking-wide">Marllon Panisset</h1>
 
-        {/* Contêiner para os botões do header em telas menores que 'md'. */}
+        {/* Container for header buttons on screens smaller than 'md'. */}
         <div className="flex items-center gap-4 md:hidden">
-          {/* Componente que permite alternar entre o tema claro e escuro. */}
+          {/* Component that allows switching between light and dark themes. */}
           <ThemeSwitcher />
-          {/* Botão para abrir e fechar o menu mobile. */}
+          {/* Button to open and close the mobile menu. */}
           <button
-            onClick={toggleMenu} // Chama a função 'toggleMenu' no clique.
+            onClick={toggleMenu} // Calls the 'toggleMenu' function on click.
             className="z-50 focus:outline-none"
-            aria-label="Toggle menu" // Atributo de acessibilidade.
+            aria-label="Toggle menu" // Accessibility attribute.
           >
-            {/* Ícone de hambúrguer animado. As linhas são transformadas em um 'X' quando o menu está aberto. */}
+            {/* Animated hamburger icon. The lines are transformed into an 'X' when the menu is open. */}
             <div className="w-6 h-0.5 bg-[var(--color-text-primary)] transition-transform duration-300 ease-in-out"
               style={{ transform: isMenuOpen ? 'rotate(45deg) translate(3px, 5px)' : 'none' }}></div>
             <div className="w-6 h-0.5 bg-[var(--color-text-primary)] transition-opacity duration-300 ease-in-out my-1"
@@ -42,21 +43,21 @@ export function Header() {
           </button>
         </div>
 
-        {/* Menu de desktop - visível em telas 'md' e maiores. */}
+        {/* Desktop menu - visivel on 'md' screens and larger. */}
         <div className="hidden md:flex items-center gap-4">
-          {/* Componente de navegação. 'onLinkClick' é passado para garantir que o menu mobile feche. */}
+          {/* Navigation component. 'onLinkClick' is passed to ensure the mobile menu closes. */}
           <Navbar onLinkClick={() => setIsMenuOpen(false)} />
           <ThemeSwitcher />
         </div>
       </div>
 
-      {/* Menu mobile em tela cheia. */}
-      {/* O menu é fixo e ocupa a tela inteira. A classe 'translate-x-full' o esconde fora da tela. */}
-      {/* 'isMenuOpen ? 'translate-x-0' : 'translate-x-full' ' faz com que ele deslize para dentro ou para fora. */}
+      {/* Full-screen mobile menu. */}
+      {/* The menu is fixed and takes up the entire screen. The 'translate-x-full' class hides it off-screen. */}
+      {/* 'isMenuOpen ? 'translate-x-0' : 'translate-x-full' ' makes it slide in or out. */}
     <div className={`fixed top-0 left-0 w-full h-full bg-black/65 backdrop-blur z-200 transition-opacity duration-1000 ease-in-out ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <div className="px-4 flex items-center min-h-screen">
-          {/* O componente de navegação é renderizado aqui para o menu mobile. */}
-          {/* Adicionei a classe de opacidade no container principal para controlar a visibilidade. */}
+          {/* The navigation component is rendered here for the mobile menu. */}
+          {/* Added opacity class to the main container to control visibility. */}
           <Navbar onLinkClick={() => setIsMenuOpen(false)} isMobileMenu={true} />
         </div>
       </div>

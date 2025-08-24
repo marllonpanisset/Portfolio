@@ -81,11 +81,12 @@ export function Navbar({ onLinkClick, isFooter, isMobileMenu }: NavbarProps) {
               key={path}
               href={href}
               onClick={isAnchor ? (e) => handleScroll(e, path) : onLinkClick}
-              className={`transition-all flex align-middle relative px-2 m-1 
+              className={`transition-all flex align-middle relative px-2 m-1
               ${isMobileMenu ? 'text-white text-2xl font-bold py-6 hover:scale-110' : ''}
               ${isFooter ? 'text-gray-300 hover:text-white text-sm sm:text-base lg:text-lg py-2' : ''}
-              ${!isMobileMenu && !isFooter ? `text-lg py-4 md:py-1 ${isActive ? 'text-[var(--color-text-primary)]' : 'text-[var(--color-text-secondary)]'} hover:text-[var(--color-text-primary)]` : ''}`}
+              ${!isMobileMenu && !isFooter ? `text-lg py-4 md:py-1 ${isActive ? '!text-[var(--color-text-primary)]' : 'text-gray-300 hover:text-white'}` : ''}`}
             >
+              
               {name}
             </Link>
           );
