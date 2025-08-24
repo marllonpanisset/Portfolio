@@ -69,8 +69,8 @@ export function Navbar({ onLinkClick, isFooter, isMobileMenu }: NavbarProps) {
   }, [pathname]);
 
   return (
-    <nav className="flex flex-col md:flex-row items-center justify-center h-full w-full">
-      <div className={`items-center w-full flex ${isFooter ? 'flex-row justify-center space-x-2 sm:space-x-4 lg:space-x-6' : 'flex-col md:flex-row md:space-x-0'}`}>
+    <nav className={`flex flex-col md:flex-row items-center h-full w-full  ${isFooter ? '' : 'justify-center'}`}>
+      <div className={`items-center w-full flex ${isFooter ? 'flex-row space-x-2 sm:space-x-4 lg:space-x-6' : 'flex-col md:flex-row md:space-x-0'}`}>
         {Object.entries(navItems).map(([path, { name }]) => {
           const isActive = pathname === path;
           const isAnchor = path.startsWith('#');
@@ -81,10 +81,10 @@ export function Navbar({ onLinkClick, isFooter, isMobileMenu }: NavbarProps) {
               key={path}
               href={href}
               onClick={isAnchor ? (e) => handleScroll(e, path) : onLinkClick}
-              // Adiciona as classes para cor branca e o efeito de scale no hover para mobile
-              className={`transition-all ${isMobileMenu ? 'text-white hover:scale-110' : 'hover:text-[var(--color-text-primary)]'} flex align-middle relative px-2 m-1 
-              ${isMobileMenu ? 'text-2xl font-bold py-6' : isFooter ? 'text-sm sm:text-base lg:text-lg py-2' : 'text-lg py-4 md:py-1'} 
-              ${isActive ? 'text-[var(--color-text-primary)]' : 'text-[var(--color-text-secondary)]'}`}
+              className={`transition-all flex align-middle relative px-2 m-1 
+              ${isMobileMenu ? 'text-white text-2xl font-bold py-6 hover:scale-110' : ''}
+              ${isFooter ? 'text-gray-300 hover:text-white text-sm sm:text-base lg:text-lg py-2' : ''}
+              ${!isMobileMenu && !isFooter ? `text-lg py-4 md:py-1 ${isActive ? 'text-[var(--color-text-primary)]' : 'text-[var(--color-text-secondary)]'} hover:text-[var(--color-text-primary)]` : ''}`}
             >
               {name}
             </Link>

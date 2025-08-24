@@ -9,7 +9,6 @@ import { JsIcon } from '../components/icons/JsIcon';
 import { ReactIcon } from '../components/icons/ReactIcon';
 import { NextjsIcon } from '../components/icons/NextjsIcon';
 import { TailwindIcon } from '../components/icons/TailwindIcon';
-import { StyledComponentsIcon } from '../components/icons/StyledComponentsIcon';
 
 // 2. Mantemos os dados separados da apresentação (JSX)
 const skills = [
@@ -19,7 +18,6 @@ const skills = [
   { name: 'React.js', Icon: ReactIcon },
   { name: 'Next.js', Icon: NextjsIcon },
   { name: 'Tailwind CSS', Icon: TailwindIcon },
-  { name: 'Styled Components', Icon: StyledComponentsIcon },
 ];
 
 const experience = [

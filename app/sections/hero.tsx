@@ -26,7 +26,7 @@ export function HeroSection() {
             alt="Foto de Marllon Panisset" // Texto alternativo para acessibilidade.
             width={400}
             height={400}
-            className="rounded-full shadow-lg border-4 border-[var(--color-text-accent)]"
+            className="rounded-full shadow-lg border-8 border-[var(--color-text-accent)]"
             priority // Otimiza o carregamento da imagem para a primeira visualização.
           />
         </div>

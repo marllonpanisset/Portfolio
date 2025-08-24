@@ -43,10 +43,10 @@ const projects = [
 export function ProjectsSection() {
   return (
     // A tag <section> com o ID "projetos" serve como âncora para a navegação suave do menu.
-    <section id="projetos" className="py-16 px-4 md:px-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
+    <section id="projetos" className="px-4 md:px-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
       <div className="container mx-auto">
         {/* Título da seção, com estilos de fonte, alinhamento e espaçamento. */}
-        <h2 className="text-4xl font-bold text-center mb-20 flex items-center justify-center gap-2 text-[var(--color-text-primary)]">
+        <h2 className="text-4xl font-bold text-center mb-20 flex items-center justify-center gap-2 ">
           Projetos
         </h2>
         
