@@ -36,7 +36,7 @@ export function ContactSection() {
   return (
     <section id="contato" className="py-16 px-4 md:px-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
       <div className="container mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">Contato</h2>
+        <h2 className="text-4xl font-bold text-center mb-20">Contato</h2>
         
         <div className="grid grid-cols-2 gap-4 md:gap-8 justify-items-center sm:grid-cols-3 lg:grid-cols-4">
           {/* Mapeia os dados e renderiza o ContactCard para cada item */}

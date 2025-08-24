@@ -39,9 +39,22 @@ export function AboutSection() {
         <h2 className="text-4xl font-bold text-center mb-12">
           Sobre Mim
         </h2>
-        <p className="text-lg text-center max-w-3xl mx-auto mb-32 text-[var(--color-text-secondary)]">
-          Desenvolvedor Front-End com 10 anos de experiência, especializado na criação de interfaces modernas, responsivas e otimizadas. Apaixonado por tecnologia, busco sempre aprimorar minhas habilidades e entregar soluções eficientes que proporcionem a melhor experiência ao usuário.
-        </p>
+        
+        {/* Container para o texto "Sobre Mim" com largura limitada para melhor leitura */}
+        <div className="text-center max-w-3xl mx-auto mb-32">
+          {/* Parágrafo 1 - Foco na experiência e especialidade */}
+          <p className="text-lg text-[var(--color-text-secondary)] mb-6">
+            Com mais de 8 anos de experiência em desenvolvimento front-end, sou especialista na criação de interfaces de usuário modernas e responsivas, utilizando tecnologias como HTML5, CSS3 (com foco em Tailwind CSS), JavaScript e o framework Next.js.
+          </p>
+          {/* Parágrafo 2 - Foco na paixão e visão de código */}
+          <p className="text-lg text-[var(--color-text-secondary)] mb-6">
+            Minha paixão é desenvolver componentes reutilizáveis que otimizam o desempenho e a manutenção do código, sempre com um olhar atento para acessibilidade e uma excelente experiência do usuário (UX).
+          </p>
+          {/* Parágrafo 3 - Foco na evolução e estudos */}
+          <p className="text-lg text-[var(--color-text-secondary)]">
+            Atualmente, estou expandindo minhas habilidades em análise e desenvolvimento de sistemas pela Unicesumar, complementando minha formação com foco em Back-End, Inteligência Artificial e Soft Skills através da Plataforma Impact da Alura, visando atuar em projetos que exigem um conhecimento mais completo e inovador.
+          </p>
+        </div>
         
         {/* Seção de Habilidades usando o componente SkillCard */}
         <h2 className="text-3xl font-bold text-center mb-8">

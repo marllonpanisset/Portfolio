@@ -1,5 +1,7 @@
 // app/sections/HeroSection.tsx
 import Image from 'next/image'; // Importa o componente 'Image' otimizado do Next.js.
+import { PrimaryButton } from '../components/PrimaryButton'; // Importa o novo componente de botão primário.
+import { OutlineButton } from '../components/OutlineButton'; // Importa o novo componente de botão secundário.
 
 // Este é o componente principal da seção de boas-vindas na página.
 export function HeroSection() {
@@ -13,11 +15,26 @@ export function HeroSection() {
       {/* Container principal para o conteúdo da seção hero. */}
       {/* O padding horizontal (px) foi ajustado para telas md e maiores. */}
       <div className="w-full flex flex-col md:flex-row items-center max-w-7xl mx-auto px-4 md:px-8 py-4">
-        {/* Lado esquerdo: Título e descrições. */}
+        {/* Lado esquerdo: Título, subtítulo e CTAs. */}
         <div className="flex-1 text-center md:text-left lg:text-left mb-8 md:mb-0">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-light">Olá, sou o</h2>
-          <h3 className="text-4xl sm:text-5xl md:text-6xl font-medium text-[var(--color-text-accent)]">Marllon Panisset</h3>
-          <p className="mt-4 text-xl md:text-2xl text-[var(--color-text-secondary)]">Desenvolvedor Front-End</p>
+          {/* Título principal (h1) com foco em SEO e hierarquia de conteúdo. */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium">
+            Olá, sou o <span className="text-[var(--color-text-accent)] font-bold">Marllon Panisset</span>
+          </h1>
+          {/* Subtítulo mais descritivo (h2) com a mensagem de valor. */}
+          <h2 className="mt-4 text-xl md:text-2xl text-[var(--color-text-secondary)]">
+            Desenvolvedor Front-End especializado em construir experiências digitais performáticas e intuitivas.
+          </h2>
+          {/* Container para os botões de Chamada para Ação (CTAs). */}
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
+            {/* Usando os novos componentes de botão */}
+            <PrimaryButton href="#projetos">
+              Ver Projetos
+            </PrimaryButton>
+            <OutlineButton href="/Marllon_Panisset_CV.pdf" download>
+              Baixar CV
+            </OutlineButton>
+          </div>
         </div>
         
         {/* Lado direito: Foto de perfil. */}
