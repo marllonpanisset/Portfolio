@@ -3,18 +3,41 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Defina as variáveis de cor para o tema claro (Light Mode) */
+/* Ativar transição de cores apenas no instante da troca de tema */
+html.theme-animate,
+html.theme-animate * {
+  transition-property: background-color, color;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+}
+
+html.theme-animate,
+html.theme-animate body,
+html.theme-animate body * {
+  transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+/*
+  Adicione as propriedades de transição aqui.
+  Isso garante que qualquer mudança nas variáveis de cor
+  (background-color e color) será animada.
+*/
 :root {
+  /* transition-property: background-color, color;
+  transition-duration: 500ms;
+  transition-timing-function: ease-in-out; */
+
+  /* Cores para o tema claro (Light Mode) */
   /* Backgrounds */
-  --color-bg-primary: #f4f4f4;      /* Fundo principal: branco puro */
-  --color-bg-secondary: #FFFFFF;    /* Fundo de cards/componentes: cinza muito claro */
-  --color-bg-tertiary: #EFEFEF;     /* Fundo de botões: cinza claro */
-  --color-bg-header: #0C0C1F;   /* Fundo dos ultimos posts do blog*/
+  --color-bg-primary: #f4f4f4;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-tertiary: #EFEFEF;
+  --color-bg-header: #0C0C1F;
 
   /* Textos */
-  --color-text-primary: #333;    /* Texto principal: preto suave */
-  --color-text-secondary: #666;  /* Texto secundário: cinza médio */
-  --color-text-accent: #FF8A00;     /* Cor de destaque: laranja vibrante */
+  --color-text-primary: #333;
+  --color-text-secondary: #666;
+  --color-text-accent: #FF8A00;
   --color-text-header: #FFF;
 
   /* Cores de sintaxe do código (manter as originais) */
@@ -29,18 +52,19 @@
   --sh-entity: #e25a1c;
 }
 
+
 /* Sobrescreve as variáveis de cor para o tema escuro (Dark Mode) */
 [data-theme='dark'] {
   /* Backgrounds */
-  --color-bg-primary: #0C0C1F;      /* Fundo principal: azul escuro */
-  --color-bg-secondary: #1C1C36;    /* Fundo de cards/componentes: cinza azulado escuro */
-  --color-bg-tertiary: #2A2A47;     /* Fundo de botões: cinza azulado mais escuro */
+  --color-bg-primary: #0C0C1F;
+  --color-bg-secondary: #1C1C36;
+  --color-bg-tertiary: #2A2A47;
   --color-bg-header: #0C0C1F;
 
   /* Textos */
-  --color-text-primary: #FFFFFF;    /* Texto principal: branco */
-  --color-text-secondary: #B0B0B0;  /* Texto secundário: cinza claro */
-  --color-text-accent: #FF8A00;     /* Cor de destaque: laranja vibrante */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B0B0B0;
+  --color-text-accent: #FF8A00;
   --color-text-header: #FFF;
 
   /* Cores de sintaxe do código */
@@ -220,10 +244,4 @@ table {
   #inicio {
     padding-top: 6rem;
   }
-}
-
-
-#inicio img {
-  /* max-width: 90%;
-  height: auto; */
 }

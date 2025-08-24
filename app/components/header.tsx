@@ -1,4 +1,3 @@
-// components/header.tsx
 'use client'; // Marks the component as a client component, allowing the use of state (useState).
 
 import { useState } from 'react'; // Imports the 'useState' hook from React to manage state.
@@ -16,8 +15,8 @@ export function Header() {
   };
 
   return (
-    // 'header' fixed at the top of the page, with classes for style, shadow, and transitions.
-    <header className="fixed top-0 w-full z-50 bg-[var(--color-bg-header)] text-[var(--color-text-header)] shadow-md transition-all duration-300">
+    // 'header' fixed at the top of the page, com a transição de sombra específica.
+    <header className="fixed top-0 w-full z-50 bg-[var(--color-bg-header)] text-[var(--color-text-header)] shadow-md transition-shadow duration-300">
       {/* Main container for the header content. Horizontal padding (px) has been adjusted for md screens and above. */}
       <div className="flex items-center justify-between max-w-7xl mx-auto px-6 md:px-8 py-4 md:py-6">
         {/* Site title that acts as a link to the homepage. */}

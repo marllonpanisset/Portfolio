@@ -1,4 +1,3 @@
-// components/nav.tsx
 'use client';
 
 import Link from 'next/link';
@@ -75,18 +74,18 @@ export function Navbar({ onLinkClick, isFooter, isMobileMenu }: NavbarProps) {
           const isActive = pathname === path;
           const isAnchor = path.startsWith('#');
           const href = isAnchor && pathname !== '/' ? `/${path}` : path;
-          
+
           return (
             <Link
               key={path}
               href={href}
               onClick={isAnchor ? (e) => handleScroll(e, path) : onLinkClick}
-              className={`transition-all flex align-middle relative px-2 m-1
-              ${isMobileMenu ? 'text-white text-2xl font-bold py-6 hover:scale-110' : ''}
+              // Transições otimizadas
+              className={`flex align-middle relative px-2 m-1
+              ${isMobileMenu ? 'text-white text-2xl font-bold py-6 hover:scale-110 transition-transform duration-300' : ''}
               ${isFooter ? 'text-gray-300 hover:text-white text-sm sm:text-base lg:text-lg py-2' : ''}
               ${!isMobileMenu && !isFooter ? `text-lg py-4 md:py-1 ${isActive ? '!text-[var(--color-text-primary)]' : 'text-gray-300 hover:text-white'}` : ''}`}
             >
-              
               {name}
             </Link>
           );

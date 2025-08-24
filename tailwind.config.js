@@ -3,7 +3,7 @@
 import { fontFamily } from 'tailwindcss/defaultTheme';
 
 module.exports = {
-  darkMode: 'class', // Usa classe 'dark' no <html>
+  darkMode: ['class', '[data-theme="dark"]'],
     content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',

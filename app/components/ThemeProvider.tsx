@@ -8,12 +8,11 @@ export function ThemeProvider({ children, ...props }) {
   return (
     // 'NextThemesProvider' é o componente que de fato gerencia o estado do tema.
     <NextThemesProvider
+      attribute="data-theme"
       // Define "system" como o tema padrão, o que significa que ele seguirá as configurações do sistema operacional do usuário.
       defaultTheme="system"
       // 'enableSystem' permite que o provedor mude automaticamente o tema se o sistema operacional do usuário mudar.
       enableSystem
-      // 'disableTransitionOnChange' desabilita a transição de cor quando o tema é alterado, prevenindo um "flash" de cores.
-      disableTransitionOnChange
       // Passa todas as outras propriedades ('...props') para o provedor, tornando o componente flexível.
       {...props}
     >

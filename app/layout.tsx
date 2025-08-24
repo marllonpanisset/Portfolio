@@ -64,14 +64,16 @@ export default function RootLayout({
           'antialiased',
           'bg-[var(--color-bg-primary)]',
           'text-[var(--color-text-primary)]',
-          'font-poppins' // Adiciona a classe font-poppins para aplicar a fonte globalmente
+          'font-poppins',
+          'transition-colors duration-300'
         )}
       >
+        
+
         <ThemeProvider
-          // Remove o attribute="class" para que ele use o data-theme
+          attribute="data-theme"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
         >
           <Header />
           <main>
