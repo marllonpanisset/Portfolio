@@ -78,7 +78,7 @@ export default function Footer() {
               {/* Coluna 2: Navegação */}
               <div className="flex-1 text-center md:text-left">
                 <h4 className="pl-3 font-semibold text-base text-white mb-2">Navegação</h4>
-                <Navbar onLinkClick={handleLinkClick} isFooter={true} />
+                <Navbar onLinkClick={handleLinkClick} isFooter={true} activePath="" />
               </div>
 
           </div>

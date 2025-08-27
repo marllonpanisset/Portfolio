@@ -52,7 +52,7 @@ export function AboutSection() {
           </p>
           {/* Parágrafo 3 - Foco na evolução e estudos */}
           <p className="text-lg text-[var(--color-text-secondary)]">
-            Atualmente, estou expandindo minhas habilidades em análise e desenvolvimento de sistemas pela Unicesumar, complementando minha formação com foco em Back-End, Inteligência Artificial e Soft Skills através da Plataforma Impact da Alura, visando atuar em projetos que exigem um conhecimento mais completo e inovador.
+            Atualmente, estou expandindo minhas habilidades cursando análise e desenvolvimento de sistemas pela Unicesumar e complementando minha formação com foco em Back-End e Inteligência Artificial na Alura através da Plataforma Impact, visando atuar em projetos que exigem um conhecimento mais completo e inovador.
           </p>
         </div>
         

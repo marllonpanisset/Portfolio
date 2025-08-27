@@ -33,12 +33,14 @@ html.theme-animate body * {
   --color-bg-secondary: #FFFFFF;
   --color-bg-tertiary: #EFEFEF;
   --color-bg-header: #0C0C1F;
+  --color-bg-sidebar-filter: #f4f4f4;
 
   /* Textos */
   --color-text-primary: #333;
   --color-text-secondary: #666;
   --color-text-accent: #FF8A00;
   --color-text-header: #FFF;
+  --color-text-sidebar-filter: #000;
 
   /* Cores de sintaxe do código (manter as originais) */
   --sh-class: #2d5e9d;
@@ -60,12 +62,14 @@ html.theme-animate body * {
   --color-bg-secondary: #1C1C36;
   --color-bg-tertiary: #2A2A47;
   --color-bg-header: #0C0C1F;
+  --color-bg-sidebar-filter: #0C0C1F;
 
   /* Textos */
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #B0B0B0;
   --color-text-accent: #FF8A00;
   --color-text-header: #FFF;
+  --color-text-sidebar-filter: #FFF;
 
   /* Cores de sintaxe do código */
   --sh-class: #4c97f8;

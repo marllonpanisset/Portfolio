@@ -31,7 +31,7 @@ export function HeroSection() {
             <PrimaryButton href="#projetos">
               Ver Projetos
             </PrimaryButton>
-            <OutlineButton href="/Marllon_Panisset_CV.pdf" download>
+            <OutlineButton href="/cv.pdf" download>
               Baixar CV
             </OutlineButton>
           </div>
