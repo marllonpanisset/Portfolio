@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { CustomMDX } from 'app/components/mdx';
+import Image from 'next/image';
 import { formatDate, getBlogPosts } from 'app/blog/utils';
 import { baseUrl } from 'app/sitemap';
 
@@ -55,6 +56,7 @@ export function generateMetadata({ params }) {
 
 export default function Blog({ params }) {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
+  
 
   if (!post) {
     notFound();
@@ -93,7 +95,18 @@ export default function Blog({ params }) {
             {formatDate(post.metadata.publishedAt)}
           </p>
         </div>
-        <article className="prose">
+        <div>
+           {post.metadata.image && (
+            <Image
+              src={post.metadata.image}
+              alt={`Imagem de capa para o post: ${post.metadata.title}`}
+              width={800}
+              height={400}
+              className="w-full h-auto object-cover rounded-lg"
+            />
+          )}
+        </div>
+        <article className="prose mb-14">
           <CustomMDX source={post.content} />
         </article>
       </section>

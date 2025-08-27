@@ -53,7 +53,7 @@ export function ThemeSwitcher() {
 
     window.setTimeout(() => {
       root.classList.remove('theme-animate');
-    }, 300);
+    }, 200);
   };
 
   return (

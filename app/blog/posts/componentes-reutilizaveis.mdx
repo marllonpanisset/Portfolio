@@ -1,0 +1,145 @@
+---
+title: 'Componentes Reutilizáveis'
+publishedAt: '2025-08-27'
+summary: 'Aprenda como a criação de componentes reutilizáveis com Next.js e Tailwind CSS pode acelerar seu desenvolvimento, garantir consistência visual e otimizar seu código para performance.'
+tags: ["Next.js", "Boas Práticas", "Front-End", "Tailwind CSS"]
+image: "/next-tailwind-banner.jpg"
+---
+
+
+
+## Componentes Reutilizáveis: A Chave para um Front-End Otimizado
+
+Componentes reutilizáveis são a base do desenvolvimento web moderno, permitindo que você construa interfaces de usuário de forma mais rápida, eficiente e consistente. Eles funcionam como blocos de construção independentes, que podem ser usados em várias partes da sua aplicação, ou até mesmo em projetos diferentes.
+
+## Por Que Usar Componentes Reutilizáveis?
+
+Usar componentes reutilizáveis não é apenas uma boa prática, mas uma estratégia poderosa para otimizar seu trabalho. Os principais benefícios incluem:
+
+Velocidade no Desenvolvimento: Crie a peça uma vez e use-a em qualquer lugar, acelerando a construção de novas páginas e funcionalidades.
+
+Código Limpo e Escalável: Mantenha seu código organizado e fácil de gerenciar. Se precisar fazer uma alteração, você a faz em um único lugar, e ela se reflete em toda a aplicação.
+
+Consistência da Marca: Garanta que a aparência e a experiência do usuário (UX) sejam uniformes, fortalecendo a identidade visual do seu site ou aplicativo.
+
+## Next.js e Tailwind CSS: A Dupla Perfeita
+
+A combinação de Next.js e Tailwind CSS é ideal para criar componentes reutilizáveis de alta performance:
+
+Next.js fornece a estrutura robusta para aplicações React, com recursos de otimização nativos que garantem que seus componentes sejam carregados rapidamente.
+
+Tailwind CSS oferece um sistema de design "utility-first" que permite estilizar componentes de forma rápida e flexível, sem a necessidade de escrever CSS complexo.
+
+## Exemplo Prático: Um Header Adaptável
+
+Um excelente exemplo do poder da reutilização é um componente de cabeçalho (Header). Em vez de criar um cabeçalho diferente para cada página, podemos criar um único componente inteligente que se adapta ao contexto.
+
+No nosso exemplo, o componente Header usa o hook usePathname do Next.js para saber em qual página o usuário está. Ele se comporta de maneira diferente em duas situações principais:
+
+Na página principal ou no blog (/ ou /blog): O Header exibe um menu de navegação completo.
+
+Dentro de um post específico (/blog/nome-do-post): O Header se simplifica automaticamente, mostrando apenas um link para voltar ao blog.
+
+Isso mostra como um único componente pode gerenciar múltiplos cenários, tornando o código mais limpo e a experiência do usuário mais fluida.
+
+```
+'use client';
+
+import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { Navbar } from './nav';
+import { ThemeSwitcher } from './ThemeSwitcher';
+
+export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Detecta se está em um post do blog (ex: /blog/slug)
+  const isBlogPost = pathname.startsWith('/blog/') && pathname.split('/').length > 2;
+
+  return (
+    <header className="fixed top-0 w-full z-50 bg-[var(--color-bg-header)] text-[var(--color-text-header)] shadow-md transition-shadow duration-300">
+      <div className="flex items-center justify-between max-w-7xl mx-auto px-6 md:px-8 py-4 md:py-6">
+        
+        {/* Logo */}
+        <Link href="/" className="text-2xl font-semibold tracking-wide">
+          Marllon Panisset
+        </Link>
+
+        {/* Se for um post do blog → Header simplificado */}
+        {isBlogPost ? (
+          <div className="flex items-center gap-4">
+            <Link
+              href="/blog"
+              className="text-sm text-primary hover:underline"
+            >
+              ← Voltar para o Blog
+            </Link>
+            <ThemeSwitcher />
+          </div>
+        ) : (
+          <>
+            {/* Mobile */}
+            <div className="flex items-center gap-4 md:hidden">
+              <ThemeSwitcher />
+              <button
+                onClick={toggleMenu}
+                className="z-50 focus:outline-none"
+                aria-label="Toggle menu"
+              >
+                <div
+                  className="w-6 h-0.5 bg-white transition-transform duration-300 ease-in-out"
+                  style={{
+                    transform: isMenuOpen ? 'rotate(45deg) translate(3px, 5px)' : 'none',
+                  }}
+                ></div>
+                <div
+                  className="w-6 h-0.5 bg-white transition-opacity duration-300 ease-in-out my-1"
+                  style={{ opacity: isMenuOpen ? 0 : 1 }}
+                ></div>
+                <div
+                  className="w-6 h-0.5 bg-white transition-transform duration-300 ease-in-out"
+                  style={{
+                    transform: isMenuOpen ? 'rotate(-45deg) translate(4px, -6px)' : 'none',
+                  }}
+                ></div>
+              </button>
+            </div>
+
+            {/* Desktop menu */}
+            <div className="hidden md:flex items-center gap-4">
+              <Navbar 
+                onLinkClick={() => setIsMenuOpen(false)} 
+                activePath={pathname}
+              />
+              <ThemeSwitcher />
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Mobile overlay menu */}
+      {!isBlogPost && (
+        <div
+          className={`fixed top-0 left-0 w-full h-full bg-black/65 backdrop-blur z-200 transition-opacity duration-1000 ease-in-out ${
+            isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          }`}
+        >
+          <div className="px-4 flex items-center min-h-screen">
+            <Navbar 
+              onLinkClick={() => setIsMenuOpen(false)} 
+              isMobileMenu={true} 
+              activePath={pathname}
+            />
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
+```
