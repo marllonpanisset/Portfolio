@@ -34,7 +34,7 @@ const projects = [
     title: 'Jogo do Número Secreto',
     description: 'jogo para adivinhar um número secreto',
     technologies: ['JavaScript', 'HTML', 'CSS'],
-    image: '/jogo-secreto.png',
+    image: '/numero-secreto.png',
     github: 'https://github.com/marllonpanisset/Jogo-do-Numero-Secreto',
     live: 'https://jogo-do-numero-secreto-js.netlify.app/',
   },
@@ -45,10 +45,6 @@ export default function ProjectsSection() {
     <section id="projetos" className="py-12 md:px-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
       <div className="container mx-auto">
         <h2 className="text-4xl font-bold text-center mb-20 flex items-center justify-center gap-2 ">
-          <svg className="lucide lucide-code" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <polyline points="16 18 22 12 16 6"></polyline>
-            <polyline points="8 6 2 12 8 18"></polyline>
-          </svg>
           Projetos
         </h2>
 
