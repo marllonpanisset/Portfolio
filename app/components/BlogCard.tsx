@@ -1,11 +1,6 @@
+// app/components/BlogCard.tsx
 import Link from 'next/link';
-
-// Definindo os tipos para as props do componente
-interface BlogCardProps {
-  slug: string;
-  title: string;
-  summary: string;
-}
+import { BlogCardProps } from 'types/blog'; // Importa a tipagem do novo arquivo
 
 export function BlogCard({ slug, title, summary }: BlogCardProps) {
   return (

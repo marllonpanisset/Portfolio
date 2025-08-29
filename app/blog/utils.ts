@@ -1,20 +1,15 @@
 // app/blog/utils.tsx
-
 import fs from 'fs';
 import path from 'path';
-
-type Metadata = {
-  title: string;
-  publishedAt: string;
-  summary: string;
-  image?: string;
-  tags?: string[];
-};
+import { Metadata } from 'types/posts'; // Importa o tipo Metadata do arquivo separado
 
 function parseFrontmatter(fileContent: string) {
   let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
   let match = frontmatterRegex.exec(fileContent);
-  let frontMatterBlock = match![1];
+  if (!match) {
+    throw new Error('No frontmatter found.');
+  }
+  let frontMatterBlock = match[1];
   let content = fileContent.replace(frontmatterRegex, '').trim();
   let frontMatterLines = frontMatterBlock.trim().split('\n');
   let metadata: Partial<Metadata> = {};

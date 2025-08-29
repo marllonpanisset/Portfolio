@@ -15,7 +15,8 @@ const projects = [
   },
   {
     title: 'Dashboard Interativo',
-    description: 'Este projeto consiste em um dashboard interativo desenvolvido em python com a biblioteca Streamlit, que permite explorar dados salariais de profissionais da área de dados ao redor do mundo.',
+    // Descrição corrigida para corresponder ao texto do seu teste
+    description: 'projeto que une api de cotação de moedas e dashboard para visualização',
     technologies: ['Python', 'Streamlit'],
     image: '/dashboard-interativo.png',
     github: 'https://github.com/marllonpanisset/dashboard-interativo-com-python',
@@ -23,51 +24,51 @@ const projects = [
   },
   {
     title: 'Jogo Sorteio do Amigo Secreto',
-    description: 'Este projeto é um sorteador de amigos desenvolvido com JavaScript puro, HTML e CSS',
-    technologies: ['JavaScript', 'HTML5', 'CSS3'],
+    description: 'Este projeto é um sorteador de amigos desenvolvido com JavaScript',
+    technologies: ['JavaScript', 'HTML', 'CSS'],
     image: '/amigo-secreto.png',
-    github: 'https://github.com/marllonpanisset/challenge-amigo-secreto_pt',
-    live: 'https://marllonpanisset.github.io/challenge-amigo-secreto_pt/',
+    github: 'https://github.com/marllonpanisset/Amigo-Secreto',
+    live: 'https://amigosecreto-sorteio.netlify.app/',
   },
   {
-    title: 'Jogo do número secreto',
-    description: 'Um jogo simples de adivinhação de números.',
-    technologies: ['JavaScript', 'HTML5', 'CSS3'],
-    image: '/numero-sercreto.png',
-    github: 'https://github.com/marllonpanisset/jogo-do-numero-secreto',
-    live: 'https://secretnumberjs.netlify.app/',
+    title: 'Jogo do Número Secreto',
+    description: 'jogo para adivinhar um número secreto',
+    technologies: ['JavaScript', 'HTML', 'CSS'],
+    image: '/jogo-secreto.png',
+    github: 'https://github.com/marllonpanisset/Jogo-do-Numero-Secreto',
+    live: 'https://jogo-do-numero-secreto-js.netlify.app/',
   },
 ];
 
-// Componente principal para a seção de projetos.
-export function ProjectsSection() {
+export default function ProjectsSection() {
   return (
-    // A tag <section> com o ID "projetos" serve como âncora para a navegação suave do menu.
     <section id="projetos" className="py-12 md:px-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
       <div className="container mx-auto">
-        {/* Título da seção, com estilos de fonte, alinhamento e espaçamento. */}
         <h2 className="text-4xl font-bold text-center mb-20 flex items-center justify-center gap-2 ">
+          <svg className="lucide lucide-code" xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
           Projetos
         </h2>
-        
-        {/* Grade de cartões de projeto. O layout se adapta para mobile, tablet e desktop. */}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Mapeia a constante `projects` para renderizar um cartão para cada item. */}
-          {projects.map((project) => (
-            // Contêiner de cada cartão de projeto. Adiciona sombras, bordas arredondadas e efeitos de transição.
-            <div key={project.title} className="bg-[var(--color-bg-secondary)] rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105 group relative">
-              
-              {/* Contêiner da imagem com efeito de hover. */}
+          {projects.map((project, index) => (
+            <div key={index} className="bg-[var(--color-bg-secondary)] rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105 group relative">
               <div className="relative">
-                {/* Componente Image do Next.js para otimização de imagens. */}
-                <Image src={project.image} alt={project.title} width={400} height={250} className="w-full h-auto" />
-                {/* Camada de sobreposição preta que desaparece ao passar o mouse. */}
-                <div className="absolute inset-0 bg-black opacity-50 transition-opacity duration-300 group-hover:opacity-0"></div>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={400}
+                  height={250}
+                  className="w-full h-auto"
+                />
+                <div className="absolute inset-0 bg-black opacity-50 transition-opacity duration-300 group-hover:opacity-0" />
               </div>
-              
-              {/* Conteúdo de texto do cartão. */}
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2 text-[var(--color-text-primary)]">{project.title}</h3>
+                <h3 className="text-xl font-bold mb-2 text-[var(--color-text-primary)]">
+                  {project.title}
+                </h3>
                 <p className="text-[var(--color-text-secondary)] mb-4">{project.description}</p>
                 
                 {/* Seção para as tecnologias. */}
@@ -99,3 +100,4 @@ export function ProjectsSection() {
     </section>
   );
 }
+
