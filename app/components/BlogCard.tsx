@@ -5,7 +5,7 @@ import { BlogCardProps } from 'types/blog'; // Importa a tipagem do novo arquivo
 export function BlogCard({ slug, title, summary }: BlogCardProps) {
   return (
     <Link
-      href={slug}
+      href={`/blog/${slug}`}
       // A classe 'transition-[box-shadow]' anima a sombra de forma mais específica.
       // Você pode usar 'transition' para ser mais abrangente, mas 'box-shadow' é a mais precisa aqui.
       className="block p-6 bg-[var(--color-bg-secondary)] rounded-lg shadow-md hover:shadow-xl transition-[box-shadow] duration-300"

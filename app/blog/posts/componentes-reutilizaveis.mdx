@@ -1,145 +1,120 @@
 ---
-title: 'Componentes Reutilizáveis'
+title: 'Componentes Reutilizáveis com Next.js e Tailwind CSS'
 publishedAt: '2025-08-27'
-summary: 'Aprenda como a criação de componentes reutilizáveis com Next.js e Tailwind CSS pode acelerar seu desenvolvimento, garantir consistência visual e otimizar seu código para performance.'
-tags: ["Next.js", "Boas Práticas", "Front-End", "Tailwind CSS"]
+summary: 'Aprenda a criar componentes reutilizáveis com Next.js e Tailwind CSS para otimizar seu fluxo de trabalho e garantir consistência visual em seus projetos.'
+tags: ["Next.js", "Tailwind CSS"]
 image: "/next-tailwind-banner.jpg"
 ---
 
+Aprender a criar componentes reutilizáveis é uma habilidade fundamental para qualquer desenvolvedor frontend. Em projetos Next.js, a combinação com o **Tailwind CSS** oferece uma maneira poderosa de construir interfaces de forma eficiente e consistente.
 
+Neste guia, você aprenderá a criar um componente de botão reutilizável, explicando como ele funciona e como você pode aplicá-lo em diferentes cenários no seu projeto.
 
-## Componentes Reutilizáveis: A Chave para um Front-End Otimizado
+### Por que Componentes Reutilizáveis?
 
-Componentes reutilizáveis são a base do desenvolvimento web moderno, permitindo que você construa interfaces de usuário de forma mais rápida, eficiente e consistente. Eles funcionam como blocos de construção independentes, que podem ser usados em várias partes da sua aplicação, ou até mesmo em projetos diferentes.
+1.  **Consistência Visual**: Mantenha a mesma aparência e comportamento para elementos comuns, como botões, cartões e formulários, em todo o seu site.
+2.  **Manutenção Simplificada**: Se precisar mudar o design de um botão, você só precisa fazer a alteração em um único lugar, e ela será refletida em todas as instâncias.
+3.  **Produtividade Aumentada**: Em vez de recriar o mesmo elemento várias vezes, você pode importá-lo e usá-lo onde precisar, economizando tempo e esforço.
 
-## Por Que Usar Componentes Reutilizáveis?
+---
 
-Usar componentes reutilizáveis não é apenas uma boa prática, mas uma estratégia poderosa para otimizar seu trabalho. Os principais benefícios incluem:
+### Criando o Componente de Botão
 
-Velocidade no Desenvolvimento: Crie a peça uma vez e use-a em qualquer lugar, acelerando a construção de novas páginas e funcionalidades.
+Vamos começar com a criação do nosso componente. Vamos chamá-lo de **PrimaryButton.tsx** e ele será responsável por renderizar um botão de destaque.
 
-Código Limpo e Escalável: Mantenha seu código organizado e fácil de gerenciar. Se precisar fazer uma alteração, você a faz em um único lugar, e ela se reflete em toda a aplicação.
+Crie o arquivo em `app/components/PrimaryButton.tsx` e adicione o seguinte código:
 
-Consistência da Marca: Garanta que a aparência e a experiência do usuário (UX) sejam uniformes, fortalecendo a identidade visual do seu site ou aplicativo.
-
-## Next.js e Tailwind CSS: A Dupla Perfeita
-
-A combinação de Next.js e Tailwind CSS é ideal para criar componentes reutilizáveis de alta performance:
-
-Next.js fornece a estrutura robusta para aplicações React, com recursos de otimização nativos que garantem que seus componentes sejam carregados rapidamente.
-
-Tailwind CSS oferece um sistema de design "utility-first" que permite estilizar componentes de forma rápida e flexível, sem a necessidade de escrever CSS complexo.
-
-## Exemplo Prático: Um Header Adaptável
-
-Um excelente exemplo do poder da reutilização é um componente de cabeçalho (Header). Em vez de criar um cabeçalho diferente para cada página, podemos criar um único componente inteligente que se adapta ao contexto.
-
-No nosso exemplo, o componente Header usa o hook usePathname do Next.js para saber em qual página o usuário está. Ele se comporta de maneira diferente em duas situações principais:
-
-Na página principal ou no blog (/ ou /blog): O Header exibe um menu de navegação completo.
-
-Dentro de um post específico (/blog/nome-do-post): O Header se simplifica automaticamente, mostrando apenas um link para voltar ao blog.
-
-Isso mostra como um único componente pode gerenciar múltiplos cenários, tornando o código mais limpo e a experiência do usuário mais fluida.
-
-```
+```tsx
 'use client';
 
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+// app/components/PrimaryButton.tsx
 import Link from 'next/link';
-import { Navbar } from './nav';
-import { ThemeSwitcher } from './ThemeSwitcher';
+import React from 'react';
 
-export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname();
+// Define as propriedades que o componente aceita.
+interface PrimaryButtonProps {
+  href: string;
+  children: React.ReactNode;
+}
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  // Detecta se está em um post do blog (ex: /blog/slug)
-  const isBlogPost = pathname.startsWith('/blog/') && pathname.split('/').length > 2;
-
+export function PrimaryButton({ href, children }: PrimaryButtonProps) {
   return (
-    <header className="fixed top-0 w-full z-50 bg-[var(--color-bg-header)] text-[var(--color-text-header)] shadow-md transition-shadow duration-300">
-      <div className="flex items-center justify-between max-w-7xl mx-auto px-6 md:px-8 py-4 md:py-6">
-        
-        {/* Logo */}
-        <Link href="/" className="text-2xl font-semibold tracking-wide">
-          Marllon Panisset
-        </Link>
-
-        {/* Se for um post do blog → Header simplificado */}
-        {isBlogPost ? (
-          <div className="flex items-center gap-4">
-            <Link
-              href="/blog"
-              className="text-sm text-primary hover:underline"
-            >
-              ← Voltar para o Blog
-            </Link>
-            <ThemeSwitcher />
-          </div>
-        ) : (
-          <>
-            {/* Mobile */}
-            <div className="flex items-center gap-4 md:hidden">
-              <ThemeSwitcher />
-              <button
-                onClick={toggleMenu}
-                className="z-50 focus:outline-none"
-                aria-label="Toggle menu"
-              >
-                <div
-                  className="w-6 h-0.5 bg-white transition-transform duration-300 ease-in-out"
-                  style={{
-                    transform: isMenuOpen ? 'rotate(45deg) translate(3px, 5px)' : 'none',
-                  }}
-                ></div>
-                <div
-                  className="w-6 h-0.5 bg-white transition-opacity duration-300 ease-in-out my-1"
-                  style={{ opacity: isMenuOpen ? 0 : 1 }}
-                ></div>
-                <div
-                  className="w-6 h-0.5 bg-white transition-transform duration-300 ease-in-out"
-                  style={{
-                    transform: isMenuOpen ? 'rotate(-45deg) translate(4px, -6px)' : 'none',
-                  }}
-                ></div>
-              </button>
-            </div>
-
-            {/* Desktop menu */}
-            <div className="hidden md:flex items-center gap-4">
-              <Navbar 
-                onLinkClick={() => setIsMenuOpen(false)} 
-                activePath={pathname}
-              />
-              <ThemeSwitcher />
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Mobile overlay menu */}
-      {!isBlogPost && (
-        <div
-          className={`fixed top-0 left-0 w-full h-full bg-black/65 backdrop-blur z-200 transition-opacity duration-1000 ease-in-out ${
-            isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-          }`}
-        >
-          <div className="px-4 flex items-center min-h-screen">
-            <Navbar 
-              onLinkClick={() => setIsMenuOpen(false)} 
-              isMobileMenu={true} 
-              activePath={pathname}
-            />
-          </div>
-        </div>
-      )}
-    </header>
+    <Link
+      href={href}
+      className="bg-blue-500 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-blue-600 transition-colors duration-300"
+    >
+      {children}
+    </Link>
   );
 }
 ```
+
+### Analisando o Código:
+
+```javascript
+import Link from 'next/link'; 
+```
+O Next.js usa o componente `<Link>` para navegação interna, o que otimiza o carregamento das páginas.
+
+```typescript
+interface PrimaryButtonProps;
+```
+Aqui, definimos as propriedades (props) que nosso componente pode receber.
+
+- `href`: O destino do link, como `/sobre` ou `/contato`.
+- `children`: O conteúdo que será exibido dentro do botão (por exemplo, o texto "Saiba mais").
+
+### className com Tailwind CSS
+A classe define a aparência do botão:
+
+- `bg-blue-500`: Cor de fundo azul.
+- `text-white`: Cor do texto branca.
+- `py-2 px-6`: Preenchimento interno (padding) vertical e horizontal.
+- `rounded-lg`: Bordas arredondadas.
+- `shadow-md`: Adiciona uma sombra para dar profundidade.
+- `hover:bg-blue-600`: Altera a cor do botão quando o mouse passa por cima.
+
+## Como Usar o Componente
+
+A beleza dos componentes reutilizáveis é a simplicidade de usá-los em qualquer página do seu projeto. O processo é o mesmo para qualquer lugar: importe o componente e utilize-o como uma tag de HTML.
+
+1. **Importando o Componente**
+
+No topo do arquivo onde você deseja usar o botão, adicione a linha de importação. Certifique-se de que o caminho (`@/components/PrimaryButton`) está correto em relação à sua estrutura de pastas.
+
+```javascript
+import { PrimaryButton } from '@/components/PrimaryButton';
+```
+
+2. **Utilizando o Componente na sua Página**
+
+Agora que o componente foi importado, você pode usá-lo como se fosse uma tag HTML. Basta passar as propriedades que ele espera, como `href` e `children`.
+
+Exemplo:
+
+```javascript
+// app/page.tsx (na sua página inicial)
+
+import { PrimaryButton } from '@/components/PrimaryButton';
+
+export default function HomePage() {
+  return (
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <h1 className="text-4xl font-bold mb-4">Bem-vindo ao meu Blog!</h1>
+      <p className="text-lg mb-8">Descubra artigos sobre tecnologia e programação.</p>
+
+      {/* Exemplo de uso do botão */}
+      <PrimaryButton href="/blog">
+        Ver Últimos Posts
+      </PrimaryButton>
+    </main>
+  );
+}
+```
+Neste exemplo, o `<PrimaryButton>` recebe a propriedade `href` com o valor `/blog`, direcionando o usuário para a página do blog quando clicado.
+
+## Conclusão
+
+Criar componentes reutilizáveis com Next.js e Tailwind CSS é uma prática que otimiza seu fluxo de trabalho e garante a consistência do design. O `PrimaryButton.tsx` que criamos é um exemplo simples, mas poderoso, de como você pode construir interfaces de forma modular e eficiente.
+
+Agora é sua vez! Comece a identificar elementos comuns no seu projeto e transforme-os em componentes reutilizáveis. Sua produtividade vai agradecer.
