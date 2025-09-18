@@ -21,8 +21,9 @@ const skills = [
 ];
 
 const experience = [
-    { company: 'Binaria', role: 'Dev Front-End Pleno', period: 'Junho 2022 - Dezembro 2022', description: 'Gestão de conteúdo em CMS Privado' },
-    { company: 'ED3 Digital', role: 'Dev Front-End Pleno', period: 'Agosto 2020 - Abril 2022', description: 'Desenvolvimento e manutenção de e-commerces em VTEX.' },
+    { company: 'Autoôomo - Panisset Dev', role: 'Dev Front-End Pleno', period: 'Setembro 2024 - Atualmente', description: 'Atuo como Freelancer criando soluções para web como Landing Pages, Portfólios, Ecommerce WordPress WooCommerce' },
+    { company: 'Binaria', role: 'Dev Front-End Jr', period: 'Junho 2022 - Dezembro 2022', description: 'Gestão de conteúdo em CMS Privado' },
+    { company: 'ED3 Digital', role: 'Dev Front-End Jr', period: 'Agosto 2020 - Abril 2022', description: 'Desenvolvimento e manutenção de e-commerces em VTEX.' },
     { company: 'AM4', role: 'Dev Front-End Jr', period: 'Junho 2019 - Março 2020', description: 'Apoio em correções de bugs e implementação e funcionalidades e componentes para plataforma de biblioteca virtual, correções de HTML de livros e epub' },
     { company: 'Sirius Interativa', role: 'Dev Front-End Jr', period: 'Janeiro 2018 - Maio 2019', description: 'Trabalhava como Front-end junto com equipe de desenvolvimento, designers e gerentes de projeto, participei de diversões projetos como sites corporativos, sistemas e intranets usando tecnologias e frameworks como jQuery, JavaScript, React, HTML5, CSS3, Pug, Scss, WordPress, Drupal, Progressive Web App, Webdesign Responsivo, Docker, WebpackTrabalhava' },
     { company: 'Sírius Interativa', role: 'Dev Front-End Jr Estágio', period: 'Junho 2016 - Dezembro 2017', description: 'Criação de templates estáticos em HTML,CSS E JavaScript, e templates HTML de email marketing' },
