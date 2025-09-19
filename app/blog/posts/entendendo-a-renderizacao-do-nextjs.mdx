@@ -1,0 +1,158 @@
+---
+title: 'SSG vs. SSR: Entendendo a Renderização no Next.js'
+publishedAt: '2025-09-18'
+summary: 'Descubra a diferença entre Static Site Generation (SSG) e Server-Side Rendering (SSR) no Next.js. Aprenda quando usar cada um para otimizar a performance e o SEO de suas aplicações.'
+tags: ["Next.js"]
+image: "/ssg-ssr.png"
+---
+
+Se você está começando com Next.js, logo vai se deparar com dois conceitos essenciais: SSG e SSR. Essas siglas representam as principais formas de renderizar páginas, ou seja, de transformar seu código React em uma página web que o navegador pode exibir.
+
+Entender a diferença entre eles é fundamental para construir aplicações rápidas, eficientes e amigáveis para o Google. Vamos desmistificar esses termos de uma vez por todas.
+
+## O que é SSG (Static Site Generation)?
+
+Pense em SSG como um padeiro que prepara todos os pães de uma vez, antes que a loja abra.
+
+No mundo do Next.js, isso significa que as páginas são pré-construídas no momento do build. Quando você roda o comando `npm run build`, o Next.js já cria o HTML, o CSS e o JavaScript para cada página que usa SSG. O resultado são arquivos estáticos, leves e super-rápidos, prontos para serem servidos a qualquer pessoa que acesse seu site.
+
+### Vantagens do SSG:
+
+- **Velocidade**: É a forma mais rápida de servir conteúdo. O usuário não precisa esperar a página ser gerada; ela já está pronta e é entregue instantaneamente.
+- **Segurança**: Não há lógica de servidor em tempo de execução, o que reduz a superfície de ataque.
+- **SEO**: O conteúdo já está no HTML, facilitando a leitura por robôs de busca como o do Google, o que é ótimo para o SEO.
+- **Baixo Custo**: Por serem arquivos estáticos, podem ser hospedados em CDNs (Content Delivery Networks) a um custo muito baixo.
+
+### Quando usar SSG?
+
+Use SSG para qualquer conteúdo que não muda com frequência e que seja o mesmo para todos os usuários.
+
+- Blogs e artigos
+- Páginas de portfólio
+- Páginas "Sobre Nós"
+- Páginas de produtos em um e-commerce (se os dados não mudam a cada segundo)
+
+### Como usar SSG no Next.js:
+
+Para criar uma página com SSG, basta exportar uma função chamada `getStaticProps` no seu arquivo. O Next.js vai rodar essa função no momento do build para pegar os dados e passar para o seu componente.
+
+```javascript
+// app/blog/[slug]/page.tsx
+// Esta página é renderizada no momento do build (SSG)
+
+import { getPosts, getPostBySlug } from '../../lib/posts';
+
+// getStaticProps é executado no momento do build
+export async function generateStaticParams() {
+  const posts = getPosts(); // Busca todos os posts
+  return posts.map(post => ({
+    slug: post.slug,
+  }));
+}
+
+export default function PostPage({ params }: { params: { slug: string } }) {
+  const post = getPostBySlug(params.slug); // Pega os dados do post
+  
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <p>{post.content}</p>
+    </article>
+  );
+}
+```
+
+# O que é SSR (Server-Side Rendering)?
+
+Agora, pense em SSR como um chef de cozinha que prepara cada prato na hora que o cliente faz o pedido.
+
+No Next.js, isso significa que a página é gerada a cada nova requisição. Quando um usuário acessa uma URL, o servidor executa o código do componente, busca os dados mais recentes e, só então, envia o HTML completo para o navegador.
+
+## Vantagens do SSR:
+
+* **Conteúdo Dinâmico:** É ideal para exibir dados que mudam constantemente, como preços em tempo real, status de um pedido ou informações de um perfil de usuário.
+* **Sempre Atualizado:** A página sempre reflete os dados mais recentes, pois a requisição de dados acontece a cada acesso.
+* **SEO:** Assim como no SSG, o HTML é gerado no servidor, o que garante um bom SEO, já que os robôs de busca conseguem ler o conteúdo completo.
+
+## Quando usar SSR?
+
+Use SSR para conteúdo que precisa estar sempre atualizado e que pode variar de um usuário para outro.
+
+* Páginas de perfil de usuário
+* Painéis de administração ou dashboards
+* Páginas de carrinho de compras
+* Resultados de busca
+
+## Como usar SSR no Next.js:
+
+A forma de usar SSR no Next.js mudou com a versão 13. O SSR se tornou a renderização padrão no App Router. Agora, para renderizar no servidor, você não precisa de uma função especial. O Next.js já faz isso automaticamente para componentes que não usam `use client`. Você apenas precisa buscar os dados diretamente no seu componente.
+
+```javascript
+// app/dashboard/page.tsx
+// Esta página é renderizada em cada requisição (SSR)
+
+import { fetchUserData } from '../../lib/api';
+
+export default async function Dashboard() {
+  // A busca de dados acontece no servidor a cada requisição
+  const user = await fetchUserData();
+
+  return (
+    <div>
+      <h1>Bem-vindo, {user.name}</h1>
+      <p>Seu status de pedido é: {user.orderStatus}</p>
+    </div>
+  );
+}
+```
+
+## SSG vs. SSR: Tabela Comparativa
+
+
+<table class="w-full border-collapse mt-7">
+  <thead class="text-left">
+    <tr class="border-b-2 border-gray-300">
+      <th class="py-2 px-4 border border-gray-300">Característica</th>
+      <th class="py-2 px-4 border border-gray-300">Static Site Generation (SSG)</th>
+      <th class="py-2 px-4 border border-gray-300">Server-Side Rendering (SSR)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="py-2 px-4 border border-gray-300">Quando a página é gerada?</td>
+      <td class="py-2 px-4 border border-gray-300">No momento do build (<code>npm run build</code>).</td>
+      <td class="py-2 px-4 border border-gray-300">Em cada requisição do usuário.</td>
+    </tr>
+    <tr>
+      <td class="py-2 px-4 border border-gray-300">Melhor para...</td>
+      <td class="py-2 px-4 border border-gray-300">Conteúdo estático ou que muda pouco (blogs, portfólios).</td>
+      <td class="py-2 px-4 border border-gray-300">Conteúdo dinâmico e em tempo real (dados de usuário, dashboards).</td>
+    </tr>
+    <tr>
+      <td class="py-2 px-4 border border-gray-300">Performance</td>
+      <td class="py-2 px-4 border border-gray-300">Extremamente rápido, pois o HTML já está pronto.</td>
+      <td class="py-2 px-4 border border-gray-300">Mais lento que SSG, pois espera a requisição de dados.</td>
+    </tr>
+    <tr>
+      <td class="py-2 px-4 border border-gray-300">SEO</td>
+      <td class="py-2 px-4 border border-gray-300">Excelente. O HTML está completo.</td>
+      <td class="py-2 px-4 border border-gray-300">Excelente. O HTML está completo.</td>
+    </tr>
+    <tr>
+      <td class="py-2 px-4 border border-gray-300">Servidor</td>
+      <td class="py-2 px-4 border border-gray-300">Praticamente sem carga, pois os arquivos já estão prontos.</td>
+      <td class="py-2 px-4 border border-gray-300">O servidor trabalha a cada requisição.</td>
+    </tr>
+    <tr>
+      <td class="py-2 px-4 border border-gray-300">Custo</td>
+      <td class="py-2 px-4 border border-gray-300">Muito baixo, ideal para hospedagem em CDNs.</td>
+      <td class="py-2 px-4 border border-gray-300">Custo um pouco maior devido ao trabalho do servidor.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Conclusão
+
+A principal diferença é o "quando": o SSG gera as páginas no build, enquanto o SSR as gera na requisição.
+
+A boa notícia é que o Next.js permite que você use os dois na mesma aplicação. Você pode ter a página inicial e de blog com a velocidade do SSG, e a página de perfil do usuário com a atualização do SSR. Ao dominar esses conceitos, você estará no caminho certo para criar aplicações Next.js de alta performance e totalmente otimizadas.
