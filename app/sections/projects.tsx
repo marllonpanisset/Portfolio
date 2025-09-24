@@ -36,15 +36,7 @@ const projects = [
     technologies: ['JavaScript', 'HTML', 'CSS'],
     image: '/amigo-secreto.png',
     github: 'https://github.com/marllonpanisset/Amigo-Secreto',
-    live: 'https://amigosecreto-sorteio.netlify.app/',
-  },
-  {
-    title: 'Jogo do Número Secreto',
-    description: 'jogo para adivinhar um número secreto',
-    technologies: ['JavaScript', 'HTML', 'CSS'],
-    image: '/numero-secreto.png',
-    github: 'https://github.com/marllonpanisset/Jogo-do-Numero-Secreto',
-    live: 'https://jogo-do-numero-secreto-js.netlify.app/',
+    live: 'https://marllonpanisset.github.io/challenge-amigo-secreto_pt/',
   },
 ];
 
