@@ -1,0 +1,106 @@
+---
+title: 'Hooks, Context API e Gerenciamento de Estado com React e Next.js'
+publishedAt: '2025-11-06'
+summary: 'Entenda de forma simples e prática como funcionam os Hooks, Context API e as estratégias de gerenciamento de estado em aplicações React e Next.js.'
+tags: ["React", "Next.js", "Hooks", "Context API"]
+image: "/react-next-hooks-banner.png"
+---
+
+Dominar o gerenciamento de estado é essencial para qualquer desenvolvedor que trabalha com **React** ou **Next.js**. Neste post, você vai entender de forma clara o que são os **Hooks**, como funciona a **Context API** e quais são as melhores estratégias para lidar com o estado da sua aplicação.
+
+---
+
+## 🔧 O que são Hooks?
+
+Os **Hooks** são funções que permitem usar recursos do React (como estado e ciclo de vida) dentro de componentes funcionais. Eles foram introduzidos na versão 16.8 do React e revolucionaram a forma como construímos componentes.
+
+### Principais Hooks:
+
+- `useState`: cria e gerencia estados locais.
+  ```tsx
+  const [count, setCount] = useState(0);
+  ```
+
+- `useEffect`: executa efeitos colaterais, como chamadas de API ou manipulação do DOM.
+  ```tsx
+  useEffect(() => {
+    console.log("Componente montado");
+  }, []);
+  ```
+
+- `useContext`: consome dados de um contexto global.
+  ```tsx
+  const theme = useContext(ThemeContext);
+  ```
+
+- `useReducer`: ideal para lógica de estado mais complexa, como formulários ou carrinhos de compra.
+
+- **Custom Hooks**: você pode criar seus próprios hooks para reutilizar lógica entre componentes.
+
+---
+
+## 🌐 O que é Context API?
+
+A **Context API** permite compartilhar dados entre componentes sem precisar passar props manualmente por vários níveis da árvore de componentes.
+
+### Exemplo básico:
+
+```tsx
+// Criando o contexto
+const ThemeContext = createContext();
+
+// Provedor
+function App() {
+  const [theme, setTheme] = useState("dark");
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <Page />
+    </ThemeContext.Provider>
+  );
+}
+
+// Consumindo o contexto
+function Page() {
+  const { theme } = useContext(ThemeContext);
+  return <div className={theme}>Olá!</div>;
+}
+```
+
+Ideal para temas, autenticação, idioma, entre outros dados globais.
+
+---
+
+## 🧠 Estratégias de Gerenciamento de Estado
+
+Existem várias formas de gerenciar estado em aplicações React e Next.js. A escolha depende da complexidade e do escopo do projeto.
+
+### 1. Estado Local (`useState` / `useReducer`)
+
+- Ideal para estados simples e específicos de um componente.
+- Exemplo: abrir/fechar modal, input de formulário.
+
+### 2. Estado Global (Context API)
+
+- Compartilha dados entre múltiplos componentes.
+- Exemplo: tema da aplicação, usuário logado.
+
+### 3. Bibliotecas Externas
+
+- **Redux**: robusto e escalável, ideal para grandes aplicações.
+- **Zustand / Jotai / Recoil**: alternativas modernas e mais leves.
+- **React Query / SWR**: para estados derivados de dados de API.
+
+### 4. Next.js + Context API
+
+- Next.js funciona perfeitamente com Context API e Hooks.
+- Você pode criar contextos globais para modais, autenticação, carrinho de compras, etc.
+- Combine com `useContext` e `useReducer` para lógica mais avançada.
+
+---
+
+## ✅ Conclusão
+
+Entender Hooks e Context API é essencial para criar aplicações React e Next.js modernas, escaláveis e organizadas. Saber quando usar `useState`, `useEffect`, `useContext` ou uma biblioteca externa pode fazer toda a diferença na performance e na manutenção do seu projeto.
+
+Agora que você conhece os fundamentos, que tal aplicar isso em um projeto real? Crie um contexto de tema ou autenticação e experimente gerenciar o estado com Hooks. Seu código vai ficar mais limpo, eficiente e fácil de escalar.
