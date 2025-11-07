@@ -7,8 +7,8 @@ import Image from 'next/image'; // Importa o componente otimizado de imagem do N
 const projects = [
   {
     title: 'Landing Page Agendamento de Consultas',
-    description: 'Uma landing page com formulário para agendamento de consultas de oráculo via WhatAapp com banco de dados externo no Superbase.',
-    technologies: ['HTML', 'CSS', 'JavaScript', 'Superbase'],
+    description: 'Uma landing page com formulário para agendamento de consultas de oráculo via WhatAapp com banco de dados externo no Supabase.',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'Supabase'],
     image: '/cacaudasete.png', // Caminho da imagem para o projeto.
     github: 'https://github.com/marllonpanisset/carolina-rodrigues-oraculista', // URL do repositório no GitHub.
     live: 'https://cacaudasete.netlify.app/', // URL do projeto em produção.

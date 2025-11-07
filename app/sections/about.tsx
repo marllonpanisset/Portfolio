@@ -21,13 +21,64 @@ const skills = [
 ];
 
 const experience = [
-    { company: 'Autoôomo - Panisset Dev', role: 'Dev Front-End Pleno', period: 'Setembro 2024 - Atualmente', description: 'Atuo como Freelancer criando soluções para web como Landing Pages, Portfólios, Ecommerce WordPress WooCommerce' },
-    { company: 'Binaria', role: 'Dev Front-End Jr', period: 'Junho 2022 - Dezembro 2022', description: 'Gestão de conteúdo em CMS Privado' },
-    { company: 'ED3 Digital', role: 'Dev Front-End Jr', period: 'Agosto 2020 - Abril 2022', description: 'Desenvolvimento e manutenção de e-commerces em VTEX.' },
-    { company: 'AM4', role: 'Dev Front-End Jr', period: 'Junho 2019 - Março 2020', description: 'Apoio em correções de bugs e implementação e funcionalidades e componentes para plataforma de biblioteca virtual, correções de HTML de livros e epub' },
-    { company: 'Sirius Interativa', role: 'Dev Front-End Jr', period: 'Janeiro 2018 - Maio 2019', description: 'Trabalhava como Front-end junto com equipe de desenvolvimento, designers e gerentes de projeto, participei de diversões projetos como sites corporativos, sistemas e intranets usando tecnologias e frameworks como jQuery, JavaScript, React, HTML5, CSS3, Pug, Scss, WordPress, Drupal, Progressive Web App, Webdesign Responsivo, Docker, WebpackTrabalhava' },
-    { company: 'Sírius Interativa', role: 'Dev Front-End Jr Estágio', period: 'Junho 2016 - Dezembro 2017', description: 'Criação de templates estáticos em HTML,CSS E JavaScript, e templates HTML de email marketing' },
-    { company: 'Hospital Rio Mar', role: 'Técnico em Informática', period: 'Agosto 2011 - Maio 2016', description: 'montagem e manutenção de computadores, instalação de infraestrutura de rede cabeada e rede wifi, instalação de impressoras e softwares, suporte presencial e remoto' },
+    { 
+        company: 'Autônomo', 
+        role: 'Desenvolvedor Front-End Jr', 
+        period: 'Janeiro 2023 - Atualmente', 
+        description: `Período de aprofundamento técnico em novas tecnologias (Next.js, Tailwind CSS) e introdução a Data Science.
+• Criação de portfólio e blog pessoal utilizando Next.js e Tailwind CSS, focando em alta performance e SEO.
+• Desenvolvimento de soluções web customizadas para clientes (Landing Pages, Portfólios, E-commerce em WordPress/WooCommerce).
+• Projeto prático de Data Science (Imersão Alura): Desenvolvimento de um Dashboard Interativo de Salários com Python, Streamlit e Plotly.` 
+    },
+    { 
+        company: 'Grupo Binaria', 
+        role: 'Desenvolvedor Front-End Jr', 
+        period: 'Junho 2022 - Dezembro 2022', 
+        description: `Responsável pela gestão e manutenção de conteúdo em CMS privado e na plataforma Hugo (Static Site Generator).
+• Criação de páginas estáticas para exposições virtuais, garantindo fidelidade ao design e responsividade.
+• Desenvolvimento utilizando HTML, CSS, Markdown e Git em ambiente ágil.` 
+    },
+    { 
+        company: 'ED3 Digital', 
+        role: 'Desenvolvedor Front-End Jr', 
+        period: 'Agosto 2020 - Abril 2022', 
+        description: `Implementação e manutenção de e-commerces nas arquiteturas VTEX IO e VTEX Legacy.
+• Desenvolvimento de soluções e componentes customizados para Front-End em diversas lojas VTEX.
+• Criação e otimização de templates de e-mail transacionais em HTML.
+• Colaboração em equipe ágil (Kanban) para entrega contínua de funcionalidades.` 
+    },
+    { 
+        company: 'AM4', 
+        role: 'Desenvolvedor Front-End Jr', 
+        period: 'Junho 2019 - Março 2020', 
+        description: `Atuação em correções de bugs e implementação de funcionalidades na plataforma educacional da Pearson.
+• Criação de componentes avançados, como a funcionalidade de Highlight de texto em livros EPUB e PDF.
+• Realização de ajustes e melhorias em HTML de livros digitais.` 
+    },
+    { 
+        company: 'Sirius Interativa', 
+        role: 'Desenvolvedor Front-End Jr', 
+        period: 'Janeiro 2018 - Maio 2019', 
+        description: `Desenvolvimento de interfaces Front-End para sites corporativos, sistemas e intranets.
+• Utilização de frameworks como React e jQuery, e plataformas como WordPress e Drupal.
+• Experiência com ferramentas de build e automação: Webpack, Gulp, Docker, Sass/Scss e Pug.
+• Colaboração direta com designers e gerentes de projeto.` 
+    },
+    { 
+        company: 'Sírius Interativa', 
+        role: 'Desenvolvedor Front-End Jr (Estágio)', 
+        period: 'Junho 2016 - Dezembro 2017', 
+        description: `Conversão de layouts (PSD para HTML, CSS e jQuery), garantindo fidelidade visual.
+• Criação de templates estáticos e desenvolvimento de e-mails marketing em HTML.
+• Contribuição na criação de uma stack Front-End com foco em componentes reutilizáveis.` 
+    },
+    { 
+        company: 'Hospital Rio Mar', 
+        role: 'Técnico em Informática', 
+        period: 'Agosto 2011 - Maio 2016', 
+        description: `Suporte presencial e remoto, manutenção de computadores e instalação de softwares.
+• Montagem e manutenção de infraestrutura de rede cabeada e Wi-Fi.` 
+    },
 ];
 
 export function AboutSection() {
@@ -43,19 +94,34 @@ export function AboutSection() {
         
         {/* Container para o texto "Sobre Mim" com largura limitada para melhor leitura */}
         <div className="text-center max-w-3xl mx-auto mb-32">
-          {/* Parágrafo 1 - Foco na experiência e especialidade */}
+          {/* Parágrafo 1 */}
           <p className="text-lg text-[var(--color-text-secondary)] mb-6">
-            Com mais de 8 anos de experiência em desenvolvimento front-end, sou especialista na criação de interfaces de usuário modernas e responsivas, utilizando tecnologias como HTML5, CSS3 (com foco em Tailwind CSS), JavaScript e o framework Next.js.
+            Sou Desenvolvedor Front-End com mais de 8 anos de experiência sólida focado na construção de interfaces modernas, rápidas e responsivas. Minha expertise está concentrada no ecossistema JavaScript, com domínio em Next.js, Tailwind CSS e JavaScript, aplicando rigorosamente boas práticas de UI/UX, Performance, SEO e Componentização.
           </p>
-          {/* Parágrafo 2 - Foco na paixão e visão de código */}
+          {/* Parágrafo 2 */}
           <p className="text-lg text-[var(--color-text-secondary)] mb-6">
-            Minha paixão é desenvolver componentes reutilizáveis que otimizam o desempenho e a manutenção do código, sempre com um olhar atento para acessibilidade e uma excelente experiência do usuário (UX).
+            Atuei na implementação e manutenção de aproximadamente 10 projetos de e-commerce na plataforma VTEX (IO e Legacy) , desenvolvendo soluções e componentes customizados. Minha experiência é abrangente, ja participei da criação de sistemas, intranets e sites corporativos, utilizando o ecossistema ReactJS, NextJS e plataformas como WordPress e Drupal. 
           </p>
-          {/* Parágrafo 3 - Foco na evolução e estudos */}
+          {/* Parágrafo 3 */}
+          <p className="text-lg text-[var(--color-text-secondary)] mb-6">
+            Sou especialista em transformar layouts de alta fidelidade (Figma/PSD) em produtos digitais acessíveis, otimizados e estritamente fiéis ao design.
+          </p>
+
+          {/* Parágrafo 4 */}
+          <p className="text-lg text-[var(--color-text-secondary)] mb-6">
+            Meu fluxo de trabalho é baseado em código limpo e escalável, versionado com Git e operando em ambientes ágeis (Kanban) com equipes multidisciplinares.
+          </p>
+
+          {/* Parágrafo 5 */}
           <p className="text-lg text-[var(--color-text-secondary)]">
-            Atualmente, estou expandindo minhas habilidades cursando análise e desenvolvimento de sistemas pela Unicesumar e complementando minha formação com foco em Back-End e Inteligência Artificial na Alura através da Plataforma Impact, visando atuar em projetos que exigem um conhecimento mais completo e inovador.
+            Sou um profissional comprometido com o aprendizado continuo, estou cursando Análise e Desenvolvimento de Sistemas na UniCesumar e me especializando em Ciência de Dados pela Alura, o que amplia minha visão técnica e estratégica nos projetos.
           </p>
         </div>
+
+
+
+
+
         
         {/* Seção de Habilidades usando o componente SkillCard */}
         <h2 className="text-3xl font-bold text-center mb-8">
