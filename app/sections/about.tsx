@@ -22,17 +22,17 @@ const skills = [
 
 const experience = [
     { 
-        company: 'Autônomo', 
-        role: 'Desenvolvedor Front-End Jr', 
+        company: 'Aprofundamento Técnico e Projetos Independentes', 
+        role: 'Desenvolvedor Front-End', 
         period: 'Janeiro 2023 - Atualmente', 
-        description: `Período de aprofundamento técnico em novas tecnologias (Next.js, Tailwind CSS) e introdução a Data Science.
-• Criação de portfólio e blog pessoal utilizando Next.js e Tailwind CSS, focando em alta performance e SEO.
-• Desenvolvimento de soluções web customizadas para clientes (Landing Pages, Portfólios, E-commerce em WordPress/WooCommerce).
-• Projeto prático de Data Science (Imersão Alura): Desenvolvimento de um Dashboard Interativo de Salários com Python, Streamlit e Plotly.` 
+        description: `Período dedicado ao aprofundamento técnico em tecnologias modernas do ecossistema JavaScript (ReactJS, Next.js e Tailwind CSS)
+• Desenvolvimento e manutenção de portfólio e blog pessoal com foco em performance, SEO técnico e arquitetura escalável.
+• Criação de projetos práticos voltados à aplicação real de conceitos (Dashboard Interativo de Salários com Python, Streamlit e Plotly).
+• Estudos avançados em arquitetura front-end, boas práticas, acessibilidade e otimização de aplicações web.` 
     },
     { 
         company: 'Grupo Binaria', 
-        role: 'Desenvolvedor Front-End Jr', 
+        role: 'Desenvolvedor Front-End', 
         period: 'Junho 2022 - Dezembro 2022', 
         description: `Responsável pela gestão e manutenção de conteúdo em CMS privado e na plataforma Hugo (Static Site Generator).
 • Criação de páginas estáticas para exposições virtuais, garantindo fidelidade ao design e responsividade.
@@ -40,7 +40,7 @@ const experience = [
     },
     { 
         company: 'ED3 Digital', 
-        role: 'Desenvolvedor Front-End Jr', 
+        role: 'Desenvolvedor Front-End', 
         period: 'Agosto 2020 - Abril 2022', 
         description: `Implementação e manutenção de e-commerces nas arquiteturas VTEX IO e VTEX Legacy.
 • Desenvolvimento de soluções e componentes customizados para Front-End em diversas lojas VTEX.
@@ -49,7 +49,7 @@ const experience = [
     },
     { 
         company: 'AM4', 
-        role: 'Desenvolvedor Front-End Jr', 
+        role: 'Desenvolvedor Front-End', 
         period: 'Junho 2019 - Março 2020', 
         description: `Atuação em correções de bugs e implementação de funcionalidades na plataforma educacional da Pearson.
 • Criação de componentes avançados, como a funcionalidade de Highlight de texto em livros EPUB e PDF.
@@ -57,7 +57,7 @@ const experience = [
     },
     { 
         company: 'Sírius Interativa', 
-        role: 'Desenvolvedor Front-End Jr', 
+        role: 'Desenvolvedor Front-End', 
         period: 'Janeiro 2018 - Maio 2019', 
         description: `Desenvolvimento de interfaces Front-End para sites corporativos, sistemas e intranets.
 • Utilização de frameworks como React e jQuery, e plataformas como WordPress e Drupal.
@@ -66,7 +66,7 @@ const experience = [
     },
     { 
         company: 'Sírius Interativa', 
-        role: 'Desenvolvedor Front-End Jr (Estágio)', 
+        role: 'Desenvolvedor Front-End (Estágio)', 
         period: 'Junho 2016 - Dezembro 2017', 
         description: `Conversão de layouts (PSD para HTML, CSS e jQuery), garantindo fidelidade visual.
 • Criação de templates estáticos e desenvolvimento de e-mails marketing em HTML.
