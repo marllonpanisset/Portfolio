@@ -26,7 +26,7 @@ export function HeroSection() {
           </h1>
           {/* Subtítulo mais descritivo (h2) com a mensagem de valor. */}
           <h2 className="mt-4 text-xl md:text-2xl text-[var(--color-text-secondary)]">
-            Desenvolvedor Front-End especializado em construir experiências digitais performáticas e intuitivas.
+            Desenvolvedor Front-End focado em performance, acessibilidade e experiências digitais de alto impacto.
           </h2>
           {/* Container para os botões de Chamada para Ação (CTAs). */}
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">

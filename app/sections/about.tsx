@@ -96,15 +96,15 @@ export function AboutSection() {
         <div className="text-center max-w-3xl mx-auto mb-32">
           {/* Parágrafo 1 */}
           <p className="text-lg text-[var(--color-text-secondary)] mb-6">
-            Meu nome é Marllon Panisset. Iniciei minha carreira como Desenvolvedor Front-End Júnior em agências de publicidade há mais de 8 anos, mas tive meu primeiro contato com programação aos 13 anos de idade.
+            Iniciei minha carreira como Desenvolvedor Front-End em agências de publicidade há mais de 8 anos, mas meu primeiro contato com programação aconteceu aos 13 anos de idade.
           </p>
           {/* Parágrafo 2 */}
           <p className="text-lg text-[var(--color-text-secondary)] mb-6">
-            Ao longo da minha trajetória, atuei em diferentes agências e participei de projetos variados, incluindo sites promocionais, intranets, sites institucionais, e-commerces e landing pages, o que me proporcionou experiência com múltiplos contextos e regras de negócio.
+            Ao longo da minha trajetória, atuei em diferentes agências e participei de projetos variados — sites promocionais, intranets, institucionais, e-commerces e landing pages — o que me proporcionou experiência com múltiplos contextos e regras de negócio.
           </p>
           {/* Parágrafo 3 */}
           <p className="text-lg text-[var(--color-text-secondary)] mb-6">
-            Atuo principalmente no ecossistema JavaScript, com foco em React.js, Next.js e Tailwind CSS, desenvolvendo soluções modernas e escaláveis. Priorizo performance, acessibilidade, SEO técnico e Experiência do Usuário (UX), com atenção à arquitetura de componentes, organização de código e sustentabilidade das aplicações.
+            Atuo principalmente no ecossistema JavaScript, com foco em React.js, Next.js e Tailwind CSS, desenvolvendo soluções modernas e escaláveis. Priorizo performance, acessibilidade, SEO técnico e Experiência do Usuário (UX), com atenção à arquitetura de componentes e organização sustentável do código.
           </p>
 
           {/* Parágrafo 4 */}
