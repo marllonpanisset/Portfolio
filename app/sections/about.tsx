@@ -56,7 +56,7 @@ const experience = [
 • Realização de ajustes e melhorias em HTML de livros digitais.` 
     },
     { 
-        company: 'Sirius Interativa', 
+        company: 'Sírius Interativa', 
         role: 'Desenvolvedor Front-End Jr', 
         period: 'Janeiro 2018 - Maio 2019', 
         description: `Desenvolvimento de interfaces Front-End para sites corporativos, sistemas e intranets.

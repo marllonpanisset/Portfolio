@@ -29,7 +29,7 @@ export function TimelineItem({ experience, isReversed }: TimelineItemProps) {
     .map(point => `• ${point}`); // Adiciona o bullet de volta no início
 
   return (
-    <div className="flex w-full flex-row items-center gap-4 mb-8 md:justify-center md:items-center">
+    <div data-testid="timeline-item" className="flex w-full flex-row items-center gap-4 mb-8 md:justify-center md:items-center">
       
       {/* LADO VAZIO (APENAS DESKTOP) */}
       <div className={`hidden md:block md:w-[53%] ${emptySpaceOrderClass}`}></div>

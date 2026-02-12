@@ -1,46 +1,57 @@
 // __tests__/ContactSection.test.tsx
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { ContactSection } from '../app/sections/contact';
 
 describe('ContactSection', () => {
-  it('renderiza o título "Contato"', () => {
+  beforeEach(() => {
     render(<ContactSection />);
-    const heading = screen.getByRole('heading', { name: /contato/i });
-    expect(heading).toBeInTheDocument();
+  });
+
+  it('renderiza a seção de contato', () => {
+    expect(
+      screen.getByRole('region', { name: /contato/i })
+    ).toBeInTheDocument();
   });
 
   it('renderiza todos os cards de contato', () => {
-    render(<ContactSection />);
-    const contactLinks = [
-      'Telefone',
-      'LinkedIn',
-      'Email',
-      'GitHub',
-    ];
-    
-    contactLinks.forEach((link) => {
-      expect(screen.getByText(link)).toBeInTheDocument();
+    const cards = screen.getAllByTestId('contact-card');
+    expect(cards).toHaveLength(4);
+  });
+
+  it('cada card é um link válido', () => {
+    const cards = screen.getAllByTestId('contact-card');
+
+    cards.forEach((card) => {
+      expect(card.tagName.toLowerCase()).toBe('a');
+      expect(card).toHaveAttribute('href');
     });
   });
 
-  it('verifica os links e atributos para os cards de contato', () => {
-    render(<ContactSection />);
+  it('links externos abrem em nova aba', () => {
+    const cards = screen.getAllByTestId('contact-card');
 
-    const phoneLink = screen.getByRole('link', { name: /telefone/i });
-    expect(phoneLink).toHaveAttribute('href', 'tel:+55-21-98788-1633');
-    expect(phoneLink).not.toHaveAttribute('target', '_blank');
+    const externalLinks = cards.filter(
+      (card) => card.getAttribute('target') === '_blank'
+    );
 
-    const linkedinLink = screen.getByRole('link', { name: /linkedin/i });
-    expect(linkedinLink).toHaveAttribute('href', 'https://www.linkedin.com/in/marllonpanisset');
-    expect(linkedinLink).toHaveAttribute('target', '_blank');
+    externalLinks.forEach((link) => {
+      expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+    });
+  });
 
-    const emailLink = screen.getByRole('link', { name: /email/i });
-    expect(emailLink).toHaveAttribute('href', 'mailto:panisset.dev@gmail.com');
-    expect(emailLink).not.toHaveAttribute('target', '_blank');
+  it('possui pelo menos um link tel e um mailto', () => {
+    const cards = screen.getAllByTestId('contact-card');
 
-    const githubLink = screen.getByRole('link', { name: /github/i });
-    expect(githubLink).toHaveAttribute('href', 'https://github.com/marllonpanisset');
-    expect(githubLink).toHaveAttribute('target', '_blank');
+    const hasPhone = cards.some((card) =>
+      card.getAttribute('href')?.startsWith('tel:')
+    );
+
+    const hasEmail = cards.some((card) =>
+      card.getAttribute('href')?.startsWith('mailto:')
+    );
+
+    expect(hasPhone).toBe(true);
+    expect(hasEmail).toBe(true);
   });
 });

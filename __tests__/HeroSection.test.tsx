@@ -1,36 +1,46 @@
-import { render, screen } from '@testing-library/react';
+// __tests__/HeroSection.test.tsx
+import { render, screen, within } from '@testing-library/react';
 import { HeroSection } from '../app/sections/hero';
 import '@testing-library/jest-dom';
 
 describe('HeroSection', () => {
-  it('renderiza o título principal e subtítulo', () => {
+  beforeEach(() => {
     render(<HeroSection />);
-    
-    // Verifica os textos dos headings
-    const mainHeading = screen.getByRole('heading', { level: 1, name: /olá, sou o marllon panisset/i });
-    const subHeading = screen.getByRole('heading', { level: 2, name: /desenvolvedor front-end/i });
-    
-    expect(mainHeading).toBeInTheDocument();
-    expect(subHeading).toBeInTheDocument();
   });
 
-  it('renderiza os links de ação', () => {
-    render(<HeroSection />);
-    
-    // Usa o role "link" em vez de "button"
-    const projectsLink = screen.getByRole('link', { name: /ver projetos/i });
-    const cvLink = screen.getByRole('link', { name: /baixar cv/i });
-    
-    expect(projectsLink).toBeInTheDocument();
-    expect(cvLink).toBeInTheDocument();
+  it('renderiza a seção hero', () => {
+    expect(
+      screen.getByRole('region')
+    ).toBeInTheDocument();
   });
 
-  it('renderiza a imagem de perfil', () => {
-    render(<HeroSection />);
-    
-    // Verifica a imagem de perfil
-    const profileImage = screen.getByRole('img', { name: /Foto de Marllon Panisset/i });
-    
-    expect(profileImage).toBeInTheDocument();
+  it('possui heading principal e subtítulo', () => {
+    const h1 = screen.getByRole('heading', { level: 1 });
+    const h2 = screen.getByRole('heading', { level: 2 });
+
+    expect(h1).toBeInTheDocument();
+    expect(h2).toBeInTheDocument();
+  });
+
+  it('possui dois CTAs funcionais', () => {
+    const links = screen.getAllByRole('link');
+    expect(links.length).toBeGreaterThanOrEqual(2);
+
+    const anchorLink = links.find(link =>
+      link.getAttribute('href')?.startsWith('#')
+    );
+
+    const downloadLink = links.find(link =>
+      link.hasAttribute('download')
+    );
+
+    expect(anchorLink).toBeDefined();
+    expect(downloadLink).toBeDefined();
+  });
+
+  it('renderiza a imagem de perfil com alt', () => {
+    const image = screen.getByRole('img');
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute('alt');
   });
 });

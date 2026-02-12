@@ -1,4 +1,4 @@
-// components/ProjectsSection.tsx
+// sections/ProjectsSection.tsx
 import { FolderGit2, Link } from 'lucide-react'; // Importa ícones de pasta e link para serem usados nos botões.
 import Image from 'next/image'; // Importa o componente otimizado de imagem do Next.js.
 
@@ -42,15 +42,23 @@ const projects = [
 
 export default function ProjectsSection() {
   return (
-    <section id="projetos" className="py-12 md:px-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
+    <section
+      id="projetos"
+      aria-labelledby="projetos-heading"
+      className="py-12 md:px-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
+      
       <div className="container mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-20 flex items-center justify-center gap-2 ">
+        <h2
+          id="projetos-heading" 
+          className="text-4xl font-bold text-center mb-20 flex items-center justify-center gap-2 ">
           Projetos
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <div key={index} className="bg-[var(--color-bg-secondary)] rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105 group relative">
+            <div key={index}
+              data-testid="project-card"
+              className="bg-[var(--color-bg-secondary)] rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105 group relative">
               <div className="relative">
                 <Image
                   src={project.image}

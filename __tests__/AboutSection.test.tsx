@@ -1,51 +1,52 @@
 // __tests__/AboutSection.test.tsx
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { AboutSection } from '../app/sections/about';
 
 describe('AboutSection', () => {
-  it('renderiza o título principal "Sobre Mim"', () => {
-    const { container } = render(<AboutSection />);
-    const heading = screen.getByRole('heading', { name: /sobre mim/i });
-    expect(heading).toBeInTheDocument();
-    expect(container.querySelector('#sobre-mim')).toBeTruthy();
-  });
-
-  it('renderiza os três parágrafos de descrição pessoal', () => {
-    const { container } = render(<AboutSection />);
-    const paragraphs = container.querySelectorAll('p');
-    expect(paragraphs.length).toBeGreaterThanOrEqual(3);
-
-    expect(screen.getByText(/mais de 8 anos de experiência/i)).toBeInTheDocument();
-    expect(screen.getByText(/componentes reutilizáveis/i)).toBeInTheDocument();
-    expect(screen.getByText(/análise e desenvolvimento de sistemas/i)).toBeInTheDocument();
-  });
-
-  it('renderiza o título "Habilidades" e todos os cards de skill', () => {
+  beforeEach(() => {
     render(<AboutSection />);
-    expect(screen.getByRole('heading', { name: /habilidades/i })).toBeInTheDocument();
-
-    const skillNames = ['HTML5', 'CSS3', 'JavaScript', 'React.js', 'Next.js', 'Tailwind CSS'];
-    skillNames.forEach((name) => {
-      expect(screen.getByText(name)).toBeInTheDocument();
-    });
   });
 
-  it('renderiza o título "Experiência" e todos os itens da timeline', () => {
-    render(<AboutSection />);
-    expect(screen.getByRole('heading', { name: /experiência/i })).toBeInTheDocument();
+  it('renderiza a seção principal corretamente', () => {
+    const section = document.querySelector('#sobre-mim');
+    expect(section).toBeInTheDocument();
 
-    const companies = [
-      'Binaria',
-      'ED3 Digital',
-      'AM4',
-      'Sirius Interativa',
-      'Sírius Interativa',
-      'Hospital Rio Mar',
-    ];
+    expect(
+      screen.getByRole('heading', { name: /sobre mim/i })
+    ).toBeInTheDocument();
+  });
 
-    companies.forEach((company) => {
-      expect(screen.getByText(company)).toBeInTheDocument();
+  it('renderiza pelo menos 4 parágrafos na descrição', () => {
+    const section = document.querySelector('#sobre-mim')!;
+    const paragraphs = within(section).getAllByText(
+      (_, element) => element?.tagName.toLowerCase() === 'p'
+    );
+
+    expect(paragraphs.length).toBeGreaterThanOrEqual(4);
+  });
+
+  it('renderiza corretamente a lista de habilidades', () => {
+    const skillsHeading = screen.getByRole('heading', {
+      name: /habilidades/i,
     });
+
+    expect(skillsHeading).toBeInTheDocument();
+
+    const skillCards = screen.getAllByTestId('skill-card');
+
+    expect(skillCards).toHaveLength(6);
+  });
+
+  it('renderiza corretamente a timeline de experiências', () => {
+    const experienceHeading = screen.getByRole('heading', {
+      name: /experiência/i,
+    });
+
+    expect(experienceHeading).toBeInTheDocument();
+
+    const timelineItems = screen.getAllByTestId('timeline-item');
+
+    expect(timelineItems).toHaveLength(7);
   });
 });

@@ -10,6 +10,7 @@ export function HeroSection() {
     // As classes do Tailwind definem o estilo, alinhamento e espaçamento da seção.
     <section
       id="inicio"
+      aria-labelledby="hero-heading"
       className="bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] flex min-h-screen pt-20"
     >
       {/* Container principal para o conteúdo da seção hero. */}
@@ -18,7 +19,9 @@ export function HeroSection() {
         {/* Lado esquerdo: Título, subtítulo e CTAs. */}
         <div className="flex-1 text-center md:text-left lg:text-left mb-8 md:mb-0">
           {/* Título principal (h1) com foco em SEO e hierarquia de conteúdo. */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-medium">
+          <h1 
+            id="hero-heading"
+            className="text-4xl sm:text-5xl md:text-6xl font-medium">
             Olá, sou o <span className="text-[var(--color-text-accent)] font-bold">Marllon Panisset</span>
           </h1>
           {/* Subtítulo mais descritivo (h2) com a mensagem de valor. */}
