@@ -96,33 +96,23 @@ export function AboutSection() {
         <div className="text-center max-w-3xl mx-auto mb-32">
           {/* Parágrafo 1 */}
           <p className="text-lg text-[var(--color-text-secondary)] mb-6">
-            Sou Desenvolvedor Front-End com mais de 8 anos de experiência sólida focado na construção de interfaces modernas, rápidas e responsivas. Minha expertise está concentrada no ecossistema JavaScript, com domínio em Next.js, Tailwind CSS e JavaScript, aplicando rigorosamente boas práticas de UI/UX, Performance, SEO e Componentização.
+            Meu nome é Marllon Panisset. Iniciei minha carreira como Desenvolvedor Front-End Júnior em agências de publicidade há mais de 8 anos, mas tive meu primeiro contato com programação aos 13 anos de idade.
           </p>
           {/* Parágrafo 2 */}
           <p className="text-lg text-[var(--color-text-secondary)] mb-6">
-            Atuei na implementação e manutenção de aproximadamente 10 projetos de e-commerce na plataforma VTEX (IO e Legacy) , desenvolvendo soluções e componentes customizados. Minha experiência é abrangente, ja participei da criação de sistemas, intranets e sites corporativos, utilizando o ecossistema ReactJS, NextJS e plataformas como WordPress e Drupal. 
+            Ao longo da minha trajetória, atuei em diferentes agências e participei de projetos variados, incluindo sites promocionais, intranets, sites institucionais, e-commerces e landing pages, o que me proporcionou experiência com múltiplos contextos e regras de negócio.
           </p>
           {/* Parágrafo 3 */}
           <p className="text-lg text-[var(--color-text-secondary)] mb-6">
-            Sou especialista em transformar layouts de alta fidelidade (Figma/PSD) em produtos digitais acessíveis, otimizados e estritamente fiéis ao design.
+            Atuo principalmente no ecossistema JavaScript, com foco em React.js, Next.js e Tailwind CSS, desenvolvendo soluções modernas e escaláveis. Priorizo performance, acessibilidade, SEO técnico e Experiência do Usuário (UX), com atenção à arquitetura de componentes, organização de código e sustentabilidade das aplicações.
           </p>
 
           {/* Parágrafo 4 */}
           <p className="text-lg text-[var(--color-text-secondary)] mb-6">
-            Meu fluxo de trabalho é baseado em código limpo e escalável, versionado com Git e operando em ambientes ágeis (Kanban) com equipes multidisciplinares.
-          </p>
-
-          {/* Parágrafo 5 */}
-          <p className="text-lg text-[var(--color-text-secondary)]">
-            Sou um profissional comprometido com o aprendizado continuo, estou cursando Análise e Desenvolvimento de Sistemas na UniCesumar e me especializando em Ciência de Dados pela Alura, o que amplia minha visão técnica e estratégica nos projetos.
+            Tenho experiência na implementação de layouts de alta fidelidade (Figma/PSD), transformando design em interfaces responsivas, acessíveis e otimizadas. Trabalho com versionamento em Git e metodologias ágeis, colaborando com equipes multidisciplinares na construção de produtos preparados para evolução contínua.
           </p>
         </div>
-
-
-
-
-
-        
+       
         {/* Seção de Habilidades usando o componente SkillCard */}
         <h2 className="text-3xl font-bold text-center mb-8">
           Habilidades
