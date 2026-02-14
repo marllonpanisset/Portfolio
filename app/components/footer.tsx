@@ -49,7 +49,7 @@ export default function Footer() {
                   <h4 className="font-semibold text-base text-white mb-2">Contato</h4>
                   <div className="space-y-2">
                       <div className="flex items-center justify-center md:justify-start">
-                          <a href="mailto:panisset.dev@gmail.com" className="hover:text-white">panisset.dev@gmail.com</a>
+                          <a href="mailto:marllon.log@outlook.com.br" className="hover:text-white">marllon.log@outlook.com.br</a>
                       </div>
                       <div className="flex items-center justify-center md:justify-start">
                           <a href="https://wa.me/5521987881633" target="_blank" rel="noopener noreferrer" className="hover:text-white">(21) 98788-1633</a>

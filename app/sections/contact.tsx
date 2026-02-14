@@ -19,7 +19,7 @@ const contactLinks = [
     isExternal: true,
   },
   {
-    href: 'mailto:panisset.dev@gmail.com',
+    href: 'mailto:marllon.log@outlook.com.br',
     icon: <Mail size={48} className="text-[var(--color-text-accent)] mb-2 md:mb-4" />,
     label: 'Email',
     isExternal: false,
