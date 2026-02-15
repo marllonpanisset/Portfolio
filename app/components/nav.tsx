@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 const navItems = {
   '#inicio': { name: 'Início' },
   '#sobre-mim': { name: 'Sobre' },
+  '#xp': { name: 'Experiência' },
   '#projetos': { name: 'Projetos' },
   '#contato': { name: 'Contato' },
   '/blog': { name: 'Blog' },
