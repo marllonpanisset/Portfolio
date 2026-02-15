@@ -72,24 +72,25 @@ export function Navbar({ onLinkClick, isFooter, isMobileMenu, activePath }: Navb
   return (
     <nav
       className={clsx(
-        'flex flex-col md:flex-row items-center h-full w-full',
+        'flex flex-col md:flex-row items-center h-full w-full overflow-x-hidden',
         isFooter ? '' : 'justify-center'
       )}
     >
       <div
         className={clsx(
-          'items-center w-full flex',
-          isFooter ? 'flex-row space-x-2 sm:space-x-4 lg:space-x-6' : 'flex-col md:flex-row md:space-x-0'
+          'items-center w-full',
+          isFooter
+            ? 'grid grid-cols-3 gap-2 w-full min-[460px]:flex min-[460px]:flex-row min-[460px]:space-x-4 lg:space-x-6'
+            : 'flex flex-col md:flex-row md:space-x-0'
         )}
       >
         {Object.entries(navItems).map(([path, { name }]) => {
           const isAnchor = path.startsWith('#');
           const href = isAnchor && activePath !== '/' ? `/${path}` : path;
-          
-          // Adicionamos a verificação '?' para evitar o erro se activePath for undefined
+
           const isBlogPage = activePath?.startsWith('/blog');
           const isCurrentBlogLink = path === '/blog';
-          
+
           const isActive =
             !isAnchor &&
             (activePath === path || (isBlogPage && isCurrentBlogLink));
@@ -100,16 +101,27 @@ export function Navbar({ onLinkClick, isFooter, isMobileMenu, activePath }: Navb
               href={href}
               onClick={isAnchor ? (e) => handleScroll(e, path) : onLinkClick}
               className={clsx(
-                'relative flex align-middle px-2 m-1',
-                isMobileMenu && 'text-white text-2xl font-bold py-6 hover:scale-110 transition-transform duration-300',
-                isFooter && 'text-gray-300 hover:text-white text-sm sm:text-base lg:text-lg py-2',
-                !isMobileMenu && !isFooter && 'text-lg py-4 md:py-1',
+                'relative flex justify-center align-middle px-2 m-1',
+                isMobileMenu &&
+                  'text-white text-2xl font-bold py-6 hover:scale-110 transition-transform duration-300',
+                isFooter &&
+                  'text-gray-300 hover:text-white text-sm sm:text-base lg:text-lg py-2',
+                !isMobileMenu &&
+                  !isFooter &&
+                  'text-lg py-4 md:py-1',
                 isActive
                   ? 'text-[var(--color-text-header)] underline font-semibold'
                   : 'text-gray-300 hover:text-white'
               )}
             >
-              {name}
+              {isFooter && name === 'Experiência' ? (
+                <>
+                  <span className="block sm:hidden">XP</span>
+                  <span className="hidden sm:block">Experiência</span>
+                </>
+              ) : (
+                name
+              )}
             </Link>
           );
         })}
