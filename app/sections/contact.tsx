@@ -13,7 +13,7 @@ const contactLinks = [
     isExternal: false,
   },
   {
-    href: 'https://www.linkedin.com/in/marllonpanisset',
+    href: 'https://www.linkedin.com/in/marllon-panisset',
     icon: <LinkedinIcon className="text-[var(--color-text-accent)] mb-2 md:mb-4 w-12 h-12" />,
     label: 'LinkedIn',
     isExternal: true,
