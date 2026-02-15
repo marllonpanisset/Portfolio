@@ -42,23 +42,23 @@ export default function Footer() {
 
     return (
         <footer className="w-full bg-neutral-900 text-gray-300 py-10 px-4">
-            <div className="container mx-auto flex flex-col md:flex-row justify-between items-center md:items-center space-y-8 md:space-y-0 md:space-x-8">
+            <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center lg:items-center space-y-8 lg:space-y-0 lg:space-x-8">
 
               {/* Coluna 1: Contato */}
-              <div className="flex-1 text-center md:text-left">
+              <div className="flex-1 text-center lg:text-left">
                   <h4 className="font-semibold text-base text-white mb-2">Contato</h4>
                   <div className="space-y-2">
-                      <div className="flex items-center justify-center md:justify-start">
+                      <div className="flex items-center justify-center lg:justify-start">
                           <a href="mailto:marllon.log@outlook.com.br" className="hover:text-white">marllon.log@outlook.com.br</a>
                       </div>
-                      <div className="flex items-center justify-center md:justify-start">
+                      <div className="flex items-center justify-center lg:justify-start">
                           <a href="https://wa.me/5521987881633" target="_blank" rel="noopener noreferrer" className="hover:text-white">(21) 98788-1633</a>
                       </div>
                   </div>
               </div>
 
               {/* Coluna 3: Social */}             
-              <div className="flex-1 text-center md:text-left">
+              <div className="flex-1 text-center lg:text-left">
                   <h4 className="font-semibold text-base text-white mb-2">Social</h4>
                   <div className="flex justify-center md:justify-start space-x-4">
                     {iconsFooter.map((icon) => (
@@ -76,7 +76,7 @@ export default function Footer() {
               </div>
               
               {/* Coluna 2: Navegação */}
-              <div className="flex-1 text-center md:text-left">
+              <div className="flex-1 text-center lg:text-left">
                 <h4 className="pl-3 font-semibold text-base text-white mb-2">Navegação</h4>
                 <Navbar onLinkClick={handleLinkClick} isFooter={true} activePath="" />
               </div>

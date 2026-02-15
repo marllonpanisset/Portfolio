@@ -45,7 +45,7 @@ export default function ProjectsSection() {
     <section
       id="projetos"
       aria-labelledby="projetos-heading"
-      className="py-12 md:px-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
+      className="py-12 px-4 md:px-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
       
       <div className="container mx-auto">
         <h2

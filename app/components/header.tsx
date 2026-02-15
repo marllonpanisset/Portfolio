@@ -40,7 +40,7 @@ export function Header() {
         ) : (
           <>
             {/* Mobile */}
-            <div className="flex items-center gap-4 md:hidden">
+            <div className="flex items-center gap-4 lg:hidden">
               <ThemeSwitcher />
               <button
                 onClick={toggleMenu}
@@ -67,7 +67,7 @@ export function Header() {
             </div>
 
             {/* Desktop menu */}
-            <div className="hidden md:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-4">
               <Navbar 
                 onLinkClick={() => setIsMenuOpen(false)} 
                 activePath={pathname}
