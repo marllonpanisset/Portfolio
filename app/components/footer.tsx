@@ -37,19 +37,20 @@ export default function Footer() {
   const pathname = usePathname();
   const isHomePage = pathname === '/';
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith('#') && isHomePage) {
-      e.preventDefault();
-      const targetId = href.substring(1);
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        const offset = 72;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.scrollY - offset;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-      }
+// app/components/footer.tsx (dentro do componente Footer)
+const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  if (href.startsWith('#') && isHomePage) {
+    e.preventDefault();
+    const targetId = href.substring(1);
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      const offset = 120; // aumentado para 80
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - offset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
-  };
+  }
+};
 
   // Categorias de navegação
   const categories = [
@@ -64,9 +65,9 @@ export default function Footer() {
     {
       title: 'Serviços',
       links: [
-        { name: 'Criação de Sites', href: '#services' },
-        { name: 'Manutenção e Suporte', href: '#services' },
-        { name: 'Presença Digital', href: '#services' },
+        { name: 'Criação de Sites', href: '#criacao-de-sites' },
+        { name: 'Manutenção e Suporte', href: '#manutencao-e-suporte' },
+        { name: 'Presença Digital', href: '#presenca-digital' },
       ],
     },
     {
