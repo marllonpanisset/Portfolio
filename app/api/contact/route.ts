@@ -1,7 +1,19 @@
+// app/api/contact/route.ts
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let resendClient: Resend | null = null;
+
+function getResendClient() {
+  if (!resendClient) {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      throw new Error('Missing RESEND_API_KEY environment variable');
+    }
+    resendClient = new Resend(apiKey);
+  }
+  return resendClient;
+}
 
 export async function POST(request: Request) {
   try {
@@ -14,9 +26,10 @@ export async function POST(request: Request) {
       );
     }
 
+    const resend = getResendClient();
     const data = await resend.emails.send({
-      from: 'Meu Site <hello@bazestudeo.com.br>', // ✅ domínio verificado (pode ser qualquer endereço)
-      to: ['marllon@bazestudeo.com.br'],          // ✅ redirecionamento Cloudflare
+      from: 'Meu Site <hello@bazestudeo.com.br>',
+      to: ['marllon@bazestudio.com.br'],
       subject: `Novo contato - ${service}`,
       html: `
         <p><strong>Nome:</strong> ${name}</p>
