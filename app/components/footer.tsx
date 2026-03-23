@@ -28,8 +28,9 @@ const linkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const iconsFooter = [
-  { name: 'Github', logo: githubIcon, link: 'https://github.com/marllonpanisset' },
+  { name: 'Instagram', logo: FaInstagram, link: 'https://instagram.com/seuusuario' },
   { name: 'Linkedin', logo: linkedinIcon, link: 'https://linkedin.com/in/marllon-panisset' },
+  { name: 'Github', logo: githubIcon, link: 'https://github.com/marllonpanisset' },
 ];
 
 export default function Footer() {
@@ -145,7 +146,11 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-accent)] transition"
                   >
-                    <icon.logo className="w-6 h-6" />
+                    {icon.name === 'Instagram' ? (
+                      <icon.logo size={24} />
+                    ) : (
+                      <icon.logo className="w-6 h-6" />
+                    )}
                   </Link>
                 ))}
               </div>
