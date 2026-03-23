@@ -131,7 +131,7 @@ export function ContactSection() {
           <div>
             <h3 className="font-semibold mb-1 text-[var(--color-text-primary)]">WhatsApp</h3>
             <a
-              href="https://wa.me/5521987881633"
+              href="https://wa.me/5521987881633?text=Oi%20vi%20seu%20site%20e%20quero%20mais%20clientes"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--color-text-accent)] hover:underline inline-flex items-center gap-2"
