@@ -125,6 +125,15 @@ export function ServicesSection() {
   };
 
   const handleClick = (serviceKey: string) => {
+    // 1. Atualiza o select e o estado imediatamente
+    const select = document.getElementById('service') as HTMLSelectElement | null;
+    if (select) {
+      select.value = serviceKey;
+      // Dispara evento para sincronizar o estado do ContactSection
+      window.dispatchEvent(new CustomEvent('externalServiceSelect', { detail: { serviceKey } }));
+    }
+
+    // 2. Rola suavemente até a seção de contato
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       const offset = 72;
@@ -132,14 +141,6 @@ export function ServicesSection() {
       const offsetPosition = elementPosition + window.scrollY - offset;
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
-
-    setTimeout(() => {
-      const select = document.getElementById('service') as HTMLSelectElement | null;
-      if (select) {
-        select.value = serviceKey;
-        window.dispatchEvent(new CustomEvent('externalServiceSelect', { detail: { serviceKey } }));
-      }
-    }, 500);
   };
 
   const getButtonText = (categoryTitle: string) => {
