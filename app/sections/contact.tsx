@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa'; // ícones de redes sociais
+import { FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -66,7 +66,6 @@ export function ContactSection() {
   return (
     <section id="contact" className="py-20 px-4 md:px-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
       <div className="container mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-
         {/* Coluna da esquerda */}
         <div className="flex flex-col justify-start text-center md:text-left space-y-6">
           <h2 className="text-4xl font-bold">Fale comigo</h2>
@@ -102,6 +101,7 @@ export function ContactSection() {
 
         {/* Coluna do formulário */}
         <form
+          id="contact-form"  // 🔹 ID adicionado aqui
           className="bg-[var(--color-bg-secondary)] p-8 rounded-xl shadow-lg"
           onSubmit={handleSubmit}
         >
@@ -158,9 +158,15 @@ export function ContactSection() {
               className="w-full px-4 py-2 rounded border border-gray-300 focus:ring-2 focus:ring-[var(--color-text-accent)] outline-none"
             >
               <option value="">Selecione uma opção</option>
-              <option value="website">Criação de site</option>
+              {/* 🔹 Valores sincronizados com as serviceKeys */}
               <option value="landing-page">Landing Page</option>
-              <option value="seo">Otimização / SEO</option>
+              <option value="website">Site Institucional</option>
+              <option value="custom">Site Sob Medida</option>
+              <option value="maintenance-basic">Plano Essencial (Manutenção)</option>
+              <option value="maintenance-pro">Plano Profissional (Manutenção)</option>
+              <option value="maintenance-custom">Plano Personalizado (Manutenção)</option>
+              <option value="seo-local">SEO Local</option>
+              <option value="google-my-business">Google Meu Negócio</option>
               <option value="consultoria">Consultoria Digital</option>
             </select>
           </div>

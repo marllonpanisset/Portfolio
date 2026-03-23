@@ -1,4 +1,4 @@
-// app/sections/BlogSection.tsx
+// app/sections/lastblogposts.tsx
 import { BlogCard } from '../components/BlogCard';
 import { getBlogPosts } from '../blog/utils'; // Importa a função do lado do servidor
 import { Post } from 'types/blog'; // Importa a tipagem

@@ -126,6 +126,14 @@ export function ServicesSection() {
     form?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // Função para retornar o texto do botão baseado na categoria
+  const getButtonText = (categoryTitle: string) => {
+    if (categoryTitle === "Criação de Sites") return "Começar projeto";
+    if (categoryTitle === "Manutenção e Suporte") return "Contratar plano";
+    if (categoryTitle === "Presença Digital") return "Solicitar análise";
+    return "Começar projeto"; // fallback
+  };
+
   return (
     <section id="services" className="py-20 px-4 md:px-8 bg-gray-50 text-gray-900">
       <div className="container mx-auto max-w-6xl text-center">
@@ -172,7 +180,7 @@ export function ServicesSection() {
                       onClick={() => handleClick(service.serviceKey)}
                       className="bg-orange-500 text-white px-6 py-2 rounded-xl hover:bg-orange-600 transition w-full"
                     >
-                      Começar projeto
+                      {getButtonText(category.title)}
                     </button>
                   </div>
                 </div>
