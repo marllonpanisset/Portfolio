@@ -118,25 +118,32 @@ export function ServicesSection() {
     }
   ];
 
-  // Função que rola para a seção de contato (igual ao navbar) e depois preenche o select
-    const handleClick = (serviceKey: string) => {
-        const contactSection = document.getElementById('contact');
-        if (contactSection) {
-            const offset = 72;
-            const elementPosition = contactSection.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.scrollY - offset;
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        }
+  // Mapeia o título da categoria para o ID desejado
+  const categoryIds: Record<string, string> = {
+    "Criação de Sites": "criacao-de-sites",
+    "Manutenção e Suporte": "manutencao-e-suporte",
+    "Presença Digital": "presenca-digital"
+  };
 
-        setTimeout(() => {
-            const select = document.getElementById('service') as HTMLSelectElement | null;
-            if (select) {
-            select.value = serviceKey;
-            // Dispara evento para sincronizar o estado do ContactSection
-            window.dispatchEvent(new CustomEvent('externalServiceSelect', { detail: { serviceKey } }));
-            }
-        }, 500);
-    };
+  // Função que rola para a seção de contato (igual ao navbar) e depois preenche o select
+  const handleClick = (serviceKey: string) => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      const offset = 72;
+      const elementPosition = contactSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - offset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
+
+    setTimeout(() => {
+      const select = document.getElementById('service') as HTMLSelectElement | null;
+      if (select) {
+        select.value = serviceKey;
+        // Dispara evento para sincronizar o estado do ContactSection
+        window.dispatchEvent(new CustomEvent('externalServiceSelect', { detail: { serviceKey } }));
+      }
+    }, 500);
+  };
 
   const getButtonText = (categoryTitle: string) => {
     if (categoryTitle === "Criação de Sites") return "Começar projeto";
@@ -160,7 +167,10 @@ export function ServicesSection() {
 
         {categories.map((category, idx) => (
           <div key={idx} className="py-12 px-4 mb-12">
-            <h3 className="text-2xl md:text-3xl font-semibold mb-8 text-[var(--color-text-accent)]">
+            <h3
+              id={categoryIds[category.title]}
+              className="text-2xl md:text-3xl font-semibold mb-8 text-[var(--color-text-accent)]"
+            >
               {category.title}
             </h3>
 
