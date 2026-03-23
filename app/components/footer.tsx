@@ -1,10 +1,8 @@
-// components/footer.tsx
 'use client';
 
 import Link from 'next/link';
-import { Navbar } from './nav'; // Importa o componente Navbar
+import { Navbar } from './nav';
 
-// Componente Icone Github
 const githubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <title>github</title>
@@ -18,7 +16,6 @@ const githubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Componente Icone Linkedin
 const linkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="-143 145 512 512">
     <path d="M113,145c-141.4,0-256,114.6-256,256s114.6,256,256,256s256-114.6,256-256S254.4,145,113,145z M41.4,508.1H-8.5V348.4h49.9
@@ -29,64 +26,65 @@ const linkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-// Dados do Componente de Rede Social
 const iconsFooter = [
   { name: 'Github', logo: githubIcon, link: 'https://github.com/marllonpanisset' },
   { name: 'Linkedin', logo: linkedinIcon, link: 'https://linkedin.com/in/marllon-panisset' },
 ];
 
 export default function Footer() {
-    // Define a função 'handleLinkClick' para passar ao componente Navbar.
-    // Pode ser uma função vazia, já que o footer não tem um menu para fechar.
     const handleLinkClick = () => {};
 
     return (
         <footer className="w-full bg-neutral-900 text-gray-300 py-10 px-4">
-            <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center lg:items-center space-y-8 lg:space-y-0 lg:space-x-8">
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center lg:text-left">
 
-              {/* Coluna 1: Contato */}
-              <div className="flex-1 text-center lg:text-left">
-                  <h4 className="font-semibold text-base text-white mb-2">Contato</h4>
-                  <div className="space-y-2">
-                      <div className="flex items-center justify-center lg:justify-start">
-                          <a href="mailto:marllon.log@outlook.com.br" className="hover:text-white">marllon.log@outlook.com.br</a>
-                      </div>
-                      <div className="flex items-center justify-center lg:justify-start">
-                          <a href="https://wa.me/5521987881633" target="_blank" rel="noopener noreferrer" className="hover:text-white">(21) 98788-1633</a>
-                      </div>
-                  </div>
-              </div>
+                {/* Coluna 1: Contato */}
+                <div>
+                    <h4 className="font-semibold text-base text-white mb-2">Contato</h4>
+                    <div className="space-y-2">
+                        <div>
+                            <a href="mailto:marllon.log@outlook.com.br" className="hover:text-white">marllon.log@outlook.com.br</a>
+                        </div>
+                        <div>
+                            <a href="https://wa.me/5521987881633" target="_blank" rel="noopener noreferrer" className="hover:text-white">(21) 98788-1633</a>
+                        </div>
+                    </div>
+                </div>
 
-              {/* Coluna 3: Social */}             
-              <div className="flex-1 text-center lg:text-left">
-                  <h4 className="font-semibold text-base text-white mb-2">Social</h4>
-                  <div className="flex justify-center md:justify-start space-x-4">
-                    {iconsFooter.map((icon) => (
-                      <Link 
-                        key={icon.name} 
-                        href={icon.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-accent)]"
-                      >
-                        <icon.logo className="w-6 h-6" />
-                      </Link>
-                    ))}
-                  </div>
-              </div>
-              
-              {/* Coluna 2: Navegação */}
-              <div className="flex-1 text-center lg:text-left">
-                <h4 className="pl-3 font-semibold text-base text-white mb-2">Navegação</h4>
-                <Navbar onLinkClick={handleLinkClick} isFooter={true} activePath="" />
-              </div>
+                {/* Coluna 2: Social */}
+                <div>
+                    <h4 className="font-semibold text-base text-white mb-2">Social</h4>
+                    <div className="flex justify-center md:justify-start space-x-4">
+                        {iconsFooter.map((icon) => (
+                            <Link 
+                              key={icon.name} 
+                              href={icon.link} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-accent)]"
+                            >
+                              <icon.logo className="w-6 h-6" />
+                            </Link>
+                        ))}
+                    </div>
+                </div>
 
-          </div>
-          <div className="mt-8 pt-4 border-t border-gray-700 text-center text-sm">
-              <p className="text-sm">
-                {new Date().getFullYear()} &copy; Marllon Panisset
-            </p>
-          </div>
-      </footer>
+                {/* Coluna 3: Navegação */}
+                <div>
+                    <h4 className="font-semibold text-base text-white mb-2">Navegação</h4>
+                    <Navbar onLinkClick={handleLinkClick} isFooter={true} activePath="" />
+                </div>
+
+                {/* Coluna 4: Espaço extra caso precise */}
+                <div>
+                    {/* Aqui podemos adicionar mais links ou manter vazio para balancear */}
+                </div>
+
+            </div>
+
+            <div className="mt-8 pt-4 border-t border-gray-700 text-center text-sm">
+                <p>{new Date().getFullYear()} &copy; Marllon Panisset</p>
+            </div>
+        </footer>
     )
-}
+} 

@@ -1,7 +1,7 @@
 // __tests__/AboutSection.test.tsx
 import '@testing-library/jest-dom';
 import { render, screen, within } from '@testing-library/react';
-import { AboutSection } from '../app/sections/about';
+import { AboutSection } from '../app/sections/howhelp';
 
 describe('AboutSection', () => {
   beforeEach(() => {

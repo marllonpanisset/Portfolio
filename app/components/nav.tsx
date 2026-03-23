@@ -4,14 +4,13 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { MouseEvent, useEffect } from 'react';
 import clsx from 'clsx';
-import { motion } from 'framer-motion';
 
 const navItems = {
   '#inicio': { name: 'Início' },
-  '#sobre-mim': { name: 'Sobre' },
-  '#xp': { name: 'Experiência' },
-  '#projetos': { name: 'Projetos' },
-  '#contato': { name: 'Contato' },
+  '#how-i-help': { name: 'Como posso te ajudar' },
+  '#services': { name: 'Serviços' },
+  '#projects': { name: 'Projetos' },
+  '#contact': { name: 'Contato' },
   '/blog': { name: 'Blog' },
 };
 
@@ -39,11 +38,7 @@ export function Navbar({ onLinkClick, isFooter, isMobileMenu, activePath }: Navb
       if (targetElement) {
         const elementPosition = targetElement.getBoundingClientRect().top;
         const finalPosition = elementPosition + window.scrollY - offset;
-
-        window.scrollTo({
-          top: finalPosition,
-          behavior: 'smooth',
-        });
+        window.scrollTo({ top: finalPosition, behavior: 'smooth' });
       }
     } else if (isAnchor && !isHomePage) {
       router.push(`/${path}`);
@@ -59,11 +54,7 @@ export function Navbar({ onLinkClick, isFooter, isMobileMenu, activePath }: Navb
         if (targetElement) {
           const elementPosition = targetElement.getBoundingClientRect().top;
           const finalPosition = elementPosition + window.scrollY - offset;
-
-          window.scrollTo({
-            top: finalPosition,
-            behavior: 'smooth',
-          });
+          window.scrollTo({ top: finalPosition, behavior: 'smooth' });
         }
       }
     }
@@ -80,7 +71,7 @@ export function Navbar({ onLinkClick, isFooter, isMobileMenu, activePath }: Navb
         className={clsx(
           'items-center w-full',
           isFooter
-            ? 'grid grid-cols-3 gap-2 w-full min-[460px]:flex min-[460px]:flex-row min-[460px]:space-x-4 lg:space-x-6'
+            ? 'flex flex-wrap justify-center gap-6'
             : 'flex flex-col md:flex-row md:space-x-0'
         )}
       >
@@ -95,33 +86,29 @@ export function Navbar({ onLinkClick, isFooter, isMobileMenu, activePath }: Navb
             !isAnchor &&
             (activePath === path || (isBlogPage && isCurrentBlogLink));
 
+          // Se for footer, muda "Como posso te ajudar" para "Ajuda"
+          const displayName =
+            isFooter && name === 'Como posso te ajudar' ? 'Ajuda' : name;
+
           return (
             <Link
               key={path}
               href={href}
               onClick={isAnchor ? (e) => handleScroll(e, path) : onLinkClick}
               className={clsx(
-                'relative flex justify-center align-middle px-2 m-1',
+                'relative px-3 py-2 font-medium transition-all duration-300 whitespace-nowrap',
                 isMobileMenu &&
-                  'text-white text-2xl font-bold py-6 hover:scale-110 transition-transform duration-300',
+                  'text-white text-2xl font-bold py-6 hover:scale-105 transition-transform',
                 isFooter &&
                   'text-gray-300 hover:text-white text-sm sm:text-base lg:text-lg py-2',
-                !isMobileMenu &&
-                  !isFooter &&
-                  'text-lg py-4 md:py-1',
+                !isMobileMenu && !isFooter &&
+                  'text-lg py-2 hover:text-[var(--color-accent)]',
                 isActive
-                  ? 'text-[var(--color-text-header)] underline font-semibold'
-                  : 'text-gray-300 hover:text-white'
+                  ? 'text-[var(--color-accent)] underline font-semibold'
+                  : 'text-[var(--color-text-header)]'
               )}
             >
-              {isFooter && name === 'Experiência' ? (
-                <>
-                  <span className="block sm:hidden">XP</span>
-                  <span className="hidden sm:block">Experiência</span>
-                </>
-              ) : (
-                name
-              )}
+              {displayName}
             </Link>
           );
         })}
