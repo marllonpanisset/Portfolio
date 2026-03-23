@@ -19,7 +19,7 @@ export function Header() {
       <div className="flex items-center justify-between max-w-7xl mx-auto px-6 md:px-8 py-4 md:py-6">
 
         {/* Logo */}
-        <Link href="/" className="text-2xl font-semibold tracking-wide">
+        <Link href="/" className="logo text-2xl font-black tracking-tight">
           Marllon Panisset
         </Link>
 

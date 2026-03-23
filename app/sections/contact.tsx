@@ -46,17 +46,18 @@ export function ContactSection() {
     setIsSubmitting(true);
 
     try {
-      const form = new FormData();
-      form.append('name', formData.name);
-      form.append('email', formData.email);
-      form.append('subject', `[${formData.service}] Contato via site`); // Assunto padrão
-      form.append('message', formData.message);
-      form.append('service', formData.service);
-
-      const response = await fetch('https://formspree.io/f/xaqpjlgp', {
+      // Envia os dados como JSON para a API route
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: form,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          service: formData.service,
+          message: formData.message,
+        }),
       });
 
       const data = await response.json();
@@ -82,21 +83,21 @@ export function ContactSection() {
       <div className="container mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         {/* Coluna da esquerda */}
         <div className="flex flex-col justify-start text-center md:text-left space-y-6">
-          <h2 className="text-4xl font-bold">Fale comigo</h2>
+          <h2 className="text-4xl font-bold text-[var(--color-text-primary)]">Vamos conversar?</h2>
           <p className="text-[var(--color-text-secondary)] text-lg">
-            Precisa de um site, landing page ou otimizar sua presença digital? Me envie uma mensagem e vamos conversar.
+            Quer um site que vende, uma landing page que converte ou mais visibilidade no Google? Me envie uma mensagem e vamos dar o próximo passo juntos.
           </p>
 
           <div>
-            <h3 className="font-semibold mb-1">E-mail</h3>
-            <a href="mailto:contato@seudominio.com" className="text-[var(--color-text-accent)] hover:underline">
-              contato@seudominio.com
+            <h3 className="font-semibold mb-1 text-[var(--color-text-primary)]">E-mail</h3>
+            <a href="mailto:marllon@bazestudio.com.br" className="text-[var(--color-text-accent)] hover:underline">
+              marllon@bazestudio.com.br
             </a>
           </div>
 
           <div>
-            <h3 className="font-semibold mb-1">Localização</h3>
-            <p>Atuação remota — posso atender de qualquer lugar</p>
+            <h3 className="font-semibold mb-1 text-[var(--color-text-primary)]">Localização</h3>
+            <p className="text-[var(--color-text-secondary)]">Atuação remota — posso atender de qualquer lugar</p>
           </div>
 
           {/* Redes sociais */}
@@ -116,25 +117,27 @@ export function ContactSection() {
         {/* Coluna do formulário */}
         <form
           id="contact-form"
-          className="bg-[var(--color-bg-secondary)] p-8 rounded-xl shadow-lg border border-gray-100"
+          className="bg-[var(--color-bg-secondary)] p-8 rounded-xl shadow-lg border border-[var(--color-bg-tertiary)]"
           onSubmit={handleSubmit}
         >
-          <h3 className="text-2xl font-bold mb-6">Envie uma mensagem</h3>
+          <h3 className="text-2xl font-bold mb-6 text-[var(--color-text-primary)]">Envie uma mensagem</h3>
 
           {errorMessage && (
-            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-700">
+            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded text-red-700 dark:bg-red-900/20 dark:border-red-800 dark:text-red-400">
               {errorMessage}
             </div>
           )}
 
           {submitted && (
-            <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded text-green-700">
+            <div className="mb-4 p-4 bg-green-50 border border-green-200 rounded text-green-700 dark:bg-green-900/20 dark:border-green-800 dark:text-green-400">
               Mensagem enviada com sucesso! Entrarei em contato em breve.
             </div>
           )}
 
           <div className="mb-4">
-            <label htmlFor="name" className="block font-semibold mb-1 text-gray-700">Nome *</label>
+            <label htmlFor="name" className="block font-semibold mb-1 text-[var(--color-text-primary)]">
+              Nome *
+            </label>
             <input
               type="text"
               name="name"
@@ -143,12 +146,14 @@ export function ContactSection() {
               onChange={handleChange}
               placeholder="Seu nome"
               required
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition"
+              className="w-full px-4 py-3 rounded-lg bg-[var(--color-bg-tertiary)] border border-[var(--color-bg-tertiary)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)] focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition"
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="email" className="block font-semibold mb-1 text-gray-700">E-mail *</label>
+            <label htmlFor="email" className="block font-semibold mb-1 text-[var(--color-text-primary)]">
+              E-mail *
+            </label>
             <input
               type="email"
               name="email"
@@ -157,19 +162,21 @@ export function ContactSection() {
               onChange={handleChange}
               placeholder="seuemail@dominio.com"
               required
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition"
+              className="w-full px-4 py-3 rounded-lg bg-[var(--color-bg-tertiary)] border border-[var(--color-bg-tertiary)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)] focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition"
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="service" className="block font-semibold mb-1 text-gray-700">Com o que podemos ajudar? *</label>
+            <label htmlFor="service" className="block font-semibold mb-1 text-[var(--color-text-primary)]">
+              Com o que podemos ajudar? *
+            </label>
             <select
               name="service"
               id="service"
               value={formData.service}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition bg-white"
+              className="w-full px-4 py-3 rounded-lg bg-[var(--color-bg-tertiary)] border border-[var(--color-bg-tertiary)] text-[var(--color-text-primary)] focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition"
             >
               <option value="">Selecione uma opção</option>
               <option value="landing-page">Landing Page</option>
@@ -185,7 +192,9 @@ export function ContactSection() {
           </div>
 
           <div className="mb-6">
-            <label htmlFor="message" className="block font-semibold mb-1 text-gray-700">Mensagem *</label>
+            <label htmlFor="message" className="block font-semibold mb-1 text-[var(--color-text-primary)]">
+              Mensagem *
+            </label>
             <textarea
               name="message"
               id="message"
@@ -194,7 +203,7 @@ export function ContactSection() {
               placeholder="Escreva sua mensagem"
               rows={5}
               required
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition resize-none"
+              className="w-full px-4 py-3 rounded-lg bg-[var(--color-bg-tertiary)] border border-[var(--color-bg-tertiary)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)] focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition resize-none"
             ></textarea>
           </div>
 

@@ -1,3 +1,5 @@
+// app/layout.tsx
+import { Inter, Fira_Code } from 'next/font/google';
 import './global.css';
 import type { Metadata } from 'next';
 import { Header } from './components/header';
@@ -6,7 +8,20 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import Footer from './components/footer';
 import { baseUrl } from './sitemap';
 import { ThemeProvider } from './components/ThemeProvider';
-import { Poppins } from 'next/font/google'; // Importação da fonte Poppins
+
+// Fonte principal (Inter) – corpo, títulos, menus
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+});
+
+// Fonte para logo (opcional: pode ser a mesma Inter com peso 800, mas vamos usar uma mais distinta)
+// Para manter simples e evitar downloads extras, usaremos Inter com peso 800 no logo.
+// Mas se quiser uma fonte específica para o logo, podemos importar Clash Display (requer CDN ou pacote)
+// Vou manter Inter por enquanto, mas com ajuste de letter-spacing.
+// Se desejar Clash Display, posso adicionar.
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -36,27 +51,14 @@ export const metadata: Metadata = {
   },
 };
 
-// Define a função cx com tipagem adequada para evitar erros
 const cx = (...classes: (string | boolean | undefined)[]): string =>
   classes.filter(Boolean).join(' ');
 
-// Define e carrega a fonte Poppins com os pesos que você pode precisar.
-const poppins = Poppins({
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'], // Adicionado todos os pesos
-  subsets: ['latin'],
-  variable: '--font-poppins', // Cria uma variável CSS para a fonte
-});
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="pt-br"
-      // Aplica a variável da fonte Poppins na classe da tag HTML
-      className={cx(poppins.variable)}
+      className={cx(inter.variable)}
       suppressHydrationWarning
     >
       <body
@@ -64,24 +66,16 @@ export default function RootLayout({
           'antialiased',
           'bg-[var(--color-bg-primary)]',
           'text-[var(--color-text-primary)]',
-          'font-poppins',
+          'font-sans', // agora 'sans' será Inter
           'transition-colors duration-300'
         )}
       >
-        
-
-        <ThemeProvider
-          attribute="data-theme"
-          defaultTheme="system"
-          enableSystem
-        >
+        <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
           <Header />
-          <main>
-            {children}
-            <Footer />
-            <Analytics />
-            <SpeedInsights />
-          </main>
+          <main>{children}</main>
+          <Footer />
+          <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>

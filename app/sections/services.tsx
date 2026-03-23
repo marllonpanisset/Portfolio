@@ -131,11 +131,10 @@ export function ServicesSection() {
 
     // Depois, após um pequeno atraso para garantir que o scroll terminou,
     // seleciona o serviço no formulário.
-    // Usamos setTimeout para aguardar o scroll suave (que leva ~300-500ms)
     setTimeout(() => {
       const select = document.getElementById('service') as HTMLSelectElement | null;
       if (select) select.value = serviceKey;
-    }, 500); // Ajuste o tempo conforme necessário
+    }, 500);
   };
 
   const getButtonText = (categoryTitle: string) => {
@@ -146,33 +145,45 @@ export function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-20 px-4 md:px-8 bg-gray-50 text-gray-900">
+    <section
+      id="services"
+      className="py-20 px-4 md:px-8 bg-[var(--color-bg-services)] text-[var(--color-text-primary)]"
+    >
       <div className="container mx-auto max-w-6xl text-center">
-        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-800">
+        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[var(--color-text-primary)]">
           O que eu posso fazer pelo seu negócio
         </h2>
-        <p className="text-lg md:text-xl text-gray-500 mb-14">
+        <p className="text-lg md:text-xl text-[var(--color-text-secondary)] mb-14">
           Soluções simples que ajudam você a vender mais online
         </p>
 
         {categories.map((category, idx) => (
           <div key={idx} className="py-12 px-4 mb-12">
-            <h3 className="text-2xl md:text-3xl font-semibold mb-8 text-gray-700">{category.title}</h3>
-            
+            <h3 className="text-2xl md:text-3xl font-semibold mb-8 text-[var(--color-text-accent)]">
+              {category.title}
+            </h3>
+
             <div
               className={`grid grid-cols-1 md:gap-8 ${
-                category.services.length === 2 
-                  ? "md:grid-cols-2 md:justify-center" 
+                category.services.length === 2
+                  ? "md:grid-cols-2 md:justify-center"
                   : "md:grid-cols-3"
               }`}
             >
               {category.services.map((service, sidx) => (
-                <div key={sidx} className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition flex flex-col justify-between h-full text-left border border-gray-100">
+                <div
+                  key={sidx}
+                  className="p-6 bg-[var(--color-bg-secondary)] rounded-2xl shadow-lg hover:shadow-xl transition flex flex-col justify-between h-full text-left border border-[var(--color-bg-tertiary)]"
+                >
                   <div>
-                    <h4 className="text-xl md:text-2xl font-semibold mb-3 text-gray-800">{service.name}</h4>
+                    <h4 className="text-xl md:text-2xl font-semibold mb-3 text-[var(--color-text-primary)]">
+                      {service.name}
+                    </h4>
 
                     <div className="flex items-center gap-3 mb-3">
-                      <p className="text-gray-700 font-medium">{service.price}</p>
+                      <p className="text-[var(--color-text-secondary)] font-medium">
+                        {service.price}
+                      </p>
                       {service.isLaunchPrice && (
                         <span className="bg-orange-500 text-white text-xs font-semibold px-2 py-1 rounded-full uppercase shadow-sm">
                           Lançamento
@@ -180,7 +191,7 @@ export function ServicesSection() {
                       )}
                     </div>
 
-                    <ul className="text-gray-600 list-disc list-inside space-y-1">
+                    <ul className="text-[var(--color-text-secondary)] list-disc list-inside space-y-1">
                       {service.description.map((item, i) => (
                         <li key={i}>{item}</li>
                       ))}
@@ -200,7 +211,7 @@ export function ServicesSection() {
           </div>
         ))}
 
-        <p className="mt-16 text-gray-700 text-lg md:text-xl font-medium">
+        <p className="mt-16 text-[var(--color-text-secondary)] text-lg md:text-xl font-medium">
           Mais de 8 anos ajudando negócios locais e digitais a aumentarem clientes e vendas.
         </p>
       </div>

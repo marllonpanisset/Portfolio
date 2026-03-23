@@ -17,32 +17,26 @@ html.theme-animate body * {
   transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 }
 
-/*
-  Adicione as propriedades de transição aqui.
-  Isso garante que qualquer mudança nas variáveis de cor
-  (background-color e color) será animada.
-*/
 :root {
-  /* transition-property: background-color, color;
-  transition-duration: 500ms;
-  transition-timing-function: ease-in-out; */
+  /* Font families */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-logo: 'Inter', system-ui, sans-serif; /* pode manter Inter ou trocar por uma mais distinta */
 
   /* Cores para o tema claro (Light Mode) */
-  /* Backgrounds */
   --color-bg-primary: #f4f4f4;
   --color-bg-secondary: #FFFFFF;
   --color-bg-tertiary: #EFEFEF;
   --color-bg-header: #0C0C1F;
   --color-bg-sidebar-filter: #f4f4f4;
+  --color-bg-services: #f4f4f4;
 
-  /* Textos */
+
   --color-text-primary: #333;
   --color-text-secondary: #666;
   --color-text-accent: #FF8A00;
   --color-text-header: #FFF;
   --color-text-sidebar-filter: #000;
 
-  /* Cores de sintaxe do código (manter as originais) */
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
   --sh-sign: #8996a3;
@@ -54,31 +48,27 @@ html.theme-animate body * {
   --sh-entity: #e25a1c;
 }
 
-
-/* Sobrescreve as variáveis de cor para o tema escuro (Dark Mode) */
 [data-theme='dark'] {
-  /* Backgrounds */
   --color-bg-primary: #0C0C1F;
   --color-bg-secondary: #1C1C36;
   --color-bg-tertiary: #2A2A47;
   --color-bg-header: #0C0C1F;
   --color-bg-sidebar-filter: #0C0C1F;
+  --color-bg-services: #0C0C1F;
 
-  /* Textos */
+
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #B0B0B0;
   --color-text-accent: #FF8A00;
   --color-text-header: #FFF;
   --color-text-sidebar-filter: #FFF;
 
-  /* Cores de sintaxe do código */
   --sh-class: #4c97f8;
   --sh-identifier: white;
   --sh-keyword: #f47067;
   --sh-string: #0fa295;
 }
 
-/* Configura o esquema de cores do navegador */
 html {
   min-width: 360px;
   color-scheme: light;
@@ -88,13 +78,35 @@ html {
   color-scheme: dark;
 }
 
-/* Seleção de texto */
 ::selection {
   background-color: var(--color-text-accent);
   color: var(--color-bg-primary);
 }
 
-/* Estilos para o conteúdo "prose" */
+/* Tipografia */
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* Logo específico (pode ser mais pesado) */
+.logo {
+  font-family: var(--font-logo);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* Mantenha todas as suas regras anteriores (prose, etc.) exatamente como estavam */
 .prose .anchor {
   @apply absolute invisible no-underline;
   margin-left: -1em;
@@ -108,7 +120,6 @@ html {
   @apply visible;
 }
 
-/* Ajusta a cor da decoração com base nas variáveis CSS */
 .prose a {
   @apply underline transition-all underline-offset-2 decoration-[0.1em];
   text-decoration-color: var(--color-text-accent);
@@ -124,7 +135,6 @@ html {
   @apply visible;
 }
 
-/* Ajusta as cores do background e borda de pre */
 .prose pre {
   @apply rounded-lg overflow-x-auto py-2 px-3 text-sm;
   background-color: var(--color-bg-secondary);
@@ -152,13 +162,11 @@ html {
   @apply m-0;
 }
 
-/* Ajusta a cor do texto de parágrafos */
 .prose p {
   @apply my-4;
   color: var(--color-text-secondary);
 }
 
-/* Ajusta a cor dos títulos */
 .prose h1,
 .prose h2,
 .prose h3,
@@ -202,7 +210,6 @@ html {
   margin-bottom: 1.25em !important;
 }
 
-/* Remove scrollbar */
 pre::-webkit-scrollbar {
   display: none;
 }
@@ -211,7 +218,6 @@ pre {
   scrollbar-width: none;
 }
 
-/* Remove sombra de input no Safari */
 input[type='text'],
 input[type='email'] {
   -webkit-appearance: none;
@@ -229,8 +235,6 @@ table {
 .title {
   text-wrap: balance;
 }
-
-/* Custom CSS */
 
 @media screen and (max-width: 767px) {
   #inicio {
