@@ -71,7 +71,7 @@ export function ContactSection() {
     }
 
     setIsSubmitting(true);
-
+    
     // Obtém o nome amigável do serviço (fallback: chave original)
     const serviceDisplay = serviceDisplayNames[formData.service] || formData.service;
 
@@ -97,7 +97,7 @@ export function ContactSection() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (error) {
-      console.error(error);
+      
       setErrorMessage('Erro de conexão. Tente novamente mais tarde.');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } finally {
