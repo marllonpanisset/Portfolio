@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
 
 // Mapeamento das chaves para nomes amigáveis
 const serviceDisplayNames: Record<string, string> = {
@@ -127,16 +127,17 @@ export function ContactSection() {
             <p className="text-[var(--color-text-secondary)]">Atuação remota — posso atender de qualquer lugar</p>
           </div>
 
-          {/* Redes sociais */}
-          <div className="flex gap-4 mt-4 justify-center md:justify-start">
-            <a href="https://www.instagram.com/seuusuario" target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-accent)] hover:text-[var(--color-text-secondary)]">
-              <FaInstagram size={24} />
-            </a>
-            <a href="https://www.linkedin.com/in/seuusuario" target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-accent)] hover:text-[var(--color-text-secondary)]">
-              <FaLinkedin size={24} />
-            </a>
-            <a href="https://wa.me/seunumerodetelefone" target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-accent)] hover:text-[var(--color-text-secondary)]">
-              <FaWhatsapp size={24} />
+          {/* WhatsApp */}
+          <div>
+            <h3 className="font-semibold mb-1 text-[var(--color-text-primary)]">WhatsApp</h3>
+            <a
+              href="https://wa.me/5521987881633"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--color-text-accent)] hover:underline inline-flex items-center gap-2"
+            >
+              <FaWhatsapp size={18} />
+              (21) 98788-1633
             </a>
           </div>
         </div>
