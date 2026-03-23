@@ -41,7 +41,7 @@ export default function ProjectsSection() {
         <div className="text-center mb-20">
           <h2
             id="projects-heading"
-            className="text-4xl font-bold flex items-center justify-center gap-2"
+            className="text-3xl md:text-5xl font-bold mb-6 text-[var(--color-text-primary)]"
           >
             Exemplos do que posso fazer
           </h2>

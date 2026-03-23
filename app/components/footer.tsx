@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { Navbar } from './nav';
+import { usePathname } from 'next/navigation';
+import { FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 const githubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -32,59 +33,131 @@ const iconsFooter = [
 ];
 
 export default function Footer() {
-    const handleLinkClick = () => {};
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
 
-    return (
-        <footer className="w-full bg-neutral-900 text-gray-300 py-10 px-4">
-            <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center lg:text-left">
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#') && isHomePage) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const offset = 72;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - offset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
+    }
+  };
 
-                {/* Coluna 1: Contato */}
-                <div>
-                    <h4 className="font-semibold text-base text-white mb-2">Contato</h4>
-                    <div className="space-y-2">
-                        <div>
-                            <a href="mailto:marllon.log@outlook.com.br" className="hover:text-white">marllon.log@outlook.com.br</a>
-                        </div>
-                        <div>
-                            <a href="https://wa.me/5521987881633" target="_blank" rel="noopener noreferrer" className="hover:text-white">(21) 98788-1633</a>
-                        </div>
-                    </div>
-                </div>
+  // Categorias de navegação
+  const categories = [
+    {
+      title: 'Sobre mim',
+      links: [
+        { name: 'Início', href: '#inicio' },
+        { name: 'Como posso te ajudar', href: '#how-i-help' },
+        { name: 'Contato', href: '#contact' },
+      ],
+    },
+    {
+      title: 'Serviços',
+      links: [
+        { name: 'Criação de Sites', href: '#services' },
+        { name: 'Manutenção e Suporte', href: '#services' },
+        { name: 'Presença Digital', href: '#services' },
+      ],
+    },
+    {
+      title: 'Recursos',
+      links: [
+        { name: 'Projetos', href: '#projects' },
+        { name: 'Blog', href: '/blog' },
+        { name: 'Ebooks (em breve)', href: '/ebooks' },
+      ],
+    },
+  ];
 
-                {/* Coluna 2: Social */}
-                <div>
-                    <h4 className="font-semibold text-base text-white mb-2">Social</h4>
-                    <div className="flex justify-center md:justify-start space-x-4">
-                        {iconsFooter.map((icon) => (
-                            <Link 
-                              key={icon.name} 
-                              href={icon.link} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-accent)]"
-                            >
-                              <icon.logo className="w-6 h-6" />
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Coluna 3: Navegação */}
-                <div>
-                    <h4 className="font-semibold text-base text-white mb-2">Navegação</h4>
-                    <Navbar onLinkClick={handleLinkClick} isFooter={true} activePath="" />
-                </div>
-
-                {/* Coluna 4: Espaço extra caso precise */}
-                <div>
-                    {/* Aqui podemos adicionar mais links ou manter vazio para balancear */}
-                </div>
-
+  return (
+    <footer className="w-full bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] border-t border-[var(--color-bg-tertiary)] py-10 px-4">
+      <div className="container mx-auto">
+        {/* Primeira linha: categorias + contato/social */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
+          {/* Categorias de navegação */}
+          {categories.map((cat) => (
+            <div key={cat.title}>
+              <h4 className="font-semibold text-base text-[var(--color-text-primary)] mb-3">
+                {cat.title}
+              </h4>
+              <ul className="space-y-2">
+                {cat.links.map((link) => (
+                  <li key={link.name}>
+                    {link.href.startsWith('#') ? (
+                      <Link
+                        href={isHomePage ? link.href : `/${link.href}`}
+                        onClick={(e) => handleNavClick(e, link.href)}
+                        className="hover:text-[var(--color-text-accent)] transition"
+                      >
+                        {link.name}
+                      </Link>
+                    ) : (
+                      <Link href={link.href} className="hover:text-[var(--color-text-accent)] transition">
+                        {link.name}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
+          ))}
 
-            <div className="mt-8 pt-4 border-t border-gray-700 text-center text-sm">
-                <p>{new Date().getFullYear()} &copy; Marllon Panisset</p>
+          {/* Contato + Social (coluna extra) */}
+          <div>
+            <h4 className="font-semibold text-base text-[var(--color-text-primary)] mb-3">Contato</h4>
+            <div className="space-y-2">
+              <div>
+                <a
+                  href="mailto:marllon@bazestudio.com.br"
+                  className="hover:text-[var(--color-text-accent)] transition"
+                >
+                  marllon@bazestudio.com.br
+                </a>
+              </div>
+              <div>
+                <a
+                  href="https://wa.me/5521987881633"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[var(--color-text-accent)] transition"
+                >
+                  (21) 98788-1633
+                </a>
+              </div>
             </div>
-        </footer>
-    )
-} 
+            <div className="mt-4">
+              <h4 className="font-semibold text-base text-[var(--color-text-primary)] mb-3">Social</h4>
+              <div className="flex justify-center md:justify-start space-x-5">
+                {iconsFooter.map((icon) => (
+                  <Link
+                    key={icon.name}
+                    href={icon.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-accent)] transition"
+                  >
+                    <icon.logo className="w-6 h-6" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Segunda linha: copyright */}
+        <div className="mt-8 pt-4 border-t border-[var(--color-bg-tertiary)] text-center text-sm">
+          <p>{new Date().getFullYear()} &copy; Marllon Panisset</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
