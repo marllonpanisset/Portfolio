@@ -118,14 +118,12 @@ export function ServicesSection() {
     }
   ];
 
-  // Mapeia o título da categoria para o ID desejado
   const categoryIds: Record<string, string> = {
     "Criação de Sites": "criacao-de-sites",
     "Manutenção e Suporte": "manutencao-e-suporte",
     "Presença Digital": "presenca-digital"
   };
 
-  // Função que rola para a seção de contato (igual ao navbar) e depois preenche o select
   const handleClick = (serviceKey: string) => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -139,7 +137,6 @@ export function ServicesSection() {
       const select = document.getElementById('service') as HTMLSelectElement | null;
       if (select) {
         select.value = serviceKey;
-        // Dispara evento para sincronizar o estado do ContactSection
         window.dispatchEvent(new CustomEvent('externalServiceSelect', { detail: { serviceKey } }));
       }
     }, 500);
@@ -175,11 +172,17 @@ export function ServicesSection() {
             </h3>
 
             <div
-              className={`grid grid-cols-1 md:gap-8 ${
-                category.services.length === 2
-                  ? "md:grid-cols-2 md:justify-center"
-                  : "md:grid-cols-3"
-              }`}
+              className={`
+                grid 
+                grid-cols-1 
+                gap-6
+                md:grid-cols-2 
+                md:gap-8
+                ${category.services.length === 2 
+                  ? 'lg:grid-cols-2 lg:justify-center' 
+                  : 'lg:grid-cols-3'
+                }
+              `}
             >
               {category.services.map((service, sidx) => (
                 <div
