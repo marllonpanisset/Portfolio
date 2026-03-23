@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Navbar } from './nav';
@@ -14,10 +14,21 @@ export function Header() {
 
   const isBlogPost = pathname.startsWith('/blog/') && pathname.split('/').length > 2;
 
+  // Bloqueia scroll quando o menu mobile estiver aberto
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   return (
     <header className="fixed top-0 w-full z-50 bg-[var(--color-bg-header)] text-[var(--color-text-header)] shadow-md transition-shadow duration-300">
       <div className="flex items-center justify-between max-w-7xl mx-auto px-6 md:px-8 py-4 md:py-6">
-
         {/* Logo */}
         <Link href="/" className="logo text-2xl font-black tracking-tight">
           Marllon Panisset
@@ -32,23 +43,29 @@ export function Header() {
           </div>
         ) : (
           <>
-            {/* Mobile */}
+            {/* Mobile menu button */}
             <div className="flex items-center gap-4 lg:hidden">
               <ThemeSwitcher />
               <button
                 onClick={toggleMenu}
-                className="z-50 focus:outline-none"
+                className={`relative w-6 h-6 focus:outline-none ${isMenuOpen ? 'z-[60]' : 'z-50'}`}
                 aria-label="Toggle menu"
               >
-                <div
-                  className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}
-                ></div>
-                <div
-                  className={`w-6 h-0.5 bg-white my-1 transition-opacity duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`}
-                ></div>
-                <div
-                  className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}
-                ></div>
+                <span
+                  className={`absolute left-0 top-1/2 w-6 h-0.5 bg-white transition-all duration-300 ${
+                    isMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-2'
+                  }`}
+                ></span>
+                <span
+                  className={`absolute left-0 top-1/2 w-6 h-0.5 bg-white transition-opacity duration-300 ${
+                    isMenuOpen ? 'opacity-0' : 'opacity-100'
+                  }`}
+                ></span>
+                <span
+                  className={`absolute left-0 top-1/2 w-6 h-0.5 bg-white transition-all duration-300 ${
+                    isMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-2'
+                  }`}
+                ></span>
               </button>
             </div>
 
