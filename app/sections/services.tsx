@@ -119,23 +119,24 @@ export function ServicesSection() {
   ];
 
   // Função que rola para a seção de contato (igual ao navbar) e depois preenche o select
-  const handleClick = (serviceKey: string) => {
-    // Primeiro, rola suavemente até a seção #contact
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      const offset = 72; // Mesmo offset usado no navbar
-      const elementPosition = contactSection.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    }
+    const handleClick = (serviceKey: string) => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            const offset = 72;
+            const elementPosition = contactSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.scrollY - offset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
 
-    // Depois, após um pequeno atraso para garantir que o scroll terminou,
-    // seleciona o serviço no formulário.
-    setTimeout(() => {
-      const select = document.getElementById('service') as HTMLSelectElement | null;
-      if (select) select.value = serviceKey;
-    }, 500);
-  };
+        setTimeout(() => {
+            const select = document.getElementById('service') as HTMLSelectElement | null;
+            if (select) {
+            select.value = serviceKey;
+            // Dispara evento para sincronizar o estado do ContactSection
+            window.dispatchEvent(new CustomEvent('externalServiceSelect', { detail: { serviceKey } }));
+            }
+        }, 500);
+    };
 
   const getButtonText = (categoryTitle: string) => {
     if (categoryTitle === "Criação de Sites") return "Começar projeto";

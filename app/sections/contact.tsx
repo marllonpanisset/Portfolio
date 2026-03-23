@@ -2,11 +2,23 @@
 import { useState, useEffect } from 'react';
 import { FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
+// Mapeamento das chaves para nomes amigáveis
+const serviceDisplayNames: Record<string, string> = {
+  'landing-page': 'Criação de Landing Page',
+  'website': 'Criação de Site Institucional',
+  'custom': 'Criação de Site Sob Medida',
+  'maintenance-basic': 'Plano de Manutenção (Essencial)',
+  'maintenance-pro': 'Plano de Manutenção (Profissional)',
+  'maintenance-custom': 'Plano de Manutenção (Personalizado)',
+  'seo-local': 'SEO Local',
+  'google-my-business': 'Google Meu Negócio',
+};
+
 export function ContactSection() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    service: '',
+    service: '',      // guarda a chave (ex: landing-page)
     message: '',
   });
 
@@ -20,13 +32,28 @@ export function ContactSection() {
       const form = document.getElementById('contact-form');
       if (form) {
         setTimeout(() => {
-          const offset = 80; // Ajuste conforme a altura do header fixo
+          const offset = 80;
           const elementPosition = form.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.scrollY - offset;
           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
         }, 100);
       }
     }
+  }, []);
+
+  // Escuta mudanças externas no select (vindas do ServicesSection)
+  useEffect(() => {
+    const handleExternalSelectChange = (event: Event) => {
+      const customEvent = event as CustomEvent;
+      if (customEvent.detail?.serviceKey) {
+        setFormData(prev => ({ ...prev, service: customEvent.detail.serviceKey }));
+      }
+    };
+
+    window.addEventListener('externalServiceSelect', handleExternalSelectChange);
+    return () => {
+      window.removeEventListener('externalServiceSelect', handleExternalSelectChange);
+    };
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -45,17 +72,17 @@ export function ContactSection() {
 
     setIsSubmitting(true);
 
+    // Obtém o nome amigável do serviço (fallback: chave original)
+    const serviceDisplay = serviceDisplayNames[formData.service] || formData.service;
+
     try {
-      // Envia os dados como JSON para a API route
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          service: formData.service,
+          service: serviceDisplay,   // envia o nome bonito
           message: formData.message,
         }),
       });
@@ -187,7 +214,6 @@ export function ContactSection() {
               <option value="maintenance-custom">Plano Personalizado (Manutenção)</option>
               <option value="seo-local">SEO Local</option>
               <option value="google-my-business">Google Meu Negócio</option>
-              <option value="consultoria">Consultoria Digital</option>
             </select>
           </div>
 
