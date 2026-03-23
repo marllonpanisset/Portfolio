@@ -118,35 +118,46 @@ export function ServicesSection() {
     }
   ];
 
-  // Função que rola para o formulário e preenche o dropdown
+  // Função que rola para a seção de contato (igual ao navbar) e depois preenche o select
   const handleClick = (serviceKey: string) => {
-    const form = document.getElementById('contact-form');
-    const select = document.getElementById('service') as HTMLSelectElement | null;
-    if (select) select.value = serviceKey;
-    form?.scrollIntoView({ behavior: 'smooth' });
+    // Primeiro, rola suavemente até a seção #contact
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      const offset = 72; // Mesmo offset usado no navbar
+      const elementPosition = contactSection.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - offset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
+
+    // Depois, após um pequeno atraso para garantir que o scroll terminou,
+    // seleciona o serviço no formulário.
+    // Usamos setTimeout para aguardar o scroll suave (que leva ~300-500ms)
+    setTimeout(() => {
+      const select = document.getElementById('service') as HTMLSelectElement | null;
+      if (select) select.value = serviceKey;
+    }, 500); // Ajuste o tempo conforme necessário
   };
 
-  // Função para retornar o texto do botão baseado na categoria
   const getButtonText = (categoryTitle: string) => {
     if (categoryTitle === "Criação de Sites") return "Começar projeto";
     if (categoryTitle === "Manutenção e Suporte") return "Contratar plano";
     if (categoryTitle === "Presença Digital") return "Solicitar análise";
-    return "Começar projeto"; // fallback
+    return "Começar projeto";
   };
 
   return (
     <section id="services" className="py-20 px-4 md:px-8 bg-gray-50 text-gray-900">
       <div className="container mx-auto max-w-6xl text-center">
-        <h2 className="text-3xl md:text-5xl font-bold mb-4">
+        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-gray-800">
           O que eu posso fazer pelo seu negócio
         </h2>
-        <p className="text-lg md:text-xl text-gray-600 mb-14">
+        <p className="text-lg md:text-xl text-gray-500 mb-14">
           Soluções simples que ajudam você a vender mais online
         </p>
 
         {categories.map((category, idx) => (
           <div key={idx} className="py-12 px-4 mb-12">
-            <h3 className="text-2xl md:text-3xl font-semibold mb-8">{category.title}</h3>
+            <h3 className="text-2xl md:text-3xl font-semibold mb-8 text-gray-700">{category.title}</h3>
             
             <div
               className={`grid grid-cols-1 md:gap-8 ${
@@ -156,9 +167,9 @@ export function ServicesSection() {
               }`}
             >
               {category.services.map((service, sidx) => (
-                <div key={sidx} className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition flex flex-col justify-between h-full text-left">
+                <div key={sidx} className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition flex flex-col justify-between h-full text-left border border-gray-100">
                   <div>
-                    <h4 className="text-xl md:text-2xl font-semibold mb-3">{service.name}</h4>
+                    <h4 className="text-xl md:text-2xl font-semibold mb-3 text-gray-800">{service.name}</h4>
 
                     <div className="flex items-center gap-3 mb-3">
                       <p className="text-gray-700 font-medium">{service.price}</p>
@@ -178,7 +189,7 @@ export function ServicesSection() {
                   <div className="mt-6">
                     <button
                       onClick={() => handleClick(service.serviceKey)}
-                      className="bg-orange-500 text-white px-6 py-2 rounded-xl hover:bg-orange-600 transition w-full"
+                      className="bg-orange-500 text-white px-6 py-2 rounded-xl hover:bg-orange-600 transition w-full font-medium"
                     >
                       {getButtonText(category.title)}
                     </button>

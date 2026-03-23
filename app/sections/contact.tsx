@@ -1,12 +1,11 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
     service: '',
     message: '',
   });
@@ -14,6 +13,21 @@ export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
+  // Efeito para tratar o scroll com offset quando o hash #contact-form for usado
+  useEffect(() => {
+    if (window.location.hash === '#contact-form') {
+      const form = document.getElementById('contact-form');
+      if (form) {
+        setTimeout(() => {
+          const offset = 80; // Ajuste conforme a altura do header fixo
+          const elementPosition = form.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.scrollY - offset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -35,7 +49,7 @@ export function ContactSection() {
       const form = new FormData();
       form.append('name', formData.name);
       form.append('email', formData.email);
-      form.append('subject', `[${formData.service}] ${formData.subject}`);
+      form.append('subject', `[${formData.service}] Contato via site`); // Assunto padrão
       form.append('message', formData.message);
       form.append('service', formData.service);
 
@@ -49,7 +63,7 @@ export function ContactSection() {
 
       if (response.ok) {
         setSubmitted(true);
-        setFormData({ name: '', email: '', subject: '', service: '', message: '' });
+        setFormData({ name: '', email: '', service: '', message: '' });
       } else {
         setErrorMessage(data.error || 'Ocorreu um erro ao enviar a mensagem.');
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -69,7 +83,7 @@ export function ContactSection() {
         {/* Coluna da esquerda */}
         <div className="flex flex-col justify-start text-center md:text-left space-y-6">
           <h2 className="text-4xl font-bold">Fale comigo</h2>
-          <p className="text-[var(--color-text-secondary)]">
+          <p className="text-[var(--color-text-secondary)] text-lg">
             Precisa de um site, landing page ou otimizar sua presença digital? Me envie uma mensagem e vamos conversar.
           </p>
 
@@ -101,8 +115,8 @@ export function ContactSection() {
 
         {/* Coluna do formulário */}
         <form
-          id="contact-form"  // 🔹 ID adicionado aqui
-          className="bg-[var(--color-bg-secondary)] p-8 rounded-xl shadow-lg"
+          id="contact-form"
+          className="bg-[var(--color-bg-secondary)] p-8 rounded-xl shadow-lg border border-gray-100"
           onSubmit={handleSubmit}
         >
           <h3 className="text-2xl font-bold mb-6">Envie uma mensagem</h3>
@@ -120,7 +134,7 @@ export function ContactSection() {
           )}
 
           <div className="mb-4">
-            <label htmlFor="name" className="block font-semibold mb-1">Nome *</label>
+            <label htmlFor="name" className="block font-semibold mb-1 text-gray-700">Nome *</label>
             <input
               type="text"
               name="name"
@@ -129,12 +143,12 @@ export function ContactSection() {
               onChange={handleChange}
               placeholder="Seu nome"
               required
-              className="w-full px-4 py-2 rounded border border-gray-300 focus:ring-2 focus:ring-[var(--color-text-accent)] outline-none"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition"
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="email" className="block font-semibold mb-1">E-mail *</label>
+            <label htmlFor="email" className="block font-semibold mb-1 text-gray-700">E-mail *</label>
             <input
               type="email"
               name="email"
@@ -143,22 +157,21 @@ export function ContactSection() {
               onChange={handleChange}
               placeholder="seuemail@dominio.com"
               required
-              className="w-full px-4 py-2 rounded border border-gray-300 focus:ring-2 focus:ring-[var(--color-text-accent)] outline-none"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition"
             />
           </div>
 
           <div className="mb-4">
-            <label htmlFor="service" className="block font-semibold mb-1">Com o que podemos ajudar? *</label>
+            <label htmlFor="service" className="block font-semibold mb-1 text-gray-700">Com o que podemos ajudar? *</label>
             <select
               name="service"
               id="service"
               value={formData.service}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 rounded border border-gray-300 focus:ring-2 focus:ring-[var(--color-text-accent)] outline-none"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition bg-white"
             >
               <option value="">Selecione uma opção</option>
-              {/* 🔹 Valores sincronizados com as serviceKeys */}
               <option value="landing-page">Landing Page</option>
               <option value="website">Site Institucional</option>
               <option value="custom">Site Sob Medida</option>
@@ -171,22 +184,8 @@ export function ContactSection() {
             </select>
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="subject" className="block font-semibold mb-1">Assunto *</label>
-            <input
-              type="text"
-              name="subject"
-              id="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              placeholder="Como podemos ajudar?"
-              required
-              className="w-full px-4 py-2 rounded border border-gray-300 focus:ring-2 focus:ring-[var(--color-text-accent)] outline-none"
-            />
-          </div>
-
           <div className="mb-6">
-            <label htmlFor="message" className="block font-semibold mb-1">Mensagem *</label>
+            <label htmlFor="message" className="block font-semibold mb-1 text-gray-700">Mensagem *</label>
             <textarea
               name="message"
               id="message"
@@ -195,14 +194,14 @@ export function ContactSection() {
               placeholder="Escreva sua mensagem"
               rows={5}
               required
-              className="w-full px-4 py-2 rounded border border-gray-300 focus:ring-2 focus:ring-[var(--color-text-accent)] outline-none resize-none"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition resize-none"
             ></textarea>
           </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-[var(--color-text-accent)] text-[var(--color-bg-primary)] font-semibold px-6 py-3 rounded hover:brightness-110 transition"
+            className="w-full bg-orange-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-orange-600 transition shadow-md hover:shadow-lg"
           >
             {isSubmitting ? 'Enviando...' : 'Enviar Mensagem'}
           </button>
