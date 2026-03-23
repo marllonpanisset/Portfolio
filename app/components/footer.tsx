@@ -74,7 +74,7 @@ export default function Footer() {
       links: [
         { name: 'Projetos', href: '#projects' },
         { name: 'Blog', href: '/blog' },
-        { name: 'Ebooks (em breve)', href: '/ebooks' },
+        // { name: 'Ebooks (em breve)', href: '#' },
       ],
     },
   ];
