@@ -28,7 +28,7 @@ const linkedinIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const iconsFooter = [
-  { name: 'Instagram', logo: FaInstagram, link: 'https://instagram.com/seuusuario' },
+  { name: 'Instagram', logo: FaInstagram, link: 'https://instagram.com/nomadev_vlogs' },
   { name: 'Linkedin', logo: linkedinIcon, link: 'https://linkedin.com/in/marllon-panisset' },
   { name: 'Github', logo: githubIcon, link: 'https://github.com/marllonpanisset' },
 ];
