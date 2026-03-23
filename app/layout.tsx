@@ -1,5 +1,5 @@
 // app/layout.tsx
-import { Inter, Fira_Code } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './global.css';
 import type { Metadata } from 'next';
 import { Header } from './components/header';
@@ -9,7 +9,6 @@ import Footer from './components/footer';
 import { baseUrl } from './sitemap';
 import { ThemeProvider } from './components/ThemeProvider';
 
-// Fonte principal (Inter) – corpo, títulos, menus
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -17,26 +16,38 @@ const inter = Inter({
   display: 'swap',
 });
 
-// Fonte para logo (opcional: pode ser a mesma Inter com peso 800, mas vamos usar uma mais distinta)
-// Para manter simples e evitar downloads extras, usaremos Inter com peso 800 no logo.
-// Mas se quiser uma fonte específica para o logo, podemos importar Clash Display (requer CDN ou pacote)
-// Vou manter Inter por enquanto, mas com ajuste de letter-spacing.
-// Se desejar Clash Display, posso adicionar.
-
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'Portfólio | Marllon Panisset - Desenvolvedor Front-End',
-    template: '%s | Marllon Panisset - Desenvolvedor Front-End',
+    default: 'Marllon Panisset | Crio sites que vendem e atraem clientes',
+    template: '%s | Marllon Panisset',
   },
-  description: 'Portfólio de Marllon Panisset, desenvolvedor Front-End especializado em JavaScript, Next.js e Tailwind CSS.',
+  description:
+    'Desenvolvedor front-end com 8 anos de experiência. Crio sites institucionais, landing pages de alta conversão e otimização para Google (SEO local). Ajudo seu negócio a aparecer online e conquistar mais clientes.',
   openGraph: {
-    title: 'Portfólio | Marllon Panisset - Desenvolvedor Front-End',
-    description: 'Portfólio de Marllon Panisset, desenvolvedor Front-End especializado em JavaScript, Next.js e Tailwind CSS.',
-    url: 'https://marllonpanisset.netlify.app',
-    siteName: 'Marllon Panisset - Desenvolvedor Front-End',
+    title: 'Marllon Panisset | Crio sites que vendem',
+    description:
+      'Precisa de um site que traga clientes? Especialista em landing pages, SEO local e manutenção. Atendimento remoto.',
+    url: baseUrl,
+    siteName: 'Marllon Panisset',
     locale: 'pt_BR',
     type: 'website',
+    images: [
+      {
+        url: `${baseUrl}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: 'Marllon Panisset - Desenvolvedor Front-End',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Marllon Panisset | Crio sites que vendem',
+    description:
+      'Precisa de um site que traga clientes? Especialista em landing pages, SEO local e manutenção. Atendimento remoto.',
+    images: [`${baseUrl}/og-image.jpg`],
+    creator: '@seuusuario', // substitua pelo seu @ do Twitter
   },
   robots: {
     index: true,
@@ -49,6 +60,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  alternates: {
+    canonical: baseUrl,
+  },
 };
 
 const cx = (...classes: (string | boolean | undefined)[]): string =>
@@ -56,17 +70,13 @@ const cx = (...classes: (string | boolean | undefined)[]): string =>
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="pt-br"
-      className={cx(inter.variable)}
-      suppressHydrationWarning
-    >
+    <html lang="pt-br" className={cx(inter.variable)} suppressHydrationWarning>
       <body
         className={cx(
           'antialiased',
           'bg-[var(--color-bg-primary)]',
           'text-[var(--color-text-primary)]',
-          'font-sans', // agora 'sans' será Inter
+          'font-sans',
           'transition-colors duration-300'
         )}
       >
