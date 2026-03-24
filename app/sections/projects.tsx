@@ -76,9 +76,14 @@ export default function ProjectsSection() {
               variants={cardVariants}
               onClick={() => openModal(index)}
             >
-              <div className="relative">
-                <Image src={project.image} alt={project.title} width={400} height={250} className="w-full h-auto" />
-                <div className="absolute inset-0 bg-black opacity-50 transition-opacity duration-300 group-hover:opacity-0" />
+              <div className="relative overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={400}
+                  height={250}
+                  className="w-full h-auto transition-transform duration-700 ease-out group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-black/50 transition-all duration-500 ease-out group-hover:bg-black/0" />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold mb-2 text-[var(--color-text-primary)]">{project.title}</h3>
