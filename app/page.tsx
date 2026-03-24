@@ -1,5 +1,6 @@
 // app/page.tsx
 import { HeroSection } from './sections/hero';
+import BannerEbook from './components/BannerEbook';
 import { HowIHelpSection } from './sections/howhelp';
 import ProjectsSection from './sections/projects';
 import { ContactSection } from './sections/contact';
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
+      <BannerEbook />
       <HowIHelpSection />
       <ServicesSection />
       <ProjectsSection />
