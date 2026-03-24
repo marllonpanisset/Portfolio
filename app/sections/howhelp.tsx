@@ -1,7 +1,9 @@
 export function HowIHelpSection() {
   return (
-    <section id="how-i-help"
-      className="py-20 px-4 md:px-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]">
+    <section
+      id="how-i-help"
+      className="py-20 px-4 md:px-8 bg-[var(--color-bg-primary)] text-[var(--color-text-primary)]"
+    >
       <div className="container mx-auto max-w-4xl text-center">
 
         <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[var(--color-text-primary)]">
@@ -13,7 +15,7 @@ export function HowIHelpSection() {
         </p>
 
         <p className="text-lg md:text-xl text-[var(--color-text-secondary)] mb-6">
-          Eu ajudo a criar <strong>sites e landing pages que convertem visitantes em clientes</strong>, com acesso direto ao WhatsApp e comunicação clara.
+          Eu crio <strong>sites e landing pages que convertem visitantes em clientes</strong>, integrados ao WhatsApp e com comunicação clara.
         </p>
 
         <p className="text-lg md:text-xl text-[var(--color-text-secondary)] mb-6">
@@ -25,7 +27,7 @@ export function HowIHelpSection() {
         </p>
 
         <p className="text-lg md:text-xl text-[var(--color-text-secondary)] mb-6">
-          Enquanto vivo minha vida como nômade digital <span className="inline-block">🌎</span>, desenvolvo soluções simples e práticas para negócios locais e digitais conseguirem mais clientes sem complicação.
+          Trabalho de qualquer lugar 🌎, mas estou totalmente focado em gerar resultados reais para cada cliente, com soluções simples e práticas.
         </p>
 
         <p className="text-lg md:text-xl text-[var(--color-text-secondary)]">

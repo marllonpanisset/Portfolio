@@ -227,7 +227,7 @@ export function ServicesSection() {
         ))}
 
         <p className="mt-16 text-[var(--color-text-secondary)] text-lg md:text-xl font-medium">
-          Mais de 8 anos ajudando negócios locais e digitais a aumentarem clientes e vendas.
+          Mais de 8 anos ajudando negócios locais e digitais a aumentarem clientes e vendas de forma prática e sem complicação.
         </p>
       </div>
     </section>
