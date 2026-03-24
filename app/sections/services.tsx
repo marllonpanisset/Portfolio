@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { motion } from 'framer-motion';
 
 export function ServicesSection() {
   const categories = [
@@ -125,15 +126,11 @@ export function ServicesSection() {
   };
 
   const handleClick = (serviceKey: string) => {
-    // 1. Atualiza o select e o estado imediatamente
     const select = document.getElementById('service') as HTMLSelectElement | null;
     if (select) {
       select.value = serviceKey;
-      // Dispara evento para sincronizar o estado do ContactSection
       window.dispatchEvent(new CustomEvent('externalServiceSelect', { detail: { serviceKey } }));
     }
-
-    // 2. Rola suavemente até a seção de contato
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       const offset = 72;
@@ -150,29 +147,60 @@ export function ServicesSection() {
     return "Começar projeto";
   };
 
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.15 } }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
     <section
       id="services"
       className="py-20 px-4 md:px-8 bg-[var(--color-bg-services)] text-[var(--color-text-primary)]"
     >
       <div className="container mx-auto max-w-6xl text-center">
-        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[var(--color-text-primary)]">
+        <motion.h2
+          className="text-3xl md:text-5xl font-bold mb-4 text-[var(--color-text-primary)]"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           O que eu posso fazer pelo seu negócio
-        </h2>
-        <p className="text-lg md:text-xl text-[var(--color-text-secondary)] mb-14">
+        </motion.h2>
+
+        <motion.p
+          className="text-lg md:text-xl text-[var(--color-text-secondary)] mb-14"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+        >
           Soluções simples que ajudam você a vender mais online
-        </p>
+        </motion.p>
 
         {categories.map((category, idx) => (
-          <div key={idx} className="py-12 px-4 mb-12">
-            <h3
+          <motion.div
+            key={idx}
+            className="py-12 px-4 mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <motion.h3
               id={categoryIds[category.title]}
               className="text-2xl md:text-3xl font-semibold mb-8 text-[var(--color-text-accent)]"
+              variants={cardVariants}
             >
               {category.title}
-            </h3>
+            </motion.h3>
 
-            <div
+            <motion.div
               className={`
                 grid 
                 grid-cols-1 
@@ -184,11 +212,13 @@ export function ServicesSection() {
                   : 'lg:grid-cols-3'
                 }
               `}
+              variants={containerVariants}
             >
               {category.services.map((service, sidx) => (
-                <div
+                <motion.div
                   key={sidx}
                   className="p-6 bg-[var(--color-bg-secondary)] rounded-2xl shadow-lg hover:shadow-xl transition flex flex-col justify-between h-full text-left border border-[var(--color-bg-tertiary)]"
+                  variants={cardVariants}
                 >
                   <div>
                     <h4 className="text-xl md:text-2xl font-semibold mb-3 text-[var(--color-text-primary)]">
@@ -220,15 +250,21 @@ export function ServicesSection() {
                       {getButtonText(category.title)}
                     </button>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         ))}
 
-        <p className="mt-16 text-[var(--color-text-secondary)] text-lg md:text-xl font-medium">
+        <motion.p
+          className="mt-16 text-[var(--color-text-secondary)] text-lg md:text-xl font-medium"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        >
           Mais de 8 anos ajudando negócios locais e digitais a aumentarem clientes e vendas de forma prática e sem complicação.
-        </p>
+        </motion.p>
       </div>
     </section>
   );
