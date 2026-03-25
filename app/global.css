@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Ativar transição de cores apenas no instante da troca de tema */
 html.theme-animate,
 html.theme-animate * {

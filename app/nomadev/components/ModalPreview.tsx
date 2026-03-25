@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { ebook } from "../data/ebook";
+import { ebook, getEbookLink } from "../data/ebook";
 
 export default function ModalPreview({ onClose }: any) {
   const [index, setIndex] = useState(0);
@@ -46,7 +46,7 @@ export default function ModalPreview({ onClose }: any) {
       {/* CTA FIXO NO RODAPÉ */}
       <div className="mt-6 flex justify-center">
         <a
-          href={ebook.hotmartLink}
+          href={getEbookLink("modal", "preview_modal")}
           target="_blank"
           rel="noopener noreferrer"
           className="bg-orange-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition hover:bg-orange-600 animate-pulse"

@@ -1,10 +1,20 @@
+const BASE_URL = "https://hotm.io/minha-primeira-renda";
+
+// Tipagem para evitar erros de escrita nos UTMs
+type Medium = "button" | "cta" | "modal" | "banner";
+
+export function getEbookLink(medium: Medium, content: string) {
+  return `${BASE_URL}?utm_source=site&utm_medium=${medium}&utm_campaign=ebook_nomadev_v1&utm_content=${content}`;
+}
+
 export const ebook = {
   title: "NOMADEV Vol. 1 — O INÍCIO",
   subtitle: "Sua primeira renda online com Web + IA",
   description:
     "Aprenda como sair do zero e gerar sua primeira renda online com desenvolvimento web + IA, mesmo sem experiência.",
 
-  hotmartLink: "https://hotm.io/minha-primeira-renda",
+  // opcional (bom pra debug ou fallback)
+  baseLink: BASE_URL,
 
   cover: "/images/ebook/nomadev/vol1-capa.png",
 
@@ -17,6 +27,6 @@ export const ebook = {
     "/images/ebook/nomadev/34-primeiro-cliente-part2.png",
     "/images/ebook/nomadev/35-primeiro-cliente-part3.png",
     "/images/ebook/nomadev/37-crie-seus-proprios-infoprodutos-com-ia.png",
-    "/images/ebook/nomadev/38-crie-seus-proprios-infoprodutos-com-ia.png",    
+    "/images/ebook/nomadev/38-crie-seus-proprios-infoprodutos-com-ia.png",
   ],
 };

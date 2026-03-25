@@ -2,7 +2,7 @@ import Link from "next/link";
 import Hero from "./components/Hero";
 import EbookPreview from "./components/EbookPreview";
 import CTA from "./components/CTA";
-import { ebook } from "./data/ebook";
+import { ebook, getEbookLink } from "./data/ebook";
 import SocialProof from "./components/SocialProof";
 
 export default function NomadevPage() {
@@ -183,7 +183,7 @@ export default function NomadevPage() {
         </p>
 
         <a
-          href={ebook.hotmartLink}
+          href={getEbookLink("button", "page_cta")}
           target="_blank"
           className="mt-8 inline-block bg-orange-500 text-white px-6 py-3 rounded-xl font-medium hover:bg-orange-600 transition"
         >
