@@ -29,13 +29,13 @@ const OG_IMAGE_URL = 'https://marllonpanisset.netlify.app/og-image.png';
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
-  // Título e descrição principais
+  // Título e descrição principais para SEO
   title: {
-    default: 'Marllon Panisset | Sites Profissionais para Empresas que Vendem Mais',
+    default: 'Marllon Panisset | Criação de Sites Profissionais e Estratégicos para Empresas',
     template: '%s | Marllon Panisset',
   },
   description:
-    'Transforme sua presença digital com sites modernos, estratégicos e focados em conversão. Conquiste clientes, destaque sua marca e aumente suas vendas online.',
+    'Transforme sua presença digital com sites modernos, estratégicos e focados em conversão. Destaque sua marca, conquiste clientes e aumente suas vendas online com design profissional e marketing digital integrado.',
 
   // Favicons e ícones
   icons: {
@@ -47,11 +47,11 @@ export const metadata: Metadata = {
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
 
-  // Open Graph (Facebook, LinkedIn)
+  // Open Graph (Facebook, LinkedIn, WhatsApp)
   openGraph: {
-    title: 'Marllon Panisset | Sites Estratégicos para Empresas que Crescem',
+    title: 'Marllon Panisset | Sites Profissionais e Estratégicos para Empresas que Crescem',
     description:
-      'Criação de sites profissionais e estratégicos que ajudam empresas a transmitir autoridade, conquistar clientes e aumentar vendas online.',
+      'Criação de sites estratégicos e modernos que ajudam empresas a transmitir autoridade, conquistar clientes e aumentar vendas online. Design, UX e marketing digital integrados para resultados reais.',
     url: BASE_URL,
     siteName: 'Marllon Panisset',
     locale: 'pt-BR',
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
         url: OG_IMAGE_URL,
         width: 1200,
         height: 630,
-        alt: 'Marllon Panisset - Sites Estratégicos para Empresas',
+        alt: 'Marllon Panisset - Sites Estratégicos e Profissionais para Empresas',
       },
     ],
   },
@@ -69,9 +69,9 @@ export const metadata: Metadata = {
   // Twitter Card
   twitter: {
     card: 'summary_large_image',
-    title: 'Marllon Panisset | Sites Estratégicos e Profissionais',
+    title: 'Marllon Panisset | Sites Estratégicos que Convertem Clientes',
     description:
-      'Aumente sua presença digital e conquiste mais clientes com sites modernos, estratégicos e focados em conversão.',
+      'Aumente sua presença digital e conquiste mais clientes com sites profissionais, estratégicos e otimizados para conversão. Design moderno, UX intuitivo e marketing digital integrado.',
     images: [OG_IMAGE_URL],
   },
 };
@@ -83,6 +83,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${inter.variable} ${spaceGrotesk.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Meta tag de verificação Google */}
+        <meta
+          name="google-site-verification"
+          content="UgWDy6Fwyil08nk2f2vwVaGlGTTod5_trrfqgaqPKVY"
+        />
+      </head>
       <body className="bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] font-sans antialiased">
         <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
           <Header />
