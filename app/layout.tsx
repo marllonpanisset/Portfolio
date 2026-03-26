@@ -5,7 +5,6 @@ import { Header } from './components/header';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Footer from './components/footer';
-import { baseUrl } from './sitemap';
 import { ThemeProvider } from './components/ThemeProvider';
 
 const inter = Inter({
@@ -22,9 +21,13 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
+// URLs públicas absolutas para OG Image
+const BASE_URL = 'https://marllonpanisset.netlify.app/';
+const OG_IMAGE_URL = `${BASE_URL}og-image.png`;
+
 export const metadata: Metadata = {
-  metadataBase: new URL(baseUrl),
-  
+  metadataBase: new URL(BASE_URL),
+
   // Título e descrição principais
   title: {
     default: 'Marllon Panisset | Sites profissionais para empresas',
@@ -33,7 +36,7 @@ export const metadata: Metadata = {
   description:
     'Transforme sua presença digital com sites profissionais e estratégicos que transmitem confiança, destacam sua marca e aumentam suas vendas.',
 
-  // Favicons e Ícones
+  // Favicons e ícones
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -43,18 +46,18 @@ export const metadata: Metadata = {
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
 
-  // Open Graph (Redes Sociais)
+  // Open Graph
   openGraph: {
     title: 'Marllon Panisset | Sites profissionais e estratégicos',
     description:
       'Sites modernos e estratégicos para empresas que querem crescer, transmitir autoridade e conquistar clientes com confiança.',
-    url: 'https://marllonpanisset.netlify.app/', // URL pública absoluta
+    url: BASE_URL,
     siteName: 'Marllon Panisset',
     locale: 'pt-BR',
     type: 'website',
     images: [
       {
-        url: 'https://marllonpanisset.netlify.app/og-image.png', // URL pública absoluta
+        url: OG_IMAGE_URL,
         width: 1200,
         height: 630,
         alt: 'Marllon Panisset - Sites estratégicos para empresas',
@@ -68,7 +71,7 @@ export const metadata: Metadata = {
     title: 'Marllon Panisset | Sites profissionais e estratégicos',
     description:
       'Transforme sua presença digital com sites que destacam sua marca, transmitem autoridade e aumentam suas vendas.',
-    images: ['https://marllonpanisset.netlify.app/og-image.png'], // URL pública absoluta
+    images: [OG_IMAGE_URL],
   },
 };
 
