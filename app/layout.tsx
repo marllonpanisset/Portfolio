@@ -21,9 +21,9 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
-// URLs públicas absolutas para OG Image
-const BASE_URL = 'https://marllonpanisset.netlify.app/';
-const OG_IMAGE_URL = `${BASE_URL}og-image.png`;
+// URLs públicas absolutas
+const BASE_URL = 'https://marllonpanisset.netlify.app';
+const OG_IMAGE_URL = `${BASE_URL}/og-image.png`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
