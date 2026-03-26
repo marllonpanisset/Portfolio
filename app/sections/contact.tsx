@@ -14,6 +14,7 @@ export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Preenche automaticamente o serviço quando um card é clicado
   useEffect(() => {
     const handler = (event: Event) => {
       const customEvent = event as CustomEvent;
@@ -45,6 +46,7 @@ export function ContactSection() {
     }
 
     setIsSubmitting(true);
+    setErrorMessage('');
 
     const text = generateWhatsAppMessage({
       name: formData.name,
@@ -61,13 +63,19 @@ export function ContactSection() {
     }, 400);
   };
 
+  // Agrupa serviços por categoria para o select
+  const groupedServices = Array.from(
+    services.reduce((acc, s) => {
+      if (!acc.has(s.category)) acc.set(s.category, []);
+      acc.get(s.category)?.push(s);
+      return acc;
+    }, new Map<string, typeof services>())
+  );
+
   return (
     <section
       id="contact"
-      className="
-        py-28 px-4 md:px-8
-        bg-[var(--color-bg-primary)]
-      "
+      className="py-28 px-4 md:px-8 bg-[var(--color-bg-primary)]"
     >
       {/* HEADLINE CENTRAL */}
       <div className="text-center max-w-3xl mx-auto mb-16">
@@ -103,13 +111,7 @@ export function ContactSection() {
           <a
             href="https://wa.me/5521987881633"
             target="_blank"
-            className="
-              mt-6 inline-flex items-center gap-2
-              text-[var(--color-text-accent)]
-              font-medium
-              hover:opacity-80
-              transition
-            "
+            className="mt-6 inline-flex items-center gap-2 text-[var(--color-text-accent)] font-medium hover:opacity-80 transition"
           >
             <FaWhatsapp />
             Falar direto no WhatsApp
@@ -120,18 +122,9 @@ export function ContactSection() {
         <form
           id="contact-form"
           onSubmit={handleSubmit}
-          className="
-            bg-[var(--color-bg-secondary)]
-            border border-[var(--color-bg-tertiary)]
-            p-8
-            rounded-2xl
-            shadow-[0_20px_60px_rgba(0,0,0,0.15)]
-            space-y-4
-          "
+          className="bg-[var(--color-bg-secondary)] border border-[var(--color-bg-tertiary)] p-8 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] space-y-4"
         >
-          {errorMessage && (
-            <p className="text-red-500 text-sm">{errorMessage}</p>
-          )}
+          {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
 
           <input
             type="text"
@@ -139,14 +132,7 @@ export function ContactSection() {
             required
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="
-              w-full p-3 rounded-lg
-              bg-[var(--color-bg-tertiary)]
-              border border-transparent
-              outline-none
-              focus:ring-2 focus:ring-[var(--color-text-accent)]
-              transition
-            "
+            className="w-full p-3 rounded-lg bg-[var(--color-bg-tertiary)] border border-transparent outline-none focus:ring-2 focus:ring-[var(--color-text-accent)] transition"
           />
 
           <input
@@ -155,34 +141,25 @@ export function ContactSection() {
             required
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="
-              w-full p-3 rounded-lg
-              bg-[var(--color-bg-tertiary)]
-              border border-transparent
-              outline-none
-              focus:ring-2 focus:ring-[var(--color-text-accent)]
-              transition
-            "
+            className="w-full p-3 rounded-lg bg-[var(--color-bg-tertiary)] border border-transparent outline-none focus:ring-2 focus:ring-[var(--color-text-accent)] transition"
           />
 
           <select
             value={formData.service}
             onChange={(e) => setFormData({ ...formData, service: e.target.value })}
             required
-            className="
-              w-full p-3 rounded-lg
-              bg-[var(--color-bg-tertiary)]
-              border border-transparent
-              outline-none
-              focus:ring-2 focus:ring-[var(--color-text-accent)]
-              transition
-            "
+            className="w-full p-3 rounded-lg bg-[var(--color-bg-tertiary)] border border-transparent outline-none focus:ring-2 focus:ring-[var(--color-text-accent)] transition"
           >
             <option value="">Qual serviço você precisa?</option>
-            {services.map((s) => (
-              <option key={s.key} value={s.key}>
-                {s.name}
-              </option>
+
+            {groupedServices.map(([categoryName, categoryServices]) => (
+              <optgroup key={categoryName} label={categoryName}>
+                {categoryServices.map((service) => (
+                  <option key={service.key} value={service.key}>
+                    {service.name}
+                  </option>
+                ))}
+              </optgroup>
             ))}
           </select>
 
@@ -192,32 +169,13 @@ export function ContactSection() {
             rows={4}
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-            className="
-              w-full p-3 rounded-lg
-              bg-[var(--color-bg-tertiary)]
-              border border-transparent
-              outline-none
-              focus:ring-2 focus:ring-[var(--color-text-accent)]
-              transition resize-none
-            "
+            className="w-full p-3 rounded-lg bg-[var(--color-bg-tertiary)] border border-transparent outline-none focus:ring-2 focus:ring-[var(--color-text-accent)] transition resize-none"
           />
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="
-              w-full
-              bg-[var(--color-text-accent)]
-              text-white
-              py-3
-              rounded-xl
-              font-medium
-              flex items-center justify-center gap-2
-
-              hover:opacity-90
-              hover:shadow-lg
-              transition
-            "
+            className="w-full bg-[var(--color-text-accent)] text-white py-3 rounded-xl font-medium flex items-center justify-center gap-2 hover:opacity-90 hover:shadow-lg transition"
           >
             {isSubmitting ? 'Abrindo...' : 'Quero parar de perder clientes'}
             <FaWhatsapp />
