@@ -17,7 +17,8 @@ export function ServicesSection() {
             "Comunicação alinhada ao seu público e mercado",
             "Experiência otimizada para clientes no Brasil e exterior"
           ],
-          serviceKey: "website"
+          serviceKey: "website",
+          cta: "Solicitar Projeto Exclusivo"
         },
         {
           name: "Reestruturação de Site",
@@ -28,7 +29,8 @@ export function ServicesSection() {
             "Nova estrutura com foco em percepção de valor",
             "Reposicionamento para aumentar autoridade"
           ],
-          serviceKey: "redesign"
+          serviceKey: "redesign",
+          cta: "Elevar Nível do Meu Site"
         },
         {
           name: "Projeto Sob Medida",
@@ -39,7 +41,8 @@ export function ServicesSection() {
             "Estrutura preparada para crescimento",
             "Desenvolvimento completo de ponta a ponta"
           ],
-          serviceKey: "custom"
+          serviceKey: "custom",
+          cta: "Consultar Solução Personalizada"
         }
       ]
     },
@@ -55,7 +58,8 @@ export function ServicesSection() {
             "Ajustes e melhorias constantes",
             "Suporte direto e ágil"
           ],
-          serviceKey: "maintenance"
+          serviceKey: "maintenance",
+          cta: "Garantir Minha Segurança"
         },
         {
           name: "Otimização de Performance",
@@ -66,7 +70,8 @@ export function ServicesSection() {
             "Experiência mais fluida para o usuário",
             "Acompanhamento de resultados"
           ],
-          serviceKey: "performance"
+          serviceKey: "performance",
+          cta: "Acelerar Meu Site"
         }
       ]
     },
@@ -82,7 +87,8 @@ export function ServicesSection() {
             "Aumento de visibilidade qualificada",
             "Fortalecimento da reputação online"
           ],
-          serviceKey: "seo-local"
+          serviceKey: "seo-local",
+          cta: "Ser Encontrado no Google"
         },
         {
           name: "Diagnóstico Estratégico",
@@ -93,7 +99,8 @@ export function ServicesSection() {
             "Ajustes de posicionamento e comunicação",
             "Plano claro para gerar mais resultados"
           ],
-          serviceKey: "analysis"
+          serviceKey: "analysis",
+          cta: "Receber Meu Diagnóstico"
         }
       ]
     }
@@ -120,7 +127,6 @@ export function ServicesSection() {
     <section id="services" className="py-28 px-4 md:px-8 bg-[var(--color-bg-services)]">
       <div className="container mx-auto max-w-6xl text-center">
 
-        {/* HEADLINE */}
         <h2 className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight">
           Você não precisa de um site.
           <br />
@@ -140,7 +146,6 @@ export function ServicesSection() {
               {category.title}
             </h3>
 
-            {/* GRID COM CENTRALIZAÇÃO INTELIGENTE */}
             <div
               className={`
                 grid gap-8
@@ -161,45 +166,40 @@ export function ServicesSection() {
                     rounded-2xl
                     bg-[var(--color-bg-secondary)]
                     border border-white/5
-
                     hover:border-[var(--color-text-accent)]
                     hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)]
                     hover:-translate-y-1
-
                     transition-all duration-300
                   "
                 >
-                  {/* HEADER COM ÍCONE */}
                   <div>
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-orange-500/10 text-orange-500 font-semibold">
                         {service.name.charAt(0)}
                       </div>
 
-                      <h4 className="text-lg font-semibold">
+                      <h4 className="text-lg font-semibold text-left">
                         {service.name}
                       </h4>
                     </div>
 
-                    <p className="text-sm text-[var(--color-text-secondary)] mb-5">
+                    <p className="text-sm text-left text-[var(--color-text-secondary)] mb-5">
                       {service.price}
                     </p>
 
-                    {/* LISTA PREMIUM */}
                     <ul className="space-y-3">
                       {service.description.map((item, j) => (
                         <li
                           key={j}
-                          className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]"
+                          className="flex items-start gap-2 text-sm text-left text-[var(--color-text-secondary)]"
                         >
-                          <Check size={16} className="mt-[2px] text-orange-500" />
+                          <Check size={16} className="mt-[2px] text-orange-500 shrink-0" />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  {/* CTA */}
                   <button
                     onClick={() => handleClick(service.serviceKey)}
                     className="
@@ -215,7 +215,7 @@ export function ServicesSection() {
                       shadow-sm group-hover:shadow-md
                     "
                   >
-                    Falar sobre isso
+                    {service.cta}
                   </button>
                 </div>
               ))}

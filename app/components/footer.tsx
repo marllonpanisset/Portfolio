@@ -53,10 +53,10 @@ export default function Footer() {
 
               {/* EMAIL (você pode trocar depois) */}
               <a
-                href="mailto:contato.marllon@gmail.com"
+                href="mailto:marllon.dev@outlook.com"
                 className="block hover:text-[var(--color-text-accent)]"
               >
-                contato.marllon@gmail.com
+                marllon.dev@outlook.com
               </a>
 
               {/* WHATSAPP */}
