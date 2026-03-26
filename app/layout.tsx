@@ -22,6 +22,7 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
+
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
@@ -30,6 +31,20 @@ export const metadata: Metadata = {
   },
   description:
     'Criação de sites profissionais e posicionamento digital para empresas que querem transmitir confiança e fechar mais negócios.',
+  
+  // Configuração de Favicons e Ícones
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.png', sizes: '180x180', type: 'image/png' }, // Caso tenha um favicon.png geral
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+
+  // Configuração do Open Graph (Redes Sociais)
   openGraph: {
     title: 'Marllon Panisset | Sites profissionais',
     description:
@@ -38,6 +53,22 @@ export const metadata: Metadata = {
     siteName: 'Marllon Panisset',
     locale: 'pt_BR',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png', // Nome do arquivo que você salvou na pasta public
+        width: 1200,
+        height: 630,
+        alt: 'Marllon Panisset - Posicionamento Digital',
+      },
+    ],
+  },
+
+  // Configuração para o Twitter
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Marllon Panisset | Sites profissionais',
+    description: 'Sites estratégicos para empresas que querem crescer.',
+    images: ['/og-image.png'],
   },
 };
 
