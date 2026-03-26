@@ -1,5 +1,4 @@
 'use client';
-import { motion } from 'framer-motion';
 import { AlertTriangle } from 'lucide-react';
 
 export function ProofSection() {
@@ -48,9 +47,8 @@ export function ProofSection() {
               desc: "Sua empresa não é percebida no nível que realmente opera."
             }
           ].map((item, i) => (
-            <motion.div
+            <div
               key={i}
-              whileHover={{ y: -6 }}
               className="
                 group
                 relative
@@ -81,7 +79,7 @@ export function ProofSection() {
               <p className="text-sm text-[var(--color-text-secondary)] text-center leading-relaxed">
                 {item.desc}
               </p>
-            </motion.div>
+            </div>
           ))}
 
         </div>
