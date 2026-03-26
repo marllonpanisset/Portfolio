@@ -24,6 +24,8 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
+  
+  // Título e descrição principais
   title: {
     default: 'Marllon Panisset | Sites profissionais para empresas',
     template: '%s | Marllon Panisset',
@@ -46,13 +48,13 @@ export const metadata: Metadata = {
     title: 'Marllon Panisset | Sites profissionais e estratégicos',
     description:
       'Sites modernos e estratégicos para empresas que querem crescer, transmitir autoridade e conquistar clientes com confiança.',
-    url: `${baseUrl}`,
+    url: 'https://marllonpanisset.netlify.app/', // URL pública absoluta
     siteName: 'Marllon Panisset',
     locale: 'pt-BR',
     type: 'website',
     images: [
       {
-        url: `${baseUrl}og-image.png`,
+        url: 'https://marllonpanisset.netlify.app/og-image.png', // URL pública absoluta
         width: 1200,
         height: 630,
         alt: 'Marllon Panisset - Sites estratégicos para empresas',
@@ -66,7 +68,7 @@ export const metadata: Metadata = {
     title: 'Marllon Panisset | Sites profissionais e estratégicos',
     description:
       'Transforme sua presença digital com sites que destacam sua marca, transmitem autoridade e aumentam suas vendas.',
-    images: [`${baseUrl}og-image.png`],
+    images: ['https://marllonpanisset.netlify.app/og-image.png'], // URL pública absoluta
   },
 };
 
