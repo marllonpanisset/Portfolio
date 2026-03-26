@@ -22,12 +22,17 @@ export function Header() {
       <div className="flex items-center justify-between max-w-7xl mx-auto px-6 md:px-8 py-4">
         
         {/* Logo */}
-        <div className="flex flex-col leading-tight">
-          <span className="text-lg md:text-xl font-semibold text-[var(--color-text-header)]">
+        <div className="flex items-center">
+          <span
+            className="lg:text-4xl text-3xl font-extrabold"
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              color: 'var(--color-text-header)',
+              letterSpacing: '-1px',
+              textTransform: 'capitalize', // pode ser 'uppercase' ou 'lowercase'
+            }}
+          >
             Marllon Panisset
-          </span>
-          <span className="text-xs text-[var(--color-text-secondary)] opacity-70 md:opacity-80">
-            Especialista em posicionamento digital
           </span>
         </div>
 

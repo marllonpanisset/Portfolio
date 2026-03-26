@@ -64,41 +64,52 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-28 px-4 md:px-8 bg-gradient-to-b from-white to-gray-50"
+      className="
+        py-28 px-4 md:px-8
+        bg-[var(--color-bg-primary)]
+      "
     >
+      {/* HEADLINE CENTRAL */}
       <div className="text-center max-w-3xl mx-auto mb-16">
-        <h2 className="text-3xl md:text-5xl font-semibold leading-tight">
+        <h2 className="text-3xl md:text-5xl font-semibold leading-tight text-[var(--color-text-primary)]">
           Sua empresa pode continuar como está
           <br />
-          <span className="text-orange-500">
+          <span className="text-[var(--color-text-accent)]">
             ou começar a atrair mais clientes com estratégia
           </span>
         </h2>
 
-        <p className="mt-6 text-lg text-gray-600">
+        <p className="mt-6 text-lg text-[var(--color-text-secondary)]">
           Me diga o que você precisa — eu vou te mostrar o próximo passo mais inteligente para o seu cenário.
         </p>
       </div>
+
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
 
         {/* TEXTO */}
         <div>
-          <h3 className="text-2xl font-semibold leading-snug">
+          <h3 className="text-2xl font-semibold leading-snug text-[var(--color-text-primary)]">
             A maioria das empresas não perde clientes por falta de serviço.
             <br />
-            <span className="text-orange-500">
+            <span className="text-[var(--color-text-accent)]">
               Perde por não transmitir confiança.
             </span>
           </h3>
 
-          <p className="mt-6 text-gray-600 text-lg">
+          <p className="mt-6 text-[var(--color-text-secondary)] text-lg">
             Me conte rapidamente seu cenário. Eu vou analisar e te responder direto no WhatsApp com o próximo passo mais estratégico.
           </p>
 
           <a
             href="https://wa.me/5521987881633"
             target="_blank"
-            className="mt-6 inline-flex items-center gap-2 text-orange-500 font-medium hover:underline"
+            className="
+              mt-6 inline-flex items-center gap-2
+              text-[var(--color-text-accent)]
+              font-medium
+              hover:opacity-80
+              transition
+            "
           >
             <FaWhatsapp />
             Falar direto no WhatsApp
@@ -110,11 +121,11 @@ export function ContactSection() {
           id="contact-form"
           onSubmit={handleSubmit}
           className="
-            bg-white
-            border border-gray-200
+            bg-[var(--color-bg-secondary)]
+            border border-[var(--color-bg-tertiary)]
             p-8
             rounded-2xl
-            shadow-[0_20px_60px_rgba(0,0,0,0.08)]
+            shadow-[0_20px_60px_rgba(0,0,0,0.15)]
             space-y-4
           "
         >
@@ -128,7 +139,14 @@ export function ContactSection() {
             required
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full p-3 rounded-lg border bg-gray-50 focus:bg-white focus:ring-2 focus:ring-orange-500 transition"
+            className="
+              w-full p-3 rounded-lg
+              bg-[var(--color-bg-tertiary)]
+              border border-transparent
+              outline-none
+              focus:ring-2 focus:ring-[var(--color-text-accent)]
+              transition
+            "
           />
 
           <input
@@ -137,14 +155,28 @@ export function ContactSection() {
             required
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="w-full p-3 rounded-lg border bg-gray-50 focus:bg-white focus:ring-2 focus:ring-orange-500 transition"
+            className="
+              w-full p-3 rounded-lg
+              bg-[var(--color-bg-tertiary)]
+              border border-transparent
+              outline-none
+              focus:ring-2 focus:ring-[var(--color-text-accent)]
+              transition
+            "
           />
 
           <select
             value={formData.service}
             onChange={(e) => setFormData({ ...formData, service: e.target.value })}
             required
-            className="w-full p-3 rounded-lg border bg-gray-50 focus:bg-white focus:ring-2 focus:ring-orange-500 transition"
+            className="
+              w-full p-3 rounded-lg
+              bg-[var(--color-bg-tertiary)]
+              border border-transparent
+              outline-none
+              focus:ring-2 focus:ring-[var(--color-text-accent)]
+              transition
+            "
           >
             <option value="">Qual serviço você precisa?</option>
             {services.map((s) => (
@@ -160,7 +192,14 @@ export function ContactSection() {
             rows={4}
             value={formData.message}
             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-            className="w-full p-3 rounded-lg border bg-gray-50 focus:bg-white focus:ring-2 focus:ring-orange-500 transition resize-none"
+            className="
+              w-full p-3 rounded-lg
+              bg-[var(--color-bg-tertiary)]
+              border border-transparent
+              outline-none
+              focus:ring-2 focus:ring-[var(--color-text-accent)]
+              transition resize-none
+            "
           />
 
           <button
@@ -168,14 +207,14 @@ export function ContactSection() {
             disabled={isSubmitting}
             className="
               w-full
-              bg-orange-500
+              bg-[var(--color-text-accent)]
               text-white
               py-3
               rounded-xl
               font-medium
               flex items-center justify-center gap-2
 
-              hover:bg-orange-600
+              hover:opacity-90
               hover:shadow-lg
               transition
             "
