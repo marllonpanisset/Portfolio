@@ -29,45 +29,44 @@ export const metadata: Metadata = {
     template: '%s | Marllon Panisset',
   },
   description:
-    'Criação de sites profissionais e posicionamento digital para empresas que querem transmitir confiança e fechar mais negócios.',
-  
-  // Configuração de Favicons e Ícones
+    'Transforme sua presença digital com sites profissionais e estratégicos que transmitem confiança, destacam sua marca e aumentam suas vendas.',
+
+  // Favicons e Ícones
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/favicon.png', sizes: '180x180', type: 'image/png' },
     ],
-    apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
   },
 
-  // Configuração do Open Graph (Redes Sociais)
+  // Open Graph (Redes Sociais)
   openGraph: {
-    title: 'Marllon Panisset | Sites profissionais',
+    title: 'Marllon Panisset | Sites profissionais e estratégicos',
     description:
-      'Sites estratégicos para empresas que querem crescer e transmitir autoridade.',
-    url: `${baseUrl}`, // URL completa
+      'Sites modernos e estratégicos para empresas que querem crescer, transmitir autoridade e conquistar clientes com confiança.',
+    url: `${baseUrl}`,
     siteName: 'Marllon Panisset',
-    locale: 'pt-BR', // corrigido para padrão de redes sociais
+    locale: 'pt-BR',
     type: 'website',
     images: [
       {
-        url: `${baseUrl}og-image.png`, // caminho absoluto
+        url: `${baseUrl}og-image.png`,
         width: 1200,
         height: 630,
-        alt: 'Marllon Panisset - Posicionamento Digital',
+        alt: 'Marllon Panisset - Sites estratégicos para empresas',
       },
     ],
   },
 
-  // Configuração para o Twitter
+  // Twitter Card
   twitter: {
     card: 'summary_large_image',
-    title: 'Marllon Panisset | Sites profissionais',
-    description: 'Sites estratégicos para empresas que querem crescer.',
-    images: [`${baseUrl}og-image.png`], // caminho absoluto
+    title: 'Marllon Panisset | Sites profissionais e estratégicos',
+    description:
+      'Transforme sua presença digital com sites que destacam sua marca, transmitem autoridade e aumentam suas vendas.',
+    images: [`${baseUrl}og-image.png`],
   },
 };
 
