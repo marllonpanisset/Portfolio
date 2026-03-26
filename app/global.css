@@ -13,41 +13,58 @@ html.theme-animate * {
   transition-duration: 300ms;
   transition-timing-function: ease-in-out;
 }
-
+/* ===== BASE ===== */
 :root {
   /* Fontes */
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-heading: 'Space Grotesk', system-ui, sans-serif;
   --font-logo: 'Space Grotesk', system-ui, sans-serif;
 
-  /* Cores Light */
-  --color-bg-primary: #f4f4f4;
-  --color-bg-secondary: #FFFFFF;
-  --color-bg-tertiary: #EFEFEF;
-  --color-bg-header: #0C0C1F;
-  --color-bg-sidebar-filter: #f4f4f4;
-  --color-bg-services: #f4f4f4;
+  /* ===== LIGHT MODE PREMIUM ===== */
+  --color-bg-primary: #FAFAFA;             /* Fundo principal suave */
+  --color-bg-secondary: #FFFFFF;           /* Cards / seções */
+  --color-bg-tertiary: #F0F0F0;            /* Destaques / hover */
+  --color-bg-header: #FFFFFF;              /* Header claro */
+  --color-bg-sidebar-filter: #F4F4F4;      /* Filtros / menus laterais */
+  --color-bg-services: #FFFFFF;            /* Background de serviços */
 
-  --color-text-primary: #333;
-  --color-text-secondary: #666;
-  --color-text-accent: #FF8A00;
-  --color-text-header: #FFF;
-  --color-text-sidebar-filter: #000;
+  --color-text-primary: #111827;           /* Texto principal escuro */
+  --color-text-secondary: #4B5563;         /* Subtítulos e descrições */
+  --color-text-accent: #FF8A00;            /* Destaques e links importantes */
+  --color-text-header: #111827;            /* Texto do header */
+  --color-text-sidebar-filter: #111827;    /* Texto menus laterais */
+
+  /* Bordas / sombras */
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-shadow: rgba(0, 0, 0, 0.15);
+
+  /* Botões */
+  --color-button-gradient-start: #FF8A00;
+  --color-button-gradient-end: #FFA733;
 }
 
+/* ===== DARK MODE PREMIUM ===== */
 [data-theme='dark'] {
-  --color-bg-primary: #0C0C1F;
-  --color-bg-secondary: #1C1C36;
-  --color-bg-tertiary: #2A2A47;
-  --color-bg-header: #0C0C1F;
-  --color-bg-sidebar-filter: #0C0C1F;
-  --color-bg-services: #0C0C1F;
+  --color-bg-primary: #0C0C1F;             /* Fundo principal escuro */
+  --color-bg-secondary: #1A1A36;           /* Cards / seções secundárias */
+  --color-bg-tertiary: #2A2A47;            /* Destaques / hover */
+  --color-bg-header: #0C0C1F;              /* Header */
+  --color-bg-sidebar-filter: #0C0C1F;      /* Filtros / menus laterais */
+  --color-bg-services: #1A1A36;            /* Serviços */
 
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #B0B0B0;
-  --color-text-accent: #FF8A00;
-  --color-text-header: #FFF;
-  --color-text-sidebar-filter: #FFF;
+  --color-text-primary: #E6E6FA;           /* Texto principal claro */
+  --color-text-secondary: #A0A0B5;         /* Subtítulos / descrições */
+  --color-text-accent: #FF8A00;            /* Destaques e links importantes */
+  --color-text-header: #E6E6FA;            /* Header */
+  --color-text-sidebar-filter: #E6E6FA;    /* Menus laterais / filtros */
+
+  /* Bordas / sombras */
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-shadow: rgba(0, 0, 0, 0.5);
+
+  /* Botões */
+  --color-button-gradient-start: #FF8A00;
+  --color-button-gradient-end: #FFA733;
 }
 
 html {

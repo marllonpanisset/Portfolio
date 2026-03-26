@@ -22,7 +22,6 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
-
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
@@ -37,7 +36,7 @@ export const metadata: Metadata = {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/favicon.png', sizes: '180x180', type: 'image/png' }, // Caso tenha um favicon.png geral
+      { url: '/favicon.png', sizes: '180x180', type: 'image/png' },
     ],
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
@@ -49,13 +48,13 @@ export const metadata: Metadata = {
     title: 'Marllon Panisset | Sites profissionais',
     description:
       'Sites estratégicos para empresas que querem crescer e transmitir autoridade.',
-    url: baseUrl,
+    url: `${baseUrl}`, // URL completa
     siteName: 'Marllon Panisset',
-    locale: 'pt_BR',
+    locale: 'pt-BR', // corrigido para padrão de redes sociais
     type: 'website',
     images: [
       {
-        url: '/og-image.png', // Nome do arquivo que você salvou na pasta public
+        url: `${baseUrl}og-image.png`, // caminho absoluto
         width: 1200,
         height: 630,
         alt: 'Marllon Panisset - Posicionamento Digital',
@@ -68,7 +67,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Marllon Panisset | Sites profissionais',
     description: 'Sites estratégicos para empresas que querem crescer.',
-    images: ['/og-image.png'],
+    images: [`${baseUrl}og-image.png`], // caminho absoluto
   },
 };
 

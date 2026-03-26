@@ -1,4 +1,4 @@
-export const baseUrl = 'https://marllonpanisset.netlify.app/';
+export const baseUrl = 'https://marllonpanisset.netlify.app';
 
 export default async function sitemap() {
   const routes = ['', '/#services', '/#projects', '/#contact'].map((route) => ({

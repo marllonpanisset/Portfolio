@@ -24,12 +24,12 @@ export function Header() {
         {/* Logo */}
         <div className="flex items-center">
           <span
-            className="lg:text-4xl text-3xl font-extrabold"
+            className="text-2xl sm:text-3xl lg:text-3.5xl font-bold"
             style={{
-              fontFamily: "'Poppins', sans-serif",
+              fontFamily: "'Space Grotesk', sans-serif",
               color: 'var(--color-text-header)',
-              letterSpacing: '-1px',
-              textTransform: 'capitalize', // pode ser 'uppercase' ou 'lowercase'
+              letterSpacing: '-0.3px', // base
+              textTransform: 'uppercase',
             }}
           >
             Marllon Panisset
