@@ -1,118 +1,74 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { MouseEvent, useEffect } from 'react';
+import { MouseEvent } from 'react';
 import clsx from 'clsx';
 
-const navItems = {
-  '#inicio': { name: 'Início' },
-  '#how-i-help': { name: 'Como posso te ajudar' },
-  '#services': { name: 'Serviços' },
-  '#projects': { name: 'Projetos' },
-  '#contact': { name: 'Contato' },
-  '/blog': { name: 'Blog' },
-};
+const navItems = [
+  { href: '#inicio', name: 'Início' },
+  { href: '#services', name: 'Soluções' },
+  { href: '#projects', name: 'Projetos' },
+  { href: '#contact', name: 'Contato' },
+];
 
 interface NavbarProps {
   onLinkClick: () => void;
   isFooter?: boolean;
   isMobileMenu?: boolean;
-  activePath: string;
 }
 
-export function Navbar({ onLinkClick, isFooter, isMobileMenu, activePath }: NavbarProps) {
-  const router = useRouter();
-
-  const handleScroll = (e: MouseEvent<HTMLAnchorElement>, path: string) => {
+export function Navbar({ onLinkClick, isFooter, isMobileMenu }: NavbarProps) {
+  const handleScroll = (e: MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
     onLinkClick();
 
-    const isAnchor = path.startsWith('#');
-    const isHomePage = activePath === '/';
-    const targetId = path.substring(1);
-    const offset = 72;
+    const element = document.getElementById(target);
+    if (element) {
+      const offset = 80;
+      const position = element.getBoundingClientRect().top + window.scrollY - offset;
 
-    if (isAnchor && isHomePage) {
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const finalPosition = elementPosition + window.scrollY - offset;
-        window.scrollTo({ top: finalPosition, behavior: 'smooth' });
-      }
-    } else if (isAnchor && !isHomePage) {
-      router.push(`/${path}`);
+      window.scrollTo({
+        top: position,
+        behavior: 'smooth',
+      });
     }
   };
-
-  useEffect(() => {
-    if (activePath === '/') {
-      const hash = window.location.hash;
-      const offset = 72;
-      if (hash) {
-        const targetElement = document.getElementById(hash.substring(1));
-        if (targetElement) {
-          const elementPosition = targetElement.getBoundingClientRect().top;
-          const finalPosition = elementPosition + window.scrollY - offset;
-          window.scrollTo({ top: finalPosition, behavior: 'smooth' });
-        }
-      }
-    }
-  }, [activePath]);
 
   return (
     <nav
       className={clsx(
-        'flex flex-col md:flex-row items-center h-full w-full overflow-x-hidden',
-        isFooter ? '' : 'justify-center'
+        'flex items-center w-full',
+        isFooter ? 'justify-center flex-wrap gap-6' : 'justify-center'
       )}
     >
-      <div
-        className={clsx(
-          'items-center w-full',
-          isFooter
-            ? 'flex flex-wrap justify-center gap-6'
-            : 'flex flex-col md:flex-row md:space-x-0'
-        )}
-      >
-        {Object.entries(navItems).map(([path, { name }]) => {
-          const isAnchor = path.startsWith('#');
-          const href = isAnchor && activePath !== '/' ? `/${path}` : path;
+      {navItems.map((item) => {
+        const target = item.href.replace('#', '');
 
-          const isBlogPage = activePath?.startsWith('/blog');
-          const isCurrentBlogLink = path === '/blog';
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            onClick={(e) => handleScroll(e, target)}
+            className={clsx(
+              'transition-all duration-300 whitespace-nowrap',
+              
+              // Desktop padrão
+              !isMobileMenu && !isFooter &&
+                'text-base px-4 py-2 text-[var(--color-text-header)] hover:text-[var(--color-text-accent)]',
 
-          const isActive =
-            !isAnchor &&
-            (activePath === path || (isBlogPage && isCurrentBlogLink));
+              // Mobile menu
+              isMobileMenu &&
+                'text-2xl font-semibold text-white py-4 hover:scale-105 transition-transform',
 
-          // Se for footer, muda "Como posso te ajudar" para "Ajuda"
-          const displayName =
-            isFooter && name === 'Como posso te ajudar' ? 'Ajuda' : name;
-
-          return (
-            <Link
-              key={path}
-              href={href}
-              onClick={isAnchor ? (e) => handleScroll(e, path) : onLinkClick}
-              className={clsx(
-                'relative px-3 py-2 font-medium transition-all duration-300 whitespace-nowrap',
-                isMobileMenu &&
-                  'text-white text-2xl font-bold py-6 hover:scale-105 transition-transform',
-                isFooter &&
-                  'text-gray-300 hover:text-white text-sm sm:text-base lg:text-lg py-2',
-                !isMobileMenu && !isFooter &&
-                  'text-lg py-2 hover:text-[var(--color-accent)]',
-                isActive
-                  ? 'text-[var(--color-accent)] underline font-semibold'
-                  : 'text-[var(--color-text-header)]'
-              )}
-            >
-              {displayName}
-            </Link>
-          );
-        })}
-      </div>
+              // Footer
+              isFooter &&
+                'text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
+            )}
+          >
+            {item.name}
+          </Link>
+        );
+      })}
     </nav>
   );
 }

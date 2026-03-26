@@ -60,10 +60,10 @@ export default function ProjectsSection() {
         {/* Título e subtítulo */}
         <motion.div className="text-center mb-20" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={containerVariants}>
           <motion.h2 id="projects-heading" className="text-3xl md:text-5xl font-bold mb-6 text-[var(--color-text-primary)]" variants={cardVariants}>
-            Exemplos do que posso fazer
+            Projetos recentes
           </motion.h2>
           <motion.p className="text-[var(--color-text-secondary)] mt-2" variants={cardVariants}>
-            Resultados que ajudam negócios a crescer
+            Exemplos de posicionamento digital aplicado
           </motion.p>
         </motion.div>
 

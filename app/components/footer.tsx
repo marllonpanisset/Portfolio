@@ -73,8 +73,6 @@ export default function Footer() {
       title: 'Recursos',
       links: [
         { name: 'Projetos', href: '#projects' },
-        { name: 'Blog', href: '/blog' },
-        { name: 'Ebook', href: '/nomadev' }, // nova página
         { name: 'Termo de Uso', href: '/termo-de-uso' },
         { name: 'Política de Privacidade', href: '/politica-de-privacidade' },
       ],

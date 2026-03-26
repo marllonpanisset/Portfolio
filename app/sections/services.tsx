@@ -1,270 +1,231 @@
 'use client';
 import React from 'react';
-import { motion } from 'framer-motion';
+import { trackServiceClick } from '../data/services';
+import { Check } from 'lucide-react';
 
 export function ServicesSection() {
   const categories = [
     {
-      title: "Criação de Sites",
+      title: "Posicionamento e Presença Digital",
       services: [
         {
-          name: "Landing Page",
-          price: "A partir de R$ 1.200",
+          name: "Criação de Site Profissional",
+          price: "Projeto sob medida",
           description: [
-            "Formulário de contato",
-            "Links para WhatsApp e redes sociais",
-            "Página focada em conversão"
+            "Site pensado para gerar confiança imediata",
+            "Estrutura estratégica focada em conversão",
+            "Comunicação alinhada ao seu público e mercado",
+            "Experiência otimizada para clientes no Brasil e exterior"
           ],
-          isLaunchPrice: true,
-          serviceKey: "landing-page"
-        },
-        {
-          name: "Site Institucional",
-          price: "A partir de R$ 2.000",
-          description: [
-            "Tudo da Landing Page",
-            "Páginas internas (Sobre, Serviços, Contato)",
-            "Estrutura otimizada para SEO",
-            "Galeria de imagens",
-            "Integração com redes sociais"
-          ],
-          isLaunchPrice: true,
           serviceKey: "website"
         },
         {
-          name: "Site Sob Medida",
+          name: "Reestruturação de Site",
+          price: "Análise personalizada",
+          description: [
+            "Diagnóstico completo do seu site atual",
+            "Identificação de pontos que afastam clientes",
+            "Nova estrutura com foco em percepção de valor",
+            "Reposicionamento para aumentar autoridade"
+          ],
+          serviceKey: "redesign"
+        },
+        {
+          name: "Projeto Sob Medida",
           price: "Sob consulta",
           description: [
-            "Design exclusivo",
-            "Funcionalidades personalizadas",
-            "Integrações com sistemas externos",
-            "Painel administrativo",
-            "Estrutura preparada para crescimento"
+            "Soluções personalizadas para seu modelo de negócio",
+            "Integrações e automações estratégicas",
+            "Estrutura preparada para crescimento",
+            "Desenvolvimento completo de ponta a ponta"
           ],
           serviceKey: "custom"
         }
       ]
     },
     {
-      title: "Manutenção e Suporte",
+      title: "Suporte e Evolução",
       services: [
         {
-          name: "Plano Essencial",
-          price: "R$ 79 / mês",
+          name: "Manutenção e Suporte",
+          price: "Plano sob medida",
           description: [
-            "Atualizações de segurança",
-            "Monitoramento do site",
-            "Backup periódico",
-            "1h de alterações por mês",
-            "Suporte via WhatsApp"
+            "Seu site sempre atualizado e seguro",
+            "Monitoramento contínuo",
+            "Ajustes e melhorias constantes",
+            "Suporte direto e ágil"
           ],
-          isLaunchPrice: true,
-          serviceKey: "maintenance-basic"
+          serviceKey: "maintenance"
         },
         {
-          name: "Plano Profissional",
-          price: "R$ 159 / mês",
+          name: "Otimização de Performance",
+          price: "Sob análise",
           description: [
-            "Tudo do Plano Essencial",
-            "4h de alterações por mês",
-            "Otimização de performance",
-            "Relatórios mensais",
-            "Suporte prioritário"
+            "Melhoria de velocidade e carregamento",
+            "Ajustes técnicos que impactam conversão",
+            "Experiência mais fluida para o usuário",
+            "Acompanhamento de resultados"
           ],
-          isLaunchPrice: true,
-          serviceKey: "maintenance-pro"
-        },
-        {
-          name: "Plano Personalizado",
-          price: "Sob consulta",
-          description: [
-            "Atendimento dedicado",
-            "Horas personalizadas de suporte",
-            "Consultoria técnica",
-            "Melhorias contínuas",
-            "Suporte prioritário"
-          ],
-          serviceKey: "maintenance-custom"
+          serviceKey: "performance"
         }
       ]
     },
     {
-      title: "Presença Digital",
+      title: "Autoridade e Aquisição de Clientes",
       services: [
         {
-          name: "SEO Local",
+          name: "Posicionamento no Google",
           price: "Sob consulta",
           description: [
-            "Apareça no Google quando clientes procurarem serviços na sua região",
-            "Configuração do Google Meu Negócio",
-            "Otimização para buscas locais",
-            "Gestão de avaliações",
-            "Análise de concorrentes",
-            "Relatórios de desempenho"
+            "Apareça quando clientes buscarem seu serviço",
+            "Otimização estratégica do Google",
+            "Aumento de visibilidade qualificada",
+            "Fortalecimento da reputação online"
           ],
           serviceKey: "seo-local"
         },
         {
-          name: "Google Meu Negócio",
-          price: "Sob consulta",
+          name: "Diagnóstico Estratégico",
+          price: "Diagnóstico completo",
           description: [
-            "Configuração e otimização para aumentar visibilidade local",
-            "Gestão de avaliações",
-            "Análise de concorrentes",
-            "Relatórios de desempenho"
+            "Análise da sua presença digital atual",
+            "Identificação de oportunidades reais",
+            "Ajustes de posicionamento e comunicação",
+            "Plano claro para gerar mais resultados"
           ],
-          serviceKey: "google-my-business"
+          serviceKey: "analysis"
         }
       ]
     }
   ];
 
-  const categoryIds: Record<string, string> = {
-    "Criação de Sites": "criacao-de-sites",
-    "Manutenção e Suporte": "manutencao-e-suporte",
-    "Presença Digital": "presenca-digital"
-  };
-
   const handleClick = (serviceKey: string) => {
-    const select = document.getElementById('service') as HTMLSelectElement | null;
-    if (select) {
-      select.value = serviceKey;
-      window.dispatchEvent(new CustomEvent('externalServiceSelect', { detail: { serviceKey } }));
+    trackServiceClick(serviceKey);
+
+    window.dispatchEvent(
+      new CustomEvent('externalServiceSelect', {
+        detail: { serviceKey },
+      })
+    );
+
+    const contact = document.getElementById('contact');
+    if (contact) {
+      const offset = 80;
+      const top = contact.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      const offset = 72;
-      const elementPosition = contactSection.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    }
-  };
-
-  const getButtonText = (categoryTitle: string) => {
-    if (categoryTitle === "Criação de Sites") return "Começar projeto";
-    if (categoryTitle === "Manutenção e Suporte") return "Contratar plano";
-    if (categoryTitle === "Presença Digital") return "Solicitar análise";
-    return "Começar projeto";
-  };
-
-  const containerVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.15 } }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   };
 
   return (
-    <section
-      id="services"
-      className="py-20 px-4 md:px-8 bg-[var(--color-bg-services)] text-[var(--color-text-primary)]"
-    >
+    <section id="services" className="py-28 px-4 md:px-8 bg-[var(--color-bg-services)]">
       <div className="container mx-auto max-w-6xl text-center">
-        <motion.h2
-          className="text-3xl md:text-5xl font-bold mb-4 text-[var(--color-text-primary)]"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          O que eu posso fazer pelo seu negócio
-        </motion.h2>
 
-        <motion.p
-          className="text-lg md:text-xl text-[var(--color-text-secondary)] mb-14"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-        >
-          Soluções simples que ajudam você a vender mais online
-        </motion.p>
+        {/* HEADLINE */}
+        <h2 className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight">
+          Você não precisa de um site.
+          <br />
+          <span className="text-[var(--color-text-accent)]">
+            Precisa de uma presença digital que gere negócios.
+          </span>
+        </h2>
+
+        <p className="text-lg text-[var(--color-text-secondary)] mb-20 max-w-2xl mx-auto">
+          Cada projeto aqui é pensado para aumentar percepção de valor, gerar confiança e transformar visitantes em clientes.
+        </p>
 
         {categories.map((category, idx) => (
-          <motion.div
-            key={idx}
-            className="py-12 px-4 mb-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={containerVariants}
-          >
-            <motion.h3
-              id={categoryIds[category.title]}
-              className="text-2xl md:text-3xl font-semibold mb-8 text-[var(--color-text-accent)]"
-              variants={cardVariants}
-            >
+          <div key={idx} className="mb-20">
+
+            <h3 className="text-xl md:text-2xl font-semibold mb-10 text-[var(--color-text-accent)]">
               {category.title}
-            </motion.h3>
+            </h3>
 
-            <motion.div
+            {/* GRID COM CENTRALIZAÇÃO INTELIGENTE */}
+            <div
               className={`
-                grid 
-                grid-cols-1 
-                gap-6
-                md:grid-cols-2 
-                md:gap-8
-                ${category.services.length === 2 
-                  ? 'lg:grid-cols-2 lg:justify-center' 
-                  : 'lg:grid-cols-3'
-                }
+                grid gap-8
+                md:grid-cols-2
+                ${category.services.length === 2
+                  ? 'lg:grid-cols-2 max-w-4xl mx-auto'
+                  : 'lg:grid-cols-3'}
               `}
-              variants={containerVariants}
             >
-              {category.services.map((service, sidx) => (
-                <motion.div
-                  key={sidx}
-                  className="p-6 bg-[var(--color-bg-secondary)] rounded-2xl shadow-lg hover:shadow-xl transition flex flex-col justify-between h-full text-left border border-[var(--color-bg-tertiary)]"
-                  variants={cardVariants}
-                >
-                  <div>
-                    <h4 className="text-xl md:text-2xl font-semibold mb-3 text-[var(--color-text-primary)]">
-                      {service.name}
-                    </h4>
+              {category.services.map((service, i) => (
+                <div
+                  key={i}
+                  className="
+                    group
+                    relative
+                    flex flex-col justify-between
+                    p-6
+                    rounded-2xl
+                    bg-[var(--color-bg-secondary)]
+                    border border-white/5
 
-                    <div className="flex items-center gap-3 mb-3">
-                      <p className="text-[var(--color-text-secondary)] font-medium">
-                        {service.price}
-                      </p>
-                      {service.isLaunchPrice && (
-                        <span className="bg-orange-500 text-white text-xs font-semibold px-2 py-1 rounded-full uppercase shadow-sm">
-                          Lançamento
-                        </span>
-                      )}
+                    hover:border-[var(--color-text-accent)]
+                    hover:shadow-[0_20px_60px_rgba(0,0,0,0.25)]
+                    hover:-translate-y-1
+
+                    transition-all duration-300
+                  "
+                >
+                  {/* HEADER COM ÍCONE */}
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-orange-500/10 text-orange-500 font-semibold">
+                        {service.name.charAt(0)}
+                      </div>
+
+                      <h4 className="text-lg font-semibold">
+                        {service.name}
+                      </h4>
                     </div>
 
-                    <ul className="text-[var(--color-text-secondary)] list-disc list-inside space-y-1">
-                      {service.description.map((item, i) => (
-                        <li key={i}>{item}</li>
+                    <p className="text-sm text-[var(--color-text-secondary)] mb-5">
+                      {service.price}
+                    </p>
+
+                    {/* LISTA PREMIUM */}
+                    <ul className="space-y-3">
+                      {service.description.map((item, j) => (
+                        <li
+                          key={j}
+                          className="flex items-start gap-2 text-sm text-[var(--color-text-secondary)]"
+                        >
+                          <Check size={16} className="mt-[2px] text-orange-500" />
+                          <span>{item}</span>
+                        </li>
                       ))}
                     </ul>
                   </div>
-                  <div className="mt-6">
-                    <button
-                      onClick={() => handleClick(service.serviceKey)}
-                      className="bg-orange-500 text-white px-6 py-2 rounded-xl hover:bg-orange-600 transition w-full font-medium"
-                    >
-                      {getButtonText(category.title)}
-                    </button>
-                  </div>
-                </motion.div>
+
+                  {/* CTA */}
+                  <button
+                    onClick={() => handleClick(service.serviceKey)}
+                    className="
+                      mt-8
+                      w-full
+                      bg-[var(--color-text-accent)]
+                      text-white
+                      py-3
+                      rounded-xl
+                      font-medium
+                      hover:opacity-90
+                      transition
+                      shadow-sm group-hover:shadow-md
+                    "
+                  >
+                    Falar sobre isso
+                  </button>
+                </div>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         ))}
 
-        <motion.p
-          className="mt-16 text-[var(--color-text-secondary)] text-lg md:text-xl font-medium"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-        >
-          Mais de 8 anos ajudando negócios locais e digitais a aumentarem clientes e vendas de forma prática e sem complicação.
-        </motion.p>
+        <p className="mt-20 text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
+          O objetivo não é apenas ter presença online — é ser percebido como a melhor escolha quando o cliente estiver pronto para decidir.
+        </p>
       </div>
     </section>
   );

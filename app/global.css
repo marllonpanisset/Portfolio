@@ -1,4 +1,3 @@
-/* global.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +6,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Ativar transição de cores apenas no instante da troca de tema */
+/* Transição de tema */
 html.theme-animate,
 html.theme-animate * {
   transition-property: background-color, color;
@@ -15,18 +14,13 @@ html.theme-animate * {
   transition-timing-function: ease-in-out;
 }
 
-html.theme-animate,
-html.theme-animate body,
-html.theme-animate body * {
-  transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
-}
-
 :root {
-  /* Font families */
-  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-logo: 'Inter', system-ui, sans-serif; /* pode manter Inter ou trocar por uma mais distinta */
+  /* Fontes */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-logo: 'Space Grotesk', system-ui, sans-serif;
 
-  /* Cores para o tema claro (Light Mode) */
+  /* Cores Light */
   --color-bg-primary: #f4f4f4;
   --color-bg-secondary: #FFFFFF;
   --color-bg-tertiary: #EFEFEF;
@@ -34,22 +28,11 @@ html.theme-animate body * {
   --color-bg-sidebar-filter: #f4f4f4;
   --color-bg-services: #f4f4f4;
 
-
   --color-text-primary: #333;
   --color-text-secondary: #666;
   --color-text-accent: #FF8A00;
   --color-text-header: #FFF;
   --color-text-sidebar-filter: #000;
-
-  --sh-class: #2d5e9d;
-  --sh-identifier: #354150;
-  --sh-sign: #8996a3;
-  --sh-string: #007f7a;
-  --sh-keyword: #e02518;
-  --sh-comment: #a19595;
-  --sh-jsxliterals: #6266d1;
-  --sh-property: #e25a1c;
-  --sh-entity: #e25a1c;
 }
 
 [data-theme='dark'] {
@@ -60,17 +43,11 @@ html.theme-animate body * {
   --color-bg-sidebar-filter: #0C0C1F;
   --color-bg-services: #0C0C1F;
 
-
   --color-text-primary: #FFFFFF;
   --color-text-secondary: #B0B0B0;
   --color-text-accent: #FF8A00;
   --color-text-header: #FFF;
   --color-text-sidebar-filter: #FFF;
-
-  --sh-class: #4c97f8;
-  --sh-identifier: white;
-  --sh-keyword: #f47067;
-  --sh-string: #0fa295;
 }
 
 html {
@@ -87,30 +64,30 @@ html {
   color: var(--color-bg-primary);
 }
 
-/* Tipografia */
+/* Base */
 body {
   font-family: var(--font-sans);
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Headings PREMIUM */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-sans);
+  font-family: var(--font-heading);
   font-weight: 600;
   line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-/* Logo específico (pode ser mais pesado) */
-.logo {
-  font-family: var(--font-logo);
-  font-weight: 800;
   letter-spacing: -0.03em;
 }
 
-/* Mantenha todas as suas regras anteriores (prose, etc.) exatamente como estavam */
+/* Logo */
+.logo {
+  font-family: var(--font-logo);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+/* ===== BLOG (MANTIDO) ===== */
 .prose .anchor {
   @apply absolute invisible no-underline;
   margin-left: -1em;
@@ -152,20 +129,6 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color-bg-tertiary);
 }
 
-.prose pre code {
-  @apply p-0;
-  border: initial;
-  line-height: 1.5;
-}
-
-.prose code span {
-  @apply font-medium;
-}
-
-.prose img {
-  @apply m-0;
-}
-
 .prose p {
   @apply my-4;
   color: var(--color-text-secondary);
@@ -178,82 +141,9 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-text-accent);
 }
 
-.prose h1 {
-  @apply text-4xl font-medium tracking-tight mt-6 mb-2;
-}
-
-.prose h2 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
-}
-
-.prose h3 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
-}
-
-.prose h4 {
-  @apply text-lg font-medium tracking-tight mt-6 mb-2;
-}
-
-.prose strong {
-  @apply font-medium;
-  color: var(--color-text-primary);
-}
-
-.prose ul {
-  @apply list-disc pl-6;
-  color: var(--color-text-secondary);
-}
-
-.prose ol {
-  @apply list-decimal pl-6;
-  color: var(--color-text-secondary);
-}
-
-.prose > :first-child {
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
-}
-
-pre::-webkit-scrollbar {
-  display: none;
-}
-pre {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-input[type='text'],
-input[type='email'] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-table {
-  display: block;
-  max-width: fit-content;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-.title {
-  text-wrap: balance;
-}
-
+/* Responsivo hero */
 @media screen and (max-width: 767px) {
   #inicio {
     min-height: auto;
-  }
-}
-
-@media screen and (min-width: 640px) and (max-width: 767px) {
-  #inicio {
-    padding-top: 10rem;
-  }
-}
-
-@media screen and (max-width: 639px) {
-  #inicio {
-    padding-top: 6rem;
   }
 }
